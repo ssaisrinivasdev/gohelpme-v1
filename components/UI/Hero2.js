@@ -36,8 +36,8 @@ const Hero2 = () => {
           <Image
             src="/images/help.jpg"
             className="w-full mx-auto sm:w-10/12  lg:w-full"
-            height={5000}
-            width={5000}
+            height={1250}
+            width={1250}
           />
         </div>
       </section>

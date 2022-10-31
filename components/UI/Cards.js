@@ -9,8 +9,8 @@ export default function Cards() {
         className="object-cover object-center w-full h-56"
         src="/images/patient.jpg"
         alt="avatar"
-        width={5000}
-        height={3000}
+        width={1250}
+        height={750}
       />
 
       <div className="flex items-left px-3 py-3 bg-color1">
