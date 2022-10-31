@@ -1,26 +1,21 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sticky-nav {
+  animation: sticky-nav 300ms;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@keyframes sticky-nav {
+  0% {
+    transform: translateY(-6em);
   }
-  body {
-    color: white;
-    background: black;
+
+  100% {
+    transform: translateY(0);
   }
+}
+
+section {
+  font-family: "Inter", sans-serif;
 }
