@@ -34,8 +34,10 @@ const Hero2 = () => {
         </div>
         <div className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3 ">
           <Image
-            src="https://i.postImage.cc/HxHyt53c/undraw-heatmap-uyye.png"
+            src="/images/help.jpg"
             className="w-full mx-auto sm:w-10/12  lg:w-full"
+            height={5000}
+            width={5000}
           />
         </div>
       </section>

@@ -7,8 +7,10 @@ export default function Cards() {
     <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
       <Image
         className="object-cover object-center w-full h-56"
-        src="https://images.gofundme.com/U_iL7gR5HJE1VtGE2t0aofxrDYU=/720x405/https://d2g8igdw686xgo.cloudfront.net/68944039_1666737821907705_r.jpeg"
+        src="/images/patient.jpg"
         alt="avatar"
+        width={5000}
+        height={3000}
       />
 
       <div className="flex items-left px-3 py-3 bg-color1">

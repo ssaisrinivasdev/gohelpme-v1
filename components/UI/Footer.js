@@ -32,7 +32,12 @@ const Footer = () => {
   return (
     <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto pt-32 pb-32">
       <div className="max-w-lg sm:mx-auto sm:text-center">
-        <Image src="/images/Logo/Logo.jpg" className="w-full sm:mx-auto" />
+        <Image
+          src="/images/Logo/Logo.jpg"
+          className="w-full sm:mx-auto"
+          width={1000}
+          height={1000}
+        />
         <p className="leading-relaxed mt-2 text-[15px]">
           {" "}
           Lorem Ipsum has been the industry's standard dummy text ever since the
