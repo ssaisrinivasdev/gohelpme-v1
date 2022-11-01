@@ -11,15 +11,15 @@ function ProgressBar() {
             </span>
           </div>
           <div className="text-right">
-            <span className="text-xs font-semibold inline-block text-pink-600">
+            <span className="text-xs font-semibold inline-block text-white">
               30%
             </span>
           </div>
         </div>
-        <div className="overflow-hidden grow-0 h-2 mb-4 text-xs flex rounded bg-red-200">
+        <div className="overflow-hidden my-3 grow-1 h-2 text-xs flex rounded bg-white w-[276px]">
           <div
             style={{ width: "30%" }}
-            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
+            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gray-500"
           ></div>
         </div>
       </div>

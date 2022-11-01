@@ -4,7 +4,7 @@ import ProgressBar from "./ProgressBar";
 
 export default function Cards() {
   return (
-    <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    <div className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-14 ml-10 mr-10">
       <Image
         className="object-cover object-center w-full h-56"
         src="/images/patient.jpg"
@@ -20,15 +20,15 @@ export default function Cards() {
       </div>
 
       <div className="px-6 py-4">
-        <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
+        <h1 className="text-xl font-semibold text-gray-800 ">
           Created by johnson
         </h1>
 
-        <p className="py-2 text-gray-700 dark:text-gray-400">
+        <p className="py-2 text-gray-700 ">
           The above fund is created for medical emergencies of cancer patients
         </p>
 
-        <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+        <div className="flex items-center mt-4 text-gray-700 ">
           <svg
             aria-label="suitcase icon"
             className="w-6 h-6 fill-current"
@@ -47,7 +47,7 @@ export default function Cards() {
           <h1 className="px-2 text-sm">10-10-2020</h1>
         </div>
 
-        <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+        <div className="flex items-center mt-4 text-gray-700 ">
           <svg
             aria-label="location pin icon"
             className="w-6 h-6 fill-current"
@@ -70,7 +70,7 @@ export default function Cards() {
           <h1 className="px-2 text-sm">California</h1>
         </div>
 
-        <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+        <div className="flex items-center mt-4 text-gray-700 ">
           <svg
             aria-label="email icon"
             className="w-6 h-6 fill-current"
