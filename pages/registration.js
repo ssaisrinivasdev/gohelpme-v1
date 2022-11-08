@@ -42,7 +42,7 @@ function Registration() {
               />
             </div>
 
-            <label
+            {/* <label
               for="dropzone-file"
               className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-md cursor-pointer "
             >
@@ -64,7 +64,7 @@ function Registration() {
               <h2 className="mx-3 text-gray-400">Profile Photo</h2>
 
               <input id="dropzone-file" type="file" className="hidden" />
-            </label>
+            </label> */}
 
             <div className="relative flex items-center mt-6">
               <span className="absolute">

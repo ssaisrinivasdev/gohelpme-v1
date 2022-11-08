@@ -16,19 +16,15 @@ export default function Home() {
 
       <Header />
       <Hero />
-      <div className="relative grid grid-flow-col grid-cols-1 items-center">
+      <div className="relative grid grid-flow-row grid-cols-1 items-center">
         <div className="w-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide">
           <Cards />
-
-          <Cards />
-
-          <Cards />
-          <Cards />
-
           <Cards />
           <Cards />
           <Cards />
-
+          <Cards />
+          <Cards />
+          <Cards />
           <Cards />
         </div>
       </div>

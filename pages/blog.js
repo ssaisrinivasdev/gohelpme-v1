@@ -8,7 +8,7 @@ function Blog() {
   return (
     <div>
       <Header />
-      <PageTitle Title="Blog" Desc="Home/Blog" />
+      <PageTitle title="Blog" desc="Home/Blog" />
 
       {/* Blog Body */}
       <BlogCards />

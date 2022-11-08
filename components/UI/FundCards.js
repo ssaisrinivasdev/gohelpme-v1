@@ -4,7 +4,7 @@ import ProgressBar from "./ProgressBar";
 
 export default function Cards() {
   return (
-    <div className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-14 ml-10 mr-10">
+    <div className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-9 ml-10 mr-10 justify-self-center">
       <Image
         className="object-cover object-center w-full h-56"
         src="/images/patient.jpg"

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import DropDown from "./Dropdown";
 
 export default function Header() {
   const [state, setState] = useState(false);
@@ -10,10 +9,10 @@ export default function Header() {
   const navigation = [
     { title: "For Charities", path: "javascript:void(0)" },
     { title: "For Individuals", path: "javascript:void(0)" },
-    { title: "How it works", path: "javascript:void(0)" },
-    { title: "FAQ's", path: "javascript:void(0)" },
-    { title: "Funds", path: "javascript:void(0)" },
-    { title: "Blog", path: "javascript:void(0)" },
+    { title: "How it works", path: "/howitworks" },
+    { title: "FAQ's", path: "/faqs" },
+    { title: "Fundraisers", path: "/fundraisers" },
+    { title: "Blog", path: "/blog" },
   ];
 
   useEffect(() => {
@@ -91,12 +90,12 @@ export default function Header() {
             <div>
               <ul className="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
                 <li className="mt-8 mb-8 lg:mt-0 lg:mb-0">
-                  <a
-                    href="javascript:void(0)"
+                  <Link
+                    href="/contact"
                     className="text-gray-600 hover:text-indigo-600"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
                 <li className="mt-4 lg:mt-0">
                   <Link

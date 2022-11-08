@@ -19,7 +19,7 @@ function ProgressBar() {
         <div className="overflow-hidden my-3 grow-1 h-2 text-xs flex rounded bg-white w-[276px]">
           <div
             style={{ width: "30%" }}
-            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gray-500"
+            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-300"
           ></div>
         </div>
       </div>
