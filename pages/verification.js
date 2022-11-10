@@ -64,4 +64,4 @@ const verify = async (event) => {
   )
 }
 
-export default verification
+export default Verification

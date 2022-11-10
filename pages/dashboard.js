@@ -43,4 +43,4 @@ console.log(buttonActive)
   )
 }
 
-export default dashboard
+export default Dashboard
