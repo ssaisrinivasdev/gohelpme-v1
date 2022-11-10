@@ -12,8 +12,11 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@heroicons/react": "^1.0.6",
     "@tailwindcss/line-clamp": "^0.4.2",
+    "@windmill/react-ui": "^0.6.0",
+    "chart.js": "^3.9.1",
     "next": "13.0.0",
     "react": "18.2.0",
+    "react-chartjs-2": "^4.3.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
     "tailwind-scrollbar-hide": "^1.1.7"

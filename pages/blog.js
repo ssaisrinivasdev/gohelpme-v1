@@ -4,6 +4,8 @@ import Footer from "../components/UI/Footer";
 import PageTitle from "../components/UI/PageTitle";
 import BlogCards from "../components/UI/BlogCards";
 
+
+
 function Blog() {
   return (
     <div>
