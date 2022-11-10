@@ -5,7 +5,7 @@ import InfoButtons from '../components/UI/InfoButtons'
 import Profile from '../components/UI/Profile'
 import ProfileCards from '../components/UI/ProfileCards'
 
-function dashboard() {
+function Dashboard() {
 const [buttonActive, setButtonActive] = useState("profile")
 
 console.log(buttonActive)

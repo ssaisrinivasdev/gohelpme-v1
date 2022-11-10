@@ -4,7 +4,7 @@ import Header from '../components/UI/Header'
 
 import GlobalContext from "../store/global-context";
 
-function verification() {
+function Verification() {
 const globalData = useContext(GlobalContext)
 
 const [otp, setOtp] = useState("");
