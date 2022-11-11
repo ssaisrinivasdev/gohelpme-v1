@@ -4,7 +4,7 @@ import React from 'react'
 
 function Button(props) {
   return (
-    <div classNameName='py-5'>
+    <div className='py-5'>
 
 <Link
   className="group flex items-center justify-between rounded-lg border border-red-600 bg-red-600 px-5 py-3 transition-colors hover:bg-transparent focus:outline-none focus:ring"
