@@ -29,7 +29,7 @@ const verify = async (event) => {
     })
 
     const error = await result.json();
-    console.log(error.message)
+    console.log(error.error)
     console.log(result.status)
 
 
