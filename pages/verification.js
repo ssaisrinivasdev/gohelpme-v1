@@ -6,7 +6,7 @@ import GlobalContext from "../store/global-context";
 
 function Verification() {
 const globalData = useContext(GlobalContext)
-  const router = useRouter()
+  const router = useRouter()
 const [otp, setOtp] = useState("");
 
 const verify = async (event) => {
