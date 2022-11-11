@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import Footer from '../components/UI/Footer'
 import Header from '../components/UI/Header'
-
+import { useRouter } from "next/router";
 import GlobalContext from "../store/global-context";
 
 function Verification() {
 const globalData = useContext(GlobalContext)
-
+  const router = useRouter()
 const [otp, setOtp] = useState("");
 
 const verify = async (event) => {
@@ -32,7 +32,12 @@ const verify = async (event) => {
     console.log(error.message)
     console.log(result.status)
 
+    if(200 <= result.status < 300) { 
+          
+        router.push("/dashboard") 
+      
 
+}
 }
 
   return (
