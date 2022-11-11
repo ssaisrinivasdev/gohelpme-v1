@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 function Profile() {
@@ -25,11 +26,11 @@ function Profile() {
           veniam tempora deserunt? Molestiae eius quidem quam repellat.
         </p>
 
-        <a
-          href="#"
-          class="mt-8 inline-flex items-center rounded border border-indigo-600 bg-indigo-600 px-8 py-3 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+        <Link
+          href="/createfundraiser"
+          class="mt-8 inline-flex items-center rounded border border-red-600 bg-red-600 px-8 py-3 text-white hover:bg-transparent hover:text-red-600 focus:outline-none focus:ring active:text-red-500"
         >
-          <span class="text-sm font-medium"> Get Started </span>
+          <span class="text-sm font-medium"> Start a fundraiser </span>
 
           <svg
             class="ml-3 h-5 w-5"
@@ -45,7 +46,7 @@ function Profile() {
               d="M17 8l4 4m0 0l-4 4m4-4H3"
             />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   </div>

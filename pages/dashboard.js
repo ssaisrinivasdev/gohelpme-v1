@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import CategoryFunds from '../components/UI/CategoryFunds'
 import Footer from '../components/UI/Footer'
 import Header from '../components/UI/Header'
 import InfoButtons from '../components/UI/InfoButtons'
@@ -33,6 +34,8 @@ console.log(buttonActive)
 {buttonActive === "profile" ? <div><Profile />
 <div className=' md:flex'><ProfileCards title="Address" /> <ProfileCards title="Details" /> <ProfileCards title="Help" /> </div></div> : ""}
 {buttonActive === "info" ? <div><InfoButtons /></div> : ""}
+{buttonActive === "funds" ? <div><CategoryFunds categoryTitle="Funds Following" /> <CategoryFunds categoryTitle="Funds Created" /> <CategoryFunds categoryTitle="Donations" /></div> : ""}
+
 </div>
 
 
