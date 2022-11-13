@@ -4,7 +4,7 @@ import ProgressBar from "./ProgressBar";
 
 export default function Cards() {
   return (
-    <div className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-9 ml-10 mr-10 justify-self-center">
+    <div className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-9 ml-10 mr-10">
       <Image
         className="object-cover object-center w-full h-56"
         src="/images/patient.jpg"
@@ -13,19 +13,19 @@ export default function Cards() {
         height={750}
       />
 
-      <div className="flex items-left px-3 py-3 bg-color1">
+      <div className="flex items-left px-3 py-3 bg-white">
         <h1 className="mx-3 text-lg font-semibold text-white">
           <ProgressBar />
         </h1>
       </div>
 
       <div className="px-6 py-4">
-        <h1 className="text-xl font-semibold text-gray-800 ">
+        <h1 className="text-xl font-semibold text-gray-800 text-left ">
           Created by johnson
         </h1>
 
-        <p className="py-2 text-gray-700 ">
-          The above fund is created for medical emergencies of cancer patients
+        <p className="py-2 text-gray-700 text-left">
+          The above fund is created for medical <br /> emergencies of cancer patients
         </p>
 
         <div className="flex items-center mt-4 text-gray-700 ">

@@ -9,7 +9,7 @@ function CategoryFunds({ title, desc, categoryTitle }) {
       <PageTitle title={title} desc={desc} />
       <DefaultTitle title={categoryTitle} />
       <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
-        <div className="w-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide">
+        <div className="w-full overflow-hidden whitespace-nowrap scroll-smooth scrollbar-hide">
           <Cards />
           <Cards />
           <Cards />

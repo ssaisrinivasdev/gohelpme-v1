@@ -2,17 +2,15 @@ import React from "react";
 import Header from "../../components/UI/Header";
 import Footer from "../../components/UI/Footer";
 import CategoryFunds from "../../components/UI/CategoryFunds";
+import PageTitle from "../../components/UI/PageTitle";
 
 function funds() {
   return (
     <div>
       <Header />
-
-      <CategoryFunds
-        title="Fundraisers"
-        desc="Home/Fundraisers"
-        categoryTitle="Top Performing Funds"
-      />
+      <PageTitle title="Fundraisers" desc="Home/Fundraisers" />
+<div className=" xl:mx-[320px]">
+      <CategoryFunds categoryTitle="Top Performing Funds" />
 
       <CategoryFunds categoryTitle="Medical Fundraisers" />
 
@@ -23,6 +21,7 @@ function funds() {
       <CategoryFunds categoryTitle="Charity Fundraisers" />
 
       <CategoryFunds categoryTitle="Education Fundraisers" />
+      </div>
       <Footer />
     </div>
   );

@@ -34,7 +34,10 @@ console.log(buttonActive)
 {buttonActive === "profile" ? <div><Profile />
 <div className=' md:flex'><ProfileCards title="Address" /> <ProfileCards title="Details" /> <ProfileCards title="Help" /> </div></div> : ""}
 {buttonActive === "info" ? <div><InfoButtons /></div> : ""}
-{buttonActive === "funds" ? <div><CategoryFunds categoryTitle="Funds Following" /> <CategoryFunds categoryTitle="Funds Created" /> <CategoryFunds categoryTitle="Donations" /></div> : ""}
+{buttonActive === "funds" ? <div>
+<CategoryFunds categoryTitle="Funds Following" />
+ <CategoryFunds categoryTitle="Funds Created" /> 
+ <CategoryFunds categoryTitle="Donations" /></div> : ""}
 
 </div>
 
