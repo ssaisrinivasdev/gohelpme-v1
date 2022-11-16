@@ -12,7 +12,7 @@ console.log(fund)
 <Header />
     
     
-    <FundData title={fund.title} desc={fund.long_description} amount={fund.goal} image={fund.images} />
+    <FundData title={fund.title} desc={fund.long_description} amount={fund.goal} image={fund.images} id={fund._id} />
 
 
 <Footer />
@@ -31,16 +31,16 @@ export async function getStaticProps(context) {
   
   const fundraiserId = params.fundraiser
   
-  let result = await fetch("http://gohelpme.online/api/posts?category=others")
+  let result = await fetch("http://gohelpme.online/api/post/"+fundraiserId);
 
   const data = await result.json();
 
-  const {posts} = data
+  const fund = data.post
   
 
 
   
-  let fund = posts.find(fund => fund._id === fundraiserId)
+  // let fund = posts.find(fund => fund._id === fundraiserId)
   
     return {
       props: {

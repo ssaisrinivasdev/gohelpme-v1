@@ -16,6 +16,7 @@ const verify = async (event) => {
   const email = globalData.email
   const verification_code = otp
 
+  //TODO: create email text box
   const regisBundle = {verification_code, email}
 
 

@@ -1,38 +1,67 @@
 import React from 'react'
-import { getStaticProps } from '../../pages/fundraisers/[fundraiser]'
 import ImageSlider from './ImageSlider'
 import ProgressBar from './ProgressBar'
+import { useRouter } from 'next/router'
 
-function FundData({title, desc, amount, image}) {
+function FundData({title, desc, amount, image, id}) {
 
-  
+  const router = useRouter()
 
-  console.log(image)
+  console.log(id)
+
+  async function handler ()  {
+
+  let result = await fetch("http://gohelpme.online/api/payment", {
+    method: "PUT",
+    body:JSON.stringify({"id":id,"title":title}),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  })
+
+  const data = await result.json();
+
+  const redirectLink = data.redirect_link
+
+  if(redirectLink){
+    router.push(redirectLink)
+  }
+
+
+  // const error = await result.json();
+  // console.log(error.error)
+  // console.log(result.status)
+
+
+
+  }
 
 
   return (
     <div>
       <section>
-  <div class="relative mx-auto max-w-screen-xl px-4 py-8">
-    <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
+  <div className="relative mx-auto max-w-screen-xl px-4 py-8">
+    <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
 
     {/* here comes the slider */}
       <ImageSlider image={image} />
 
-      <div class="sticky top-0">
+      <div className="sticky top-0">
 
       
 
-        <div class="mt-8 flex justify-between">
-          <div class="max-w-[35ch]">
-            <h1 class="text-2xl font-bold">
+        <div className="mt-8 flex justify-between">
+          <div className="max-w-[35ch]">
+            <h1 className="text-2xl font-bold">
               {title}
             </h1>
 
-<div className='drop-shadow-md my-5'><ProgressBar amount={amount} /></div>
-<button
-              type="submit"
-              class="my-10 block rounded bg-color1 px-8 py-2 font-medium text-white text-lg hover:bg-green-500"
+            <div classNameName='drop-shadow-md my-5'><ProgressBar amount={amount} /></div>
+            <button
+            onClick={handler}
+              type="button"
+              className="my-10 block rounded bg-color1 px-8 py-2 font-medium text-white text-lg hover:bg-green-500"
             >
               Donate now
             </button>
@@ -40,24 +69,24 @@ function FundData({title, desc, amount, image}) {
           </div>
         </div>
 
-        <details class="group relative mt-4">
-          <summary class="block">
+        <details className="group relative mt-4">
+          <summary className="block">
             <div>
-              <div class="prose max-w-none group-open:hidden">
+              <div className="prose max-w-none group-open:hidden">
                 <p>
                   {desc}
                 </p>
               </div>
 
               <span
-                class="mt-4 cursor-pointer text-sm font-medium underline group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0"
+                className="mt-4 cursor-pointer text-sm font-medium underline group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0"
               >
                 Read More
               </span>
             </div>
           </summary>
 
-          <div class="prose max-w-none pb-6">
+          <div className="prose max-w-none pb-6">
             <p>
             {desc}
             </p>
