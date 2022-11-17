@@ -57,7 +57,7 @@ function FundData({title, desc, amount, image, id}) {
               {title}
             </h1>
 
-            <div classNameName='drop-shadow-md my-5'><ProgressBar amount={amount} /></div>
+            <div className='drop-shadow-md my-5'><ProgressBar amount={amount} /></div>
             <button
             onClick={handler}
               type="button"

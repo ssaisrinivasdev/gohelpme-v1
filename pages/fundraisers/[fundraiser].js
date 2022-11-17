@@ -31,7 +31,7 @@ export async function getStaticProps(context) {
   
   const fundraiserId = params.fundraiser
   
-  let result = await fetch("http://gohelpme.online/api/fund/"+fundraiserId);
+  let result = await fetch("http://gohelpme.online/api/fund/" + fundraiserId);
 
   const data = await result.json();
 
@@ -46,6 +46,7 @@ export async function getStaticProps(context) {
       props: {
         fund,
       },
+      revalidate: 5,
     };
   }
 
