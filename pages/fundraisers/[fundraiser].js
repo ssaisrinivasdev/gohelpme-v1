@@ -35,7 +35,7 @@ export async function getStaticProps(context) {
 
   const data = await result.json();
 
-  const fund = data.post
+  const fund = data.fund
   
 
 
@@ -56,7 +56,7 @@ export async function getStaticPaths() {
 
   const data = await result.json();
 
-  const ids = data.posts.map(fund => fund._id )
+  const ids = data.funds.map(fund => fund._id )
 
   const pathsWithParams = ids.map((id) => ({ params: { fundraiser: id}}));
 
