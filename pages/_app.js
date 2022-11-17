@@ -4,9 +4,10 @@ import { useState } from 'react'
 
 function MyApp({ Component, pageProps }) {
 const [email, setEmail] = useState("")
+const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
-    <GlobalContext.Provider value={{email, setEmail}}>
+    <GlobalContext.Provider value={[{email, setEmail},{isLoggedIn,setIsLoggedIn}]}>
     <Component {...pageProps} />
     </GlobalContext.Provider>
   )
