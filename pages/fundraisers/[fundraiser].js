@@ -31,7 +31,7 @@ export async function getStaticProps(context) {
   
   const fundraiserId = params.fundraiser
   
-  let result = await fetch("http://gohelpme.online/api/post/"+fundraiserId);
+  let result = await fetch("http://gohelpme.online/api/fund/"+fundraiserId);
 
   const data = await result.json();
 
@@ -52,7 +52,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 
-  let result = await fetch("http://gohelpme.online/api/posts?category=others")
+  let result = await fetch("http://gohelpme.online/api/funds")
 
   const data = await result.json();
 
