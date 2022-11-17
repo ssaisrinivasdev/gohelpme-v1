@@ -7,7 +7,7 @@ export default function Createfund() {
   const onSubmit = async data => {
 
 
-    let result = await fetch("http://gohelpme.online/api/createfund", {
+    let result = await fetch("http://gohelpme.online/api/createpost", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
