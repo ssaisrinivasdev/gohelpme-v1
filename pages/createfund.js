@@ -3,9 +3,11 @@ import Footer from "../components/UI/Footer";
 import Header from "../components/UI/Header";
 import GlobalContext from "../store/global-context";
 import { useContext } from "react";
+import { useRouter } from "next/router";
 
 
 export default function Createfund() {
+  const router = useRouter()
   const globalData = useContext(GlobalContext)
   
 
