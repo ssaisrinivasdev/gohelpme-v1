@@ -1,8 +1,15 @@
 import { useForm } from "react-hook-form";
 import Footer from "../components/UI/Footer";
 import Header from "../components/UI/Header";
+import GlobalContext from "../store/global-context";
+import { useContext } from "react";
+
 
 export default function Createfund() {
+  const globalData = useContext(GlobalContext)
+  
+
+
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async data => {
 
@@ -17,9 +24,17 @@ export default function Createfund() {
       })
   
       const error = await result.json();
+      console.log(error._id)
       console.log(error.error)
       console.log(error.message)
       console.log(result.status)
+
+      if(result.status >= 200 && result.status <=205) { 
+          
+            router.push("/fundraisers/"+error._id ) 
+          
+    
+    }
 
   };
 
@@ -28,7 +43,7 @@ export default function Createfund() {
   return (
 <div classNameNameName="align-center">
 <Header />
-<div>
+<div className="px-7 xl:px-0">
     {/* "handleSubmit" will validate your inputs before invoking "onSubmit"  */}
     <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xl mx-auto my-20 flex flex-col">
 

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Header from "../components/UI/Header";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import GlobalContext from "../store/global-context";
 
 export default function Login() {
 
@@ -10,6 +11,7 @@ export default function Login() {
 
 
   const router = useRouter()
+  const globalData = useContext(GlobalContext)
  
 
   const LoginPost = async () => {
@@ -29,10 +31,13 @@ export default function Login() {
     console.log(error.error)
     console.log(result.status)
 
-    if(200 <= result.status < 300) {
-      router.push("/dashboard")
-
+    if(result.status >= 200 && result.status <=205) {
+      globalData[1].setIsLoggedIn(true)
+      router.push("/createfund")
+      
       }
+
+      
 
   }
 

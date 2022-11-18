@@ -7,11 +7,11 @@ const [email, setEmail] = useState("")
 const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
-    <GlobalContext.Provider value={[{email, setEmail},{isLoggedIn,setIsLoggedIn}]}>
+    <GlobalContext.Provider value={[{email, setEmail},{isLoggedIn, setIsLoggedIn}]}>
     <Component {...pageProps} />
     </GlobalContext.Provider>
   )
   
 }
 
-export default MyApp
+export default MyApp 

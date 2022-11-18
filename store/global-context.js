@@ -1,10 +1,6 @@
 import { createContext } from 'react'
 
-const globalContext = createContext({
-  regisStatus:"",
-  setRegisStatus: () => {}
-}
-)
+const GlobalContext = createContext()
 
 
-export default globalContext
+export default GlobalContext

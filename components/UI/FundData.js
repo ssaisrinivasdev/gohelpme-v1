@@ -61,7 +61,7 @@ function FundData({title, desc, amount, image, id}) {
             <button
             onClick={handler}
               type="button"
-              className="my-10 block rounded bg-color1 px-8 py-2 font-medium text-white text-lg hover:bg-green-500"
+              className="my-10 block rounded bg-color1 px-8 py-2 font-medium text-white hover:text-color1 hover:border-color1 border-2 text-lg hover:bg-white"
             >
               Donate now
             </button>

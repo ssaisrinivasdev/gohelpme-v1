@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, createContext } from "react";
 import Header from "../components/UI/Header";
 import { useRouter } from "next/router";
 import GlobalContext from "../store/global-context";
@@ -31,18 +31,41 @@ function Registration() {
     
     ;
 // const {status} = result;
-    const error = await result.json();
-    console.log(error.error)
-    console.log(result.status)
-    console.log(globalData.email)
-    console.log(email)
-    globalData.setEmail(email)
+    
+    // console.log(error.error)
+    // console.log(result.status)
+    // console.log(globalData.email)
+    // console.log(email)
+    
 
-    if(200 <= result.status < 300) {
-      
-    router.push("/verification")
 
-    }
+
+    const output = await result.json();
+if(output.status >= 200 && output.status <=205)
+{
+	//*************** CHANGE HERE ONLY *****************//
+	//Route to the result or render the output.
+  globalData.setEmail(email)
+  router.push("/verification")
+ 
+}
+else if(output.status >= 400 && output.status <= 405)
+{
+	if(output.message.includes("Invalid User") || output.message.includes("User not logged in ") || output.message.includes("User Not Found") )
+	{
+		//Route to LOGIN and change global variable status!!
+    
+	}
+	else if(output.message.includes("ValidatorError"))
+	{
+		alert(output.message.errors.name.message == null ? output.message : output.message.errors.name.message);
+	}
+  
+	console.log(output.status)
+	console.log(output.error)
+	console.log(output.message)
+	
+}
 
   };
 

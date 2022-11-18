@@ -1,9 +1,14 @@
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useRef, useState } from "react";
+import GlobalContext from "../../store/global-context";
 
 export default function Header() {
   const [state, setState] = useState(false);
   const navRef = useRef();
+  const globalData=useContext(GlobalContext)
+  const router = useRouter()
+
 
   // Replace javascript:void(0) path with your path
   const navigation = [
@@ -32,6 +37,30 @@ export default function Header() {
     };
   }, [state]);
 
+const LogoutHandler = async () => {
+
+  let result = await fetch("http://gohelpme.online/api/logout", {
+      method: "POST",
+      body: JSON.stringify(),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+
+    const error = await result.json();
+    console.log(error.error)
+    console.log(result.status)
+
+    if(200 <= result.status < 300) {
+      globalData[1].setIsLoggedIn(false)
+      router.push("/")
+      }
+
+      
+}
+
+// console.log(globalData[1].isLoggedIn)
   return (
     <div>
       <nav ref={navRef} className="bg-white w-full top-0 z-20">
@@ -97,6 +126,7 @@ export default function Header() {
                     Contact
                   </Link>
                 </li>
+                {!globalData[1].isLoggedIn &&
                 <li className="mt-4 lg:mt-0">
                   <Link
                     href="/login"
@@ -105,14 +135,26 @@ export default function Header() {
                     Login
                   </Link>
                 </li>
-                <li className="mt-8 lg:mt-0">
+                }
+                {!globalData[1].isLoggedIn && <li className="mt-8 lg:mt-0">
                   <Link
                     href="/registration"
                     className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
                   >
                     Sign Up
                   </Link>
-                </li>
+                </li> }
+
+                {globalData[1].isLoggedIn && <li className="mt-8 lg:mt-0">
+                  <Link
+                    href="/"
+                    onClick={LogoutHandler}
+                    className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
+                  >
+                    Logout
+                  </Link>
+                </li> }
+                
               </ul>
             </div>
             <div className="flex-1">
@@ -123,7 +165,7 @@ export default function Header() {
                       key={idx}
                       className="text-gray-600 hover:text-indigo-600"
                     >
-                      <a href={item.path}>{item.title}</a>
+                      <Link href={item.path}>{item.title}</Link>
                     </li>
                   );
                 })}
