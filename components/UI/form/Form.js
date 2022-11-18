@@ -9,15 +9,20 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => {
 
+  
+
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("images", data.files);
 
     fetch('http://gohelpme.online/api/createfund', {
       method: 'POST', // or 'PUT'
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
+        'Accept':'*/*'
       },
-      body: data,
+      body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -193,7 +198,7 @@ function Form() {
 
               <h2 className="mx-3 text-gray-400">Upload Images</h2>
 
-              <input type="file" multiple {...register("images")} />
+              <input type="file" multiple {...register("files")} />
             </label>
 
 
@@ -227,7 +232,7 @@ function Form() {
               type="submit"
               className="inline-flex w-full items-center justify-center rounded-lg bg-color1 px-5 text-white sm:w-auto"
             >
-            <input type="submit" value="Create fund" className="inline-flex w-full items-center justify-center rounded-lg py-3 text-white sm:w-auto" />
+            <input type="submit" value="Create fund" className="inline-flex w-full items-center justify-center rounded-lg py-3 text-white sm:w-auto cursor-pointer" />
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
