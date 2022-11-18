@@ -28,6 +28,8 @@ export default function Createfund() {
       console.log(error.error)
       console.log(error.message)
       console.log(result.status)
+      console.log(result)
+
 
       if(result.status >= 200 && result.status <=205) { 
           
