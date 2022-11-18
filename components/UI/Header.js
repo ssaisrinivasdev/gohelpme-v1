@@ -53,8 +53,6 @@ const LogoutHandler = async () => {
         console.log('Success:', data);
         globalData[1].setIsLoggedIn(false)
         router.push("/")
-        const {fund} = data
-        router.push("/fundraisers/" + fund._id)
       })
       .catch((error) => {
         console.error('Error:', error);
