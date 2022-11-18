@@ -28,16 +28,14 @@ export default function Createfund() {
 
 
 
-    const {message} = result;
-    console.log(message)
-    console.log(result.status)
-    // console.log(response.fund)
-
-    if(result.status >= 200 && result.status <=205) {
+    
+    console.log(result)
+    router.push("/fundraisers/")
+    // if(result.status >= 200 && result.status <=205) {
       
-      router.push("/fundraisers/" + message)
       
-      }
+      
+    //   }
 
   };
 
