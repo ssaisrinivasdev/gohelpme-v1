@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -40,23 +41,35 @@ export default function Header() {
 
 const LogoutHandler = async () => {
 
-  let result = await fetch("http://gohelpme.online/api/logout", {
-      method: "POST",
-      body: JSON.stringify(),
+  fetch('http://gohelpme.online/api/logout', {
+      method: 'POST', // or 'PUT'
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(),
     })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+        globalData[1].setIsLoggedIn(false)
+        router.push("/")
+        const {fund} = data
+        router.push("/fundraisers/" + fund._id)
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
 
-    const error = await result.json();
-    console.log(error.error)
-    console.log(result.status)
+  
 
-    if(200 <= result.status < 300) {
-      globalData[1].setIsLoggedIn(false)
-      router.push("/")
-      } 
+    // const error = await result.json();
+    // console.log(error.error)
+    // console.log(result.status)
+
+    // if(data.message === "success") {
+
+    //   router.push("/")
+    //   } 
 
       
 }
@@ -127,7 +140,7 @@ const LogoutHandler = async () => {
                     Contact
                   </Link>
                 </li>
-                {globalData[1].isLoggedIn &&
+                {!globalData[1].isLoggedIn &&
                 <li className="mt-4 lg:mt-0">
                   <Link
                     href="/login"
