@@ -27,7 +27,7 @@ function Profile() {
         </p>
 
         <Link
-          href="/createfundraiser"
+          href="/createfund"
           className="mt-8 inline-flex items-center rounded border border-red-600 bg-red-600 px-8 py-3 text-white hover:bg-transparent hover:text-red-600 focus:outline-none focus:ring active:text-red-500"
         >
           <span className="text-sm font-medium"> Start a fundraiser </span>

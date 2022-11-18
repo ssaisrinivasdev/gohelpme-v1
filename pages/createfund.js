@@ -3,10 +3,12 @@ import Footer from "../components/UI/Footer";
 import Header from "../components/UI/Header";
 import GlobalContext from "../store/global-context";
 import { useContext } from "react";
+import { useRouter } from "next/router";
 
 
 export default function Createfund() {
   const globalData = useContext(GlobalContext)
+  const router = useRouter()
   
 
 
@@ -24,30 +26,18 @@ export default function Createfund() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+        const {fund} = data
+        router.push("/fundraisers/" + fund._id)
       })
       .catch((error) => {
         console.error('Error:', error);
       });
 
 
-    // let result = await fetch("http://gohelpme.online/api/createfund", {
-    //     method: "POST",
-    //     body: JSON.stringify(data),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "Accept": "application/json"
-    //     }
-    //   })
-  
-    //   const error = await result.json();
-    //   console.log(error._id)
-    //   console.log(error.error)
-    //   console.log(error.message)
-    //   console.log(result.status)
+
 
   };
 
-  // console.log(watch("title")); // watch input value by passing the name of it
 
   return (
 <div classNameNameName="align-center">

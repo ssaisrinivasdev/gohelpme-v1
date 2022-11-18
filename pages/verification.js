@@ -34,7 +34,7 @@ const verify = async (event) => {
     console.log(result.status)
 
     if(200 <= result.status < 300) { 
-          
+      globalData[1].setIsLoggedIn(true)
         router.push("/dashboard") 
       
 
