@@ -14,7 +14,7 @@ function Form() {
 
   const onSubmit = (data) => {
     const formData = new FormData();
-    formData.append("images", data.files);
+    formData.append("images", data.files[0]);
 
     fetch('http://gohelpme.online/api/createfund', {
       method: 'POST', // or 'PUT'
