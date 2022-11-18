@@ -9,20 +9,20 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = data => {
 
-  
+    console.log(data)
 
-  const onSubmit = async (data) => {
-    const formData = new FormData();
-    formData.append("file", data.file[0]);
+    
 
-    const res = await fetch("http://gohelpme.online/api/createfund", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Accept':'*/*'
-        },
-        body: formData,
+
+
+    fetch('http://gohelpme.online/api/createfund', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: data,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -198,7 +198,7 @@ function Form() {
 
               <h2 className="mx-3 text-gray-400">Upload Images</h2>
 
-              <input type="file" multiple {...register("files")} />
+              <input type="file" multiple {...register("images")} />
             </label>
 
 
@@ -232,7 +232,7 @@ function Form() {
               type="submit"
               className="inline-flex w-full items-center justify-center rounded-lg bg-color1 px-5 text-white sm:w-auto"
             >
-            <input type="submit" value="Create fund" className="inline-flex w-full items-center justify-center rounded-lg py-3 text-white sm:w-auto cursor-pointer" />
+            <input type="submit" value="Create fund" className="inline-flex w-full items-center justify-center rounded-lg py-3 text-white sm:w-auto" />
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
