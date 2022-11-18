@@ -24,7 +24,7 @@ export default function Createfund() {
       })
   
       const error = await result.json();
-      console.log(error._id)
+      console.log(error)
       console.log(error.error)
       console.log(error.message)
       console.log(result.status)
