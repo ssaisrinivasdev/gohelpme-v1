@@ -4,11 +4,12 @@ import { useContext, useEffect, useRef, useState } from "react";
 import GlobalContext from "../../store/global-context";
 
 export default function Header() {
+
+  
   const [state, setState] = useState(false);
   const navRef = useRef();
   const globalData=useContext(GlobalContext)
   const router = useRouter()
-
 
   // Replace javascript:void(0) path with your path
   const navigation = [
@@ -55,7 +56,7 @@ const LogoutHandler = async () => {
     if(200 <= result.status < 300) {
       globalData[1].setIsLoggedIn(false)
       router.push("/")
-      }
+      } 
 
       
 }
@@ -126,7 +127,7 @@ const LogoutHandler = async () => {
                     Contact
                   </Link>
                 </li>
-                {!globalData[1].isLoggedIn &&
+                {globalData[1].isLoggedIn &&
                 <li className="mt-4 lg:mt-0">
                   <Link
                     href="/login"
