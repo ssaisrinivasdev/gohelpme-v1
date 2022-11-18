@@ -3,19 +3,14 @@ import Footer from "../components/UI/Footer";
 import Header from "../components/UI/Header";
 import GlobalContext from "../store/global-context";
 import { useContext } from "react";
-import { useRouter } from "next/router";
 
 
 export default function Createfund() {
-  
   const globalData = useContext(GlobalContext)
-  const router = useRouter()
   
 
 
-  const { register, handleSubmit, watch, } = useForm();
-
-
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async data => {
 
 
@@ -27,17 +22,12 @@ export default function Createfund() {
           "Accept": "application/json"
         }
       })
-
-
-
-    
-    console.log(result)
-    
-    // if(result.status >= 200 && result.status <=205) {
-      
-      
-      
-    //   }
+  
+      const error = await result.json();
+      console.log(error._id)
+      console.log(error.error)
+      console.log(error.message)
+      console.log(result.status)
 
   };
 
@@ -48,7 +38,7 @@ export default function Createfund() {
 <Header />
 <div className="px-7 xl:px-0">
     {/* "handleSubmit" will validate your inputs before invoking "onSubmit"  */}
-    <form className="w-full max-w-xl mx-auto my-20 flex flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xl mx-auto my-20 flex flex-col">
 
     <div className="flex flex-wrap -mx-3 mb-6">
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -173,7 +163,7 @@ export default function Createfund() {
     </div>
   </div>
 
-      <button onClick={handleSubmit(onSubmit)} type="button" className={`py-3 px-4 text-center text-black bg-white hover:bg-red-500 hover:text-[#ffffff] rounded-2xl shadow block lg:inline drop-shadow-md`} >Submit </button>
+      <input type="submit" className={`py-3 px-4 text-center text-black bg-white hover:bg-red-500 hover:text-[#ffffff] rounded-2xl shadow block lg:inline drop-shadow-md`} />
     </form>
     </div>
     <Footer />

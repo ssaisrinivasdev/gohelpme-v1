@@ -27,11 +27,11 @@ export default function Login() {
     })
 
     
-    const response = await result.json();
-    console.log(response.message)
+    const error = await result.json();
+    console.log(error.error)
     console.log(result.status)
 
-    if(result.status >= 200 && result.status <=205) {
+    if(200 <= result.status < 300) {
       globalData[1].setIsLoggedIn(true)
       router.push("/createfund")
       
