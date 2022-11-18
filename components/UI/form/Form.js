@@ -12,17 +12,17 @@ function Form() {
 
   
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("images", data.files[0]);
+    formData.append("file", data.file[0]);
 
-    fetch('http://gohelpme.online/api/createfund', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Accept':'*/*'
-      },
-      body: formData,
+    const res = await fetch("http://gohelpme.online/api/createfund", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept':'*/*'
+        },
+        body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
