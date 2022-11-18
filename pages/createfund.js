@@ -34,7 +34,7 @@ export default function Createfund() {
 
       if(result.status >= 200 && result.status <=205) { 
           
-            router.push("/fundraisers/"+error._id ) 
+            router.push("/fundraisers/"+result.fund._id ) 
           
     
     }
