@@ -23,7 +23,7 @@ function Form() {
         'Content-Type': 'multipart/form-data',
         'Accept':'*/*'
       },
-      body: data,
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
