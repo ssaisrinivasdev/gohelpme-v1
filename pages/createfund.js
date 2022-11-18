@@ -28,14 +28,14 @@ export default function Createfund() {
 
 
 
-      const response = await result.json();
-    console.log(response.message)
+    const {message} = result;
+    console.log(message)
     console.log(result.status)
-    console.log(response.fund._id)
+    // console.log(response.fund)
 
     if(result.status >= 200 && result.status <=205) {
       
-      router.push("/fundraisers/" + response.fund._id)
+      router.push("/fundraisers/" + message)
       
       }
 
