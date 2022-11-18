@@ -22,7 +22,7 @@ function Form() {
     formData.append(name, data[name]);
   }
 
-  for(var i =0;i < image.length;i++)
+  for(var i =0;i < data.images.length;i++)
 	formData.append("images",data.images[i]);
 
   // formData.append("images", data.images[0]);
