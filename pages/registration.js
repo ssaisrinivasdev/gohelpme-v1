@@ -31,8 +31,8 @@ function Registration() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        globalData.setEmail(email)
-  router.push("/verification")
+        globalData[0].setEmail(email)
+        router.push("/verification")
       })
       .catch((error) => {
         console.error('Error:', error);

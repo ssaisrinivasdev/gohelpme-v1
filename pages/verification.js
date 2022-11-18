@@ -12,8 +12,7 @@ const [otp, setOtp] = useState("");
 const verify = async (event) => {
   event.preventDefault();
   console.log(otp)
-  console.log(globalData.email)
-  const email = globalData.email
+  const email = globalData[0].email
   const verification_code = otp
 
   //TODO: create email text box
