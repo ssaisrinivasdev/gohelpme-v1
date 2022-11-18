@@ -23,12 +23,11 @@ export default function Createfund() {
         }
       })
   
-      const error = await result.json();
-      console.log(error)
-      console.log(error.error)
-      console.log(error.message)
+      const data = await result.json();
+      
+      console.log(data)
       console.log(result.status)
-      console.log(result)
+      console.log(result._id)
 
 
       if(result.status >= 200 && result.status <=205) { 
