@@ -14,8 +14,7 @@ export default function Header() {
 
   // Replace javascript:void(0) path with your path
   const navigation = [
-    { title: "For Charities", path: "/charityfunding" },
-    { title: "For Individuals", path: "/individualfunding" },
+    { title: "Home", path: "/" },
     { title: "How it works", path: "/howitworks" },
     { title: "FAQ's", path: "/faqs" },
     { title: "Fundraisers", path: "/fundraisers" },
