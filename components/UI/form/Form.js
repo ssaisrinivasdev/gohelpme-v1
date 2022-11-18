@@ -21,7 +21,7 @@ function Form() {
   for(const name in data) {
     formData.append(name, data[name]);
   }
-  formData.append("images", data.images);
+  formData.append("images", data.images[0]);
 
     const res = await fetch("http://gohelpme.online/api/createfund", {
         method: "POST",
