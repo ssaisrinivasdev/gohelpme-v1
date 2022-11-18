@@ -23,9 +23,9 @@ export default function Createfund() {
         }
       })
   
-      const data = await result.json();
+      const beta = await result.json();
       
-      console.log(data)
+      console.log(beta)
       console.log(result.status)
       console.log(result._id)
 
