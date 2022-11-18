@@ -20,52 +20,31 @@ function Registration() {
     let credentials = { name, lastname, email, password };
     console.log(credentials)
 
-    let result = await fetch("http://gohelpme.online/api/register", {
-      method: "POST",
-      body: JSON.stringify(credentials),
+
+    fetch('http://gohelpme.online/api/register', {
+      method: 'POST', // or 'PUT'
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
     })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+        globalData.setEmail(email)
+  router.push("/verification")
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
     
-    ;
 // const {status} = result;
     
     // console.log(error.error)
     // console.log(result.status)
     // console.log(globalData.email)
     // console.log(email)
-    
-
-
-
-    const output = await result.json();
-if(output.status >= 200 && output.status <=205)
-{
-	//*************** CHANGE HERE ONLY *****************//
-	//Route to the result or render the output.
-  globalData.setEmail(email)
-  router.push("/verification")
- 
-}
-else if(output.status >= 400 && output.status <= 405)
-{
-	if(output.message.includes("Invalid User") || output.message.includes("User not logged in ") || output.message.includes("User Not Found") )
-	{
-		//Route to LOGIN and change global variable status!!
-    
-	}
-	else if(output.message.includes("ValidatorError"))
-	{
-		alert(output.message.errors.name.message == null ? output.message : output.message.errors.name.message);
-	}
-  
-	console.log(output.status)
-	console.log(output.error)
-	console.log(output.message)
-	
-}
 
   };
 
