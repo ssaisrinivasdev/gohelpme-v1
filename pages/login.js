@@ -27,8 +27,8 @@ export default function Login() {
     })
 
     
-    const error = await result.json();
-    console.log(error.error)
+    const response = await result.json();
+    console.log(response.message)
     console.log(result.status)
 
     if(result.status >= 200 && result.status <=205) {

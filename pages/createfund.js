@@ -7,8 +7,9 @@ import { useRouter } from "next/router";
 
 
 export default function Createfund() {
-  const router = useRouter()
+  
   const globalData = useContext(GlobalContext)
+  const router = useRouter()
   
 
 
@@ -25,18 +26,18 @@ export default function Createfund() {
         }
       })
 
-     const response = await result.json()
-      
-      
-      console.log(response)
 
 
-      if(result.status >= 200 && result.status <=205) { 
-          
-            router.push("/fundraisers/"+result.fund._id ) 
-          
-    
-    }
+      const response = await result.json();
+    console.log(response.message)
+    console.log(result.status)
+    console.log(response.fund._id)
+
+    if(result.status >= 200 && result.status <=205) {
+      
+      router.push("/fundraisers/" + response.fund._id)
+      
+      }
 
   };
 
