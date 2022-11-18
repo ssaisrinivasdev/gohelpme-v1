@@ -4,47 +4,48 @@ import Header from "../components/UI/Header";
 import GlobalContext from "../store/global-context";
 import { useContext } from "react";
 import { useRouter } from "next/router";
+import FormLayout from "../components/UI/form/FormLayout";
 
 
 export default function Createfund() {
-  const globalData = useContext(GlobalContext)
-  const router = useRouter()
+  // const globalData = useContext(GlobalContext)
+  // const router = useRouter()
   
 
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => {
+  // const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  // const onSubmit = data => {
 
 
-    fetch('http://gohelpme.online/api/createfund', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-        const {fund} = data
-        router.push("/fundraisers/" + fund._id)
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+  //   fetch('http://gohelpme.online/api/createfund', {
+  //     method: 'POST', // or 'PUT'
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('Success:', data);
+  //       const {fund} = data
+  //       router.push("/fundraisers/" + fund._id)
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
 
 
 
 
-  };
+  // };
 
 
   return (
-<div classNameNameName="align-center">
+<div className="align-center">
 <Header />
-<div className="px-7 xl:px-0">
+{/* <div className="px-7 xl:px-0"> */}
     {/* "handleSubmit" will validate your inputs before invoking "onSubmit"  */}
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xl mx-auto my-20 flex flex-col">
+    {/* <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xl mx-auto my-20 flex flex-col">
 
     <div className="flex flex-wrap -mx-3 mb-6">
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -171,7 +172,13 @@ export default function Createfund() {
 
       <input type="submit" className={`py-3 px-4 text-center text-black bg-white hover:bg-red-500 hover:text-[#ffffff] rounded-2xl shadow block lg:inline drop-shadow-md`} />
     </form>
-    </div>
+    </div> */}
+
+
+
+    <FormLayout />
+
+    
     <Footer />
     </div>
   );
