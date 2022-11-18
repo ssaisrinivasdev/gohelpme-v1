@@ -13,17 +13,19 @@ function Form() {
 
     console.log(data)
 
+    const formData  = new FormData();
+
+  for(const name in data) {
+    formData.append(name, data[name]);
+  }
+
     
 
 
 
     fetch('http://gohelpme.online/api/createfund', {
       method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Accept':'*/*'
-      },
-      body: JSON.stringify(data),
+      body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -233,7 +235,7 @@ function Form() {
               type="submit"
               className="inline-flex w-full items-center justify-center rounded-lg bg-color1 px-5 text-white sm:w-auto"
             >
-            <input type="submit" value="Create fund" className="inline-flex w-full items-center justify-center rounded-lg py-3 text-white sm:w-auto" />
+            <input type="submit" value="Create fund" className="inline-flex w-full items-center justify-center rounded-lg py-3 text-white sm:w-auto cursor-pointer" />
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
