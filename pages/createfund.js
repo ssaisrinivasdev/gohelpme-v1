@@ -13,7 +13,9 @@ export default function Createfund() {
   
 
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, } = useForm();
+
+
   const onSubmit = async data => {
 
 
@@ -30,7 +32,7 @@ export default function Createfund() {
 
     
     console.log(result)
-    router.push("/fundraisers/")
+    
     // if(result.status >= 200 && result.status <=205) {
       
       
@@ -46,7 +48,7 @@ export default function Createfund() {
 <Header />
 <div className="px-7 xl:px-0">
     {/* "handleSubmit" will validate your inputs before invoking "onSubmit"  */}
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xl mx-auto my-20 flex flex-col">
+    <form className="w-full max-w-xl mx-auto my-20 flex flex-col">
 
     <div className="flex flex-wrap -mx-3 mb-6">
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -171,7 +173,7 @@ export default function Createfund() {
     </div>
   </div>
 
-      <input type="submit" className={`py-3 px-4 text-center text-black bg-white hover:bg-red-500 hover:text-[#ffffff] rounded-2xl shadow block lg:inline drop-shadow-md`} />
+      <button onClick={handleSubmit(onSubmit)} type="button" className={`py-3 px-4 text-center text-black bg-white hover:bg-red-500 hover:text-[#ffffff] rounded-2xl shadow block lg:inline drop-shadow-md`} >Submit </button>
     </form>
     </div>
     <Footer />
