@@ -24,9 +24,11 @@ export default function Createfund() {
           "Accept": "application/json"
         }
       })
+
+     const response = await result.json()
       
       
-      console.log(result.fund)
+      console.log(response)
 
 
       if(result.status >= 200 && result.status <=205) { 
