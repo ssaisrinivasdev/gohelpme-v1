@@ -11,23 +11,39 @@ export default function Createfund() {
 
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = async data => {
+  const onSubmit = data => {
 
 
-    let result = await fetch("http://gohelpme.online/api/createfund", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
+    fetch('http://gohelpme.online/api/createfund', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
       })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+
+    // let result = await fetch("http://gohelpme.online/api/createfund", {
+    //     method: "POST",
+    //     body: JSON.stringify(data),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Accept": "application/json"
+    //     }
+    //   })
   
-      const error = await result.json();
-      console.log(error._id)
-      console.log(error.error)
-      console.log(error.message)
-      console.log(result.status)
+    //   const error = await result.json();
+    //   console.log(error._id)
+    //   console.log(error.error)
+    //   console.log(error.message)
+    //   console.log(result.status)
 
   };
 
