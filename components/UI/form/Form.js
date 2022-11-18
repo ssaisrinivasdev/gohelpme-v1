@@ -21,11 +21,11 @@ function Form() {
   for(const name in data) {
     formData.append(name, data[name]);
   }
-  data.images.map((item) => {
-    formData.append("images", item);
-  }
-  )
-  
+
+  for(var i =0;i < image.length;i++)
+	formData.append("images",data.images[i]);
+
+  // formData.append("images", data.images[0]);
 
     const res = await fetch("http://gohelpme.online/api/createfund", {
         method: "POST",
