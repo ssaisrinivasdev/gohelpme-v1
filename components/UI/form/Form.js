@@ -20,7 +20,8 @@ function Form() {
     fetch('http://gohelpme.online/api/createfund', {
       method: 'POST', // or 'PUT'
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
+        'Accept':'*/*'
       },
       body: data,
     })
