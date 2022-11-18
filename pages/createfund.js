@@ -28,8 +28,8 @@ export default function Createfund() {
       const beta = await result.json();
       
       console.log(beta)
+      console.log(result.fund._id)
       console.log(result.status)
-      console.log(result._id)
 
 
       if(result.status >= 200 && result.status <=205) { 
