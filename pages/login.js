@@ -33,7 +33,7 @@ export default function Login() {
 
     if(200 <= result.status < 300) {
       globalData[1].setIsLoggedIn(true)
-      router.push("/createfund")
+      router.push("/dashboard")
       
       }
 
