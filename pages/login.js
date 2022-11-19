@@ -31,6 +31,8 @@ export default function Login() {
         console.log('Success:', data);
       const {response} = data
      
+      // localStorage.setItem('userId',response.user._id);
+      localStorage.setItem('token',data.token);
         console.log('Success:', data.message);
         globalData[1].setIsLoggedIn(true)
         globalData[2].setUsername(response.name)

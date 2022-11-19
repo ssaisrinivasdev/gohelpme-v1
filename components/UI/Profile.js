@@ -23,19 +23,17 @@ const globalData = useContext(GlobalContext)
       </div>
 
       <div className="lg:py-24">
-        <h2 className="text-3xl font-bold sm:text-4xl">{globalData[2].username}</h2>
+        <h2 className="text-3xl font-bold sm:text-4xl">Hii {globalData[2].username}</h2>
 
         <p className="mt-4 text-gray-600">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic
-          atque tenetur quis eius quos ea neque sunt, accusantium soluta minus
-          veniam tempora deserunt? Molestiae eius quidem quam repellat.
+          You've been raising funds for the people in need, keep on helping people and spreading love.
         </p>
 
         <Link
           href="/createfund"
           className="mt-8 inline-flex items-center rounded border border-red-600 bg-red-600 px-8 py-3 text-white hover:bg-transparent hover:text-red-600 focus:outline-none focus:ring active:text-red-500"
         >
-          <span className="text-sm font-medium"> Start a fundraiser </span>
+          <span className="text-sm font-medium"> Start a fund </span>
 
           <svg
             className="ml-3 h-5 w-5"
