@@ -28,9 +28,12 @@ export default function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log('Success:', data);
+      const {response} = data
+     
         console.log('Success:', data.message);
         globalData[1].setIsLoggedIn(true)
-        globalData[2].setUsername(data.response.name)
+        globalData[2].setUsername(response.name)
         router.push("/dashboard")
       })
       .catch((error) => {
