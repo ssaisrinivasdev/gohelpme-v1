@@ -14,7 +14,7 @@ function Registration() {
   const router = useRouter()
   const globalData = useContext(GlobalContext)
 
-  const regisHandler = async (event) => {
+  const regisHandler = (event) => {
     event.preventDefault();    
 
     let credentials = { name, lastname, email, password };

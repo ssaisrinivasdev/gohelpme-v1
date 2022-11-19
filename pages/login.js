@@ -14,28 +14,28 @@ export default function Login() {
   const globalData = useContext(GlobalContext)
  
 
-  const LoginPost = async () => {
+  const LoginPost = () => {
     const loginCredentials = {email, password}
 
-    let result = await fetch("http://gohelpme.online/api/login", {
-      method: "POST",
-      body: JSON.stringify(loginCredentials),
+
+
+    fetch('http://gohelpme.online/api/login', {
+      method: 'POST', // or 'PUT'
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginCredentials),
     })
-
-    
-    const error = await result.json();
-    console.log(error.error)
-    console.log(result.status)
-
-    if(200 <= result.status < 300) {
-      globalData[1].setIsLoggedIn(true)
-      router.push("/dashboard")
-      
-      }
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data.message);
+        globalData[1].setIsLoggedIn(true)
+        globalData[2].setUsername(data.response.name)
+        router.push("/dashboard")
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
 
       
 

@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import React from 'react'
+import GlobalContext from '../../store/global-context'
+import {useContext} from 'react'
 
 function Profile() {
+
+const globalData = useContext(GlobalContext)
+
   return (
     <div>
       <section>
@@ -18,7 +23,7 @@ function Profile() {
       </div>
 
       <div className="lg:py-24">
-        <h2 className="text-3xl font-bold sm:text-4xl">Hii John</h2>
+        <h2 className="text-3xl font-bold sm:text-4xl">{globalData.username}</h2>
 
         <p className="mt-4 text-gray-600">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic
