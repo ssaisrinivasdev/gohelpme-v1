@@ -21,14 +21,15 @@ setImageInput(imageFiles)
 }
 
   const onSubmit = async (data) => {
+    console.log(data)
 
     const form = new FormData();
     form.append("images", imageInput);
-    form.append("json",  JSON.stringify( data));
+    form.append("json",  JSON.stringify(data));
 
-   for(const name in data) {
-    form.append(name, data[name]);
-  }
+  //  for(const name in data) {
+  //   form.append(name, data[name]);
+  // }
 
   console.log(form)
 
