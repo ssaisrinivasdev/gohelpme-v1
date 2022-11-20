@@ -34,7 +34,6 @@ setImageInput(imageFiles)
 
   console.log(form)
 
-
     // Send a POST request
 axios({
   method: 'post',
@@ -44,40 +43,18 @@ axios({
     .then((res) => res.json())
     .then((response) => {
 
-      if(200 <= res.status <= 205) { 
+      if(200 <= res.status < 300) { 
         
         console.log('Success:', response);
         const {fund} = response
       router.push("/fundraisers/" + fund._id)
     
   
-  } else if (400 <= res.status <= 405) {
-
-    if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
-    {
-      //Route to LOGIN and change global variable status!!
-      console.log(res.status)
+  } else {
+    console.log(res.status)
     console.log(response.error)
-    globalData[1].setIsLoggedIn(false)
-    router.push("/login")
-    } else {
-
-		if((response.error).toString() != "Something went wrong")
-		{
-			alert((response.message).toString());
-		}
-		else{
-			alert((response.error).toString());
-		}
-	}
-	
-} else
-{
-	alert(response.message);
-}
-
-    
-  
+  }      
+    })
     
 
     
@@ -98,10 +75,10 @@ axios({
     //     console.error('Error:', error);
     //   });
 
-    })
 
 
-  }
+
+  };
 
   return (
     <div className=" max-w-4xl mx-auto">
