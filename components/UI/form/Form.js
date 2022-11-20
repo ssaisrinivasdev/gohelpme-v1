@@ -21,8 +21,56 @@ function Form() {
 // setImageInput(imageFiles)
 // }
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data)
+
+    fetch('http://gohelpme.online/api/createfund', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if(200 <= res.status < 300) { 
+          console.log('Success:', response);
+          const {fund} = response
+        router.push("/fundraisers/" + fund._id)
+      
+    
+    } else {
+      console.log(res.status)
+      alert(response.error)
+    }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+      
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // check below for the previous code
 
     // const form = new FormData();
     // // form.append("images", imageInput);
@@ -56,31 +104,42 @@ function Form() {
     //     method: "POST",
     //     body: form,
     // })
-    // Send a POST request
-axios({
-  method: 'post',
-  url: 'http://gohelpme.online/api/createfund',
-  data: JSON.stringify(data)
-})
-    .then((res) => res.json())
-    .then((response) => {
 
-      if(200 <= res.status < 300) { 
-        
-        console.log('Success:', response);
-        const {fund} = response
-      router.push("/fundraisers/" + fund._id)
+
+
+
+
+
+
+    // Send a POST request
+// axios({
+//   method: 'post',
+//   url: 'http://gohelpme.online/api/createfund',
+//   data: JSON.stringify(data)
+// })
+//     .then((res) => res.json())
+//     .then((response) => {
+
+//       if(200 <= res.status < 300) { 
+//         console.log('Success:', response);
+//         const {fund} = response
+//       router.push("/fundraisers/" + fund._id)
     
   
-  } else {
-    console.log(res.status)
-    alert(response.error)
-  }
+//   } else {
+//     console.log(res.status)
+//     alert(response.error)
+//   }
 
-      // console.log('Success:', response);
-      // const {fund} = response
-      // router.push("/fundraisers/" + fund._id)
-    })
+//       // console.log('Success:', response);
+//       // const {fund} = response
+//       // router.push("/fundraisers/" + fund._id)
+//     })
+
+
+
+
+
     // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
     
@@ -104,7 +163,7 @@ axios({
 
 
 
-  }
+  // }
 
   return (
     <div className=" max-w-4xl mx-auto">
