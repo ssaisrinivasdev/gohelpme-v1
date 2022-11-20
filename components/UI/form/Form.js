@@ -10,7 +10,7 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const [imageInput, setImageInput] = useState(null)
+  // const [imageInput, setImageInput] = useState(null)
 
 // const handleImage = (e) => {
 // const file1 = e.target.files[0];
@@ -24,17 +24,17 @@ function Form() {
   const onSubmit = (data) => {
     console.log(data)
 
-    const form = new FormData();
-    // form.append("images", imageInput);
-    // form.append("json",  JSON.stringify(data));
-    form.append("json",data);
+    // const form = new FormData();
+    // // form.append("images", imageInput);
+    // // form.append("json",  JSON.stringify(data));
+    // form.append("json",data);
 
 
   //  for(const name in data) {
   //   form.append(name, data[name]);
   // }
 
-  console.log(form)
+  // console.log(form)
 
   //   const formData  = new FormData();
 
@@ -60,7 +60,7 @@ function Form() {
 axios({
   method: 'post',
   url: 'http://gohelpme.online/api/createfund',
-  data: form
+  data: data
 })
     .then((res) => res.json())
     .then((response) => {
@@ -74,7 +74,7 @@ axios({
   
   } else {
     console.log(res.status)
-    console.log(response.error)
+    alert(response.error)
   }
 
       // console.log('Success:', response);
