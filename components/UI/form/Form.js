@@ -27,7 +27,7 @@ function Form() {
 
     const res = await fetch("http://gohelpme.online/api/createfund", {
         method: "POST",
-        body: formData,
+        body: data,
     })
     .then((res) => res.json())
     .then((data) => {
