@@ -25,7 +25,7 @@ setImageInput(imageFiles)
     console.log(data)
 
     const form = new FormData();
-    form.append("images", imageInput);
+    // form.append("images", imageInput);
     form.append("json",  JSON.stringify(data));
 
   //  for(const name in data) {
@@ -102,7 +102,7 @@ axios({
 
 
 
-  };
+  }
 
   return (
     <div className=" max-w-4xl mx-auto">
