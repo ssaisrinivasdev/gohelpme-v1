@@ -49,10 +49,16 @@ setImageInput(imageFiles)
 
 
 
-    fetch("http://gohelpme.online/api/createfund", {
-        method: "POST",
-        body: form,
-    })
+    // fetch("http://gohelpme.online/api/createfund", {
+    //     method: "POST",
+    //     body: form,
+    // })
+    // Send a POST request
+axios({
+  method: 'post',
+  url: 'http://gohelpme.online/api/createfund',
+  data: form
+})
     .then((res) => res.json())
     .then((response) => {
 
