@@ -33,26 +33,7 @@ setImageInput(imageFiles)
 
   console.log(form)
 
-  //   const formData  = new FormData();
 
-  // for(const name in data) {
-  //   formData.append(name, data[name]);
-  // }
-
-  // for(var i =0;i < data.images.length;i++)
-	// formData.append("images",data.images[i]);
-
-  // formData.append("images", data.images[0]);
-
-
-
-
-
-
-    // fetch("http://gohelpme.online/api/createfund", {
-    //     method: "POST",
-    //     body: form,
-    // })
     // Send a POST request
 axios({
   method: 'post',
@@ -62,23 +43,41 @@ axios({
     .then((res) => res.json())
     .then((response) => {
 
-      if(200 <= res.status < 300) { 
+      if(200 <= res.status <= 205) { 
         
         console.log('Success:', response);
         const {fund} = response
       router.push("/fundraisers/" + fund._id)
     
   
-  } else {
-    console.log(res.status)
-    console.log(response.error)
-  }
+  } else if (400 <= res.status <= 405) {
 
-      // console.log('Success:', response);
-      // const {fund} = response
-      // router.push("/fundraisers/" + fund._id)
-    })
-    // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
+    {
+      //Route to LOGIN and change global variable status!!
+      console.log(res.status)
+    console.log(response.error)
+    globalData[1].setIsLoggedIn(false)
+    router.push("/login")
+    } else {
+
+		if((response.error).toString() != "Something went wrong")
+		{
+			alert((response.message).toString());
+		}
+		else{
+			alert((response.error).toString());
+		}
+	}
+	
+} else
+{
+	alert(response.message);
+}
+
+    
+  
+    
 
     
 
@@ -98,10 +97,10 @@ axios({
     //     console.error('Error:', error);
     //   });
 
+    })
 
 
-
-  };
+  }
 
   return (
     <div className=" max-w-4xl mx-auto">
