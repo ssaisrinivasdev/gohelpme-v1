@@ -20,7 +20,7 @@ const imageFiles = [file1,file2, file3]
 setImageInput(imageFiles)
 }
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     console.log(data)
 
     const form = new FormData();
@@ -49,7 +49,7 @@ setImageInput(imageFiles)
 
 
 
-    const res = await fetch("http://gohelpme.online/api/createfund", {
+    fetch("http://gohelpme.online/api/createfund", {
         method: "POST",
         body: form,
     })
