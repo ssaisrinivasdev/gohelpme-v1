@@ -60,7 +60,7 @@ function Form() {
 axios({
   method: 'post',
   url: 'http://gohelpme.online/api/createfund',
-  data: data
+  data: JSON.stringify(data)
 })
     .then((res) => res.json())
     .then((response) => {
