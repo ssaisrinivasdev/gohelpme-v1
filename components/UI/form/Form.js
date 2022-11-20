@@ -11,19 +11,17 @@ function Form() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async data => {
 
-    console.log(data)
-
     // const formData = new FormData();
     // formData.append("images", data.images[0]);
 
-    const formData  = new FormData();
+  //   const formData  = new FormData();
 
-  for(const name in data) {
-    formData.append(name, data[name]);
-  }
+  // for(const name in data) {
+  //   formData.append(name, data[name]);
+  // }
 
-  for(var i =0;i < data.images.length;i++)
-	formData.append("images",data.images[i]);
+  // for(var i =0;i < data.images.length;i++)
+	// formData.append("images",data.images[i]);
 
   // formData.append("images", data.images[0]);
 
