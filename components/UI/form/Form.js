@@ -12,14 +12,14 @@ function Form() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [imageInput, setImageInput] = useState(null)
 
-const handleImage = (e) => {
-const file1 = e.target.files[0];
-const file2 = e.target.files[1];
-const file3 = e.target.files[2];
+// const handleImage = (e) => {
+// const file1 = e.target.files[0];
+// const file2 = e.target.files[1];
+// const file3 = e.target.files[2];
 
-const imageFiles = [file1,file2, file3]
-setImageInput(imageFiles)
-}
+// const imageFiles = [file1,file2, file3]
+// setImageInput(imageFiles)
+// }
 
   const onSubmit = (data) => {
     console.log(data)
