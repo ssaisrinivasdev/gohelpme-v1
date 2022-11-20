@@ -52,12 +52,12 @@ setImageInput(imageFiles)
         body: form,
     })
     .then((res) => res.json())
-    .then((data) => {
-      console.log('Success:', data);
-      const {fund} = data
+    .then((response) => {
+      console.log('Success:', response);
+      const {fund} = response
       router.push("/fundraisers/" + fund._id)
     })
-    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
     
 
