@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import GlobalContext from "../../../store/global-context";
 import { useContext } from "react";
@@ -9,35 +9,76 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = async data => {
+  const [imageInput, setImageInput] = useState(null)
 
+const handleImage = (e) => {
+const file1 = e.target.files[0];
+const file2 = e.target.files[1];
+const file3 = e.target.files[2];
+
+const imageFiles = [file1,file2, file3]
+setImageInput(imageFiles)
+}
+
+  const onSubmit = (data) => {
     console.log(data)
 
-    // const formData = new FormData();
-    // formData.append("images", data.images[0]);
+    const form = new FormData();
+    form.append("images", imageInput);
+    form.append("json",  JSON.stringify(data));
 
-    const formData  = new FormData();
+  //  for(const name in data) {
+  //   form.append(name, data[name]);
+  // }
 
-  for(const name in data) {
-    formData.append(name, data[name]);
-  }
+  console.log(form)
 
-  for(var i =0;i < data.images.length;i++)
-	formData.append("images",data.images[i]);
+  //   const formData  = new FormData();
+
+  // for(const name in data) {
+  //   formData.append(name, data[name]);
+  // }
+
+  // for(var i =0;i < data.images.length;i++)
+	// formData.append("images",data.images[i]);
 
   // formData.append("images", data.images[0]);
 
-    const res = await fetch("http://gohelpme.online/api/createfund", {
-        method: "POST",
-        body: formData,
-    })
+
+
+
+
+
+    // fetch("http://gohelpme.online/api/createfund", {
+    //     method: "POST",
+    //     body: form,
+    // })
+    // Send a POST request
+axios({
+  method: 'post',
+  url: 'http://gohelpme.online/api/createfund',
+  data: form
+})
     .then((res) => res.json())
-    .then((data) => {
-      console.log('Success:', data);
-      const {fund} = data
+    .then((response) => {
+
+      if(200 <= res.status < 300) { 
+        
+        console.log('Success:', response);
+        const {fund} = response
       router.push("/fundraisers/" + fund._id)
+    
+  
+  } else {
+    console.log(res.status)
+    console.log(response.error)
+  }
+
+      // console.log('Success:', response);
+      // const {fund} = response
+      // router.push("/fundraisers/" + fund._id)
     })
-    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
     
 
@@ -221,7 +262,7 @@ function Form() {
 
               <h2 className="mx-3 text-gray-400">Upload Images</h2>
 
-              <input type="file" multiple {...register("images")} />
+              <input onChange={handleImage} type="file" multiple {...register("images")} />
             </label>
 
 
