@@ -27,7 +27,7 @@ setImageInput(imageFiles)
     const form = new FormData();
     // form.append("images", imageInput);
     // form.append("json",  JSON.stringify(data));
-    form.append(data);
+    form.append("json",data);
 
 
   //  for(const name in data) {
