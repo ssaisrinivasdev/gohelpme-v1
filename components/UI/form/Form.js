@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import GlobalContext from "../../../store/global-context";
 import { useContext } from "react";
 import { useRouter } from "next/router";
+import axios from 'axios';
 
 function Form() {
   const globalData = useContext(GlobalContext)
