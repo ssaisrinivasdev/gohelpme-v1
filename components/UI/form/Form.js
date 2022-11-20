@@ -263,10 +263,10 @@ axios({
 
               <h2 className="mx-3 text-gray-400">Upload Images</h2>
 
-              <input onChange={handleImage} type="file" multiple {...register("images")} />
+              <input onChange={handleImage} type="file" multiple />
             </label>
 
-
+            {/* {...register("images")}  */}
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
