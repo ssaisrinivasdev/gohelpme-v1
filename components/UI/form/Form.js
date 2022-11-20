@@ -55,9 +55,22 @@ setImageInput(imageFiles)
     })
     .then((res) => res.json())
     .then((response) => {
-      console.log('Success:', response);
-      const {fund} = response
+
+      if(200 <= res.status < 300) { 
+        
+        console.log('Success:', response);
+        const {fund} = response
       router.push("/fundraisers/" + fund._id)
+    
+  
+  } else {
+    console.log(res.status)
+    console.log(response.error)
+  }
+
+      // console.log('Success:', response);
+      // const {fund} = response
+      // router.push("/fundraisers/" + fund._id)
     })
     // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
