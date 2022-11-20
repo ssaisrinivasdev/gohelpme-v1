@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import GlobalContext from "../../../store/global-context";
 import { useContext } from "react";
 import { useRouter } from "next/router";
-import axios from 'axios';
 
 function Form() {
   const globalData = useContext(GlobalContext)
@@ -34,6 +33,26 @@ setImageInput(imageFiles)
 
   console.log(form)
 
+  //   const formData  = new FormData();
+
+  // for(const name in data) {
+  //   formData.append(name, data[name]);
+  // }
+
+  // for(var i =0;i < data.images.length;i++)
+	// formData.append("images",data.images[i]);
+
+  // formData.append("images", data.images[0]);
+
+
+
+
+
+
+    // fetch("http://gohelpme.online/api/createfund", {
+    //     method: "POST",
+    //     body: form,
+    // })
     // Send a POST request
 axios({
   method: 'post',
@@ -53,9 +72,13 @@ axios({
   } else {
     console.log(res.status)
     console.log(response.error)
-  }      
+  }
+
+      // console.log('Success:', response);
+      // const {fund} = response
+      // router.push("/fundraisers/" + fund._id)
     })
-    
+    // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
     
 
