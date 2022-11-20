@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import GlobalContext from "../../../store/global-context";
 import { useContext } from "react";
@@ -9,10 +9,27 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = async data => {
+  const [imageInput, setImageInput] = useState(null)
 
-    // const formData = new FormData();
-    // formData.append("images", data.images[0]);
+const handleImage = (e) => {
+const file1 = e.target.files[0];
+const file2 = e.target.files[1];
+const file3 = e.target.files[2];
+
+const imageFiles = [file1,file2, file3]
+setImageInput(imageFiles)
+}
+
+  const onSubmit = async (data) => {
+
+    const form = new FormData();
+    form.append("images", imageInput);
+
+   for(const name in data) {
+    form.append(name, data[name]);
+  }
+
+  console.log(form)
 
   //   const formData  = new FormData();
 
@@ -25,9 +42,14 @@ function Form() {
 
   // formData.append("images", data.images[0]);
 
+
+
+
+
+
     const res = await fetch("http://gohelpme.online/api/createfund", {
         method: "POST",
-        body: data,
+        body: form,
     })
     .then((res) => res.json())
     .then((data) => {
@@ -219,7 +241,7 @@ function Form() {
 
               <h2 className="mx-3 text-gray-400">Upload Images</h2>
 
-              <input type="file" multiple {...register("images")} />
+              <input onChange={handleImage} type="file" multiple {...register("images")} />
             </label>
 
 
