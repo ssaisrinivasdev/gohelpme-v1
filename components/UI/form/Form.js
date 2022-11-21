@@ -9,9 +9,8 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
- var count=0;
+
   const onSubmit = async data => {
-	  try{
 
     //const jsonData = JSON.stringify(data)
 //     console.log(jsonData)
@@ -20,22 +19,23 @@ function Form() {
     // formData.append("images", data.images[0]);
 
     const formData  = new FormData();
-  count++;
 	  
-  for(var i =0;i < data.images.length;i++)
-	formData.append("images",data.images[i]);
-count++;
-  const jsonData = JSON.stringify(data)
-  count++;
-  for(const name in jsonData) {
-    formData.append(name, jsonData[name]);
-  }
-count++;
+  formData = await (async function(){
+  	for(var i =0;i < data.images.length;i++)
+		formData.append("images",data.images[i]);
+
+
+	  for(const name in data) {
+	    formData.append(name, data[name]);
+  	}
+	  return formData;
+  })
+  
+
 	  
   // formData.append("images", data.images[0]);
 	  
-
-    console.log(formData)
+	  console.log(formData)
     const res = await fetch("http://gohelpme.online/api/createfund", {
         method: "POST",
 	headers: {
@@ -44,19 +44,15 @@ count++;
         },
         body: formData,
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log('Success:', data);
-      const {fund} = data
-      router.push("/fundraisers/" + fund._id)
-    })
-    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log('Success:', data);
+//       const {fund} = data
+//       router.push("/fundraisers/" + fund._id)
+//     })
+//     alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
-    
-  }catch(err){
-	  console.log(count);
-  	console.log(err)
-  }
+
 
 
     // fetch('http://gohelpme.online/api/createfund', {
