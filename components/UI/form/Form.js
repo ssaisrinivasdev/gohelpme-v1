@@ -22,13 +22,20 @@ function Form() {
     formData.append(name, data[name]);
   }
 
+	  
   for(var i =0;i < data.images.length;i++)
 	formData.append("images",data.images[i]);
 
   // formData.append("images", data.images[0]);
+	  
 
+    console.log(formData)
     const res = await fetch("http://gohelpme.online/api/createfund", {
         method: "POST",
+	headers: {
+	      'Content-Type': 'multipart/form-data'
+	      // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
         body: formData,
     })
     .then((res) => res.json())
