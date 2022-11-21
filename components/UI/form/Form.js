@@ -10,24 +10,27 @@ function Form() {
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async data => {
+	  try{
 
-    const jsonData = JSON.stringify(data)
-    console.log(jsonData)
-
+    //const jsonData = JSON.stringify(data)
+//     console.log(jsonData)
+ let count=0;
     // const formData = new FormData();
     // formData.append("images", data.images[0]);
 
     const formData  = new FormData();
+  count++;
 	  
-
+  for(var i =0;i < data.images.length;i++)
+	formData.append("images",data.images[i]);
+count++;
+  const jsonData = JSON.stringify(data)
+  count++;
   for(const name in jsonData) {
     formData.append(name, jsonData[name]);
   }
-
+count++;
 	  
-  for(var i =0;i < jsonData.images.length;i++)
-	formData.append("images",jsonData.images[i]);
-
   // formData.append("images", data.images[0]);
 	  
 
@@ -42,14 +45,16 @@ function Form() {
     })
     .then((res) => res.json())
     .then((data) => {
-      console.log('Success:', jsonData);
-      const {fund} = jsonData
+      console.log('Success:', data);
+      const {fund} = data
       router.push("/fundraisers/" + fund._id)
     })
     alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
     
-
+  }catch(err){
+  	console.log(err)
+  }
 
 
     // fetch('http://gohelpme.online/api/createfund', {
