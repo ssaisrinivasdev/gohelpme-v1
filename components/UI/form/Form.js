@@ -34,18 +34,20 @@ function Form() {
         method: "POST",
         body: formData,
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log('Success:', data);
-      console.log(res.status)
-      const error = data.error;
-      const message = data.message;
+
+    const response = await result.json();
+    console.log(response.error)
+    console.log(res.status)
+      console.log('Success:', response);
+      const {error} = response;
+      const {message} = response;
+
       if(res.status >= 200 && res.status <=205)
       {
         //***** CHANGE HERE ONLY *******//
         //Route to the result or render the output.
         console.log(error,message)
-        const {fund} = data
+        const {fund} = response
       router.push("/fundraisers/" + fund._id)
       } else if(res.status >= 400 && res.status <= 405)
       {
@@ -80,7 +82,7 @@ function Form() {
       // console.log('Success:', data);
       // const {fund} = data
       // router.push("/fundraisers/" + fund._id)
-    })
+    
 //     alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
 

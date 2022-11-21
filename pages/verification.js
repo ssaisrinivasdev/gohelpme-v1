@@ -28,8 +28,8 @@ const verify = async (event) => {
       }
     })
 
-    const error = await result.json();
-    console.log(error.error)
+    const response = await result.json();
+    console.log(response.error)
     console.log(result.status)
 
     if(200 <= result.status < 300) { 
