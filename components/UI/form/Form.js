@@ -38,7 +38,7 @@ function Form() {
         console.log('Success:', data);
         const {fund} = data
         router.push("/fundraisers/" + fund._id)
-      } else if(output.status >= 400 && output.status <= 405)
+      } else if(res.status >= 400 && res.status <= 405)
       {
         if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
         {
