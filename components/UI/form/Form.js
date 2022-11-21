@@ -11,7 +11,7 @@ function Form() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async data => {
 
-    console.log(data)
+    // console.log(data)
 
     // const formData = new FormData();
     // formData.append("images", data.images[0]);
@@ -32,9 +32,14 @@ function Form() {
         body: formData,
     })
     .then((res) => res.json())
-    .then((data) => {
+    .then( async (data) => {
+      const error = await result.json();
+    console.log(error.error)
+    
+
       console.log(res.status)
-      (400 <= res.status <= 405) ? alert(data.error) : alert("success")
+     
+      // (400 <= res.status <= 405) ? alert(data.error) : alert("success")
       console.log('Success:', data);
       const {fund} = data
       router.push("/fundraisers/" + fund._id)
