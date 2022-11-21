@@ -33,11 +33,19 @@ function Form() {
     })
     .then((res) => res.json())
     .then((data) => {
+      console.log(res.status)
       console.log('Success:', data);
       const {fund} = data
-      router.push("/fundraisers/" + fund._id)
+      if(200 <= res.status < 300) { 
+        
+             router.push("/fundraisers/" + fund._id)
+        
+      }
+     
+     
+     
     })
-    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
     
 
