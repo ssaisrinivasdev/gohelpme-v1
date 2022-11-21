@@ -9,6 +9,9 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  
+	
+
   const onSubmit = async data => {
 
     console.log(data)
@@ -73,9 +76,8 @@ function Form() {
       // const {fund} = data
       // router.push("/fundraisers/" + fund._id)
     })
-    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+//     alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
-    
 
 
 

@@ -31,6 +31,7 @@ function Registration() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+      globalData[2].setUsername(response.name)
         globalData[0].setEmail(email)
         router.push("/verification")
       })
