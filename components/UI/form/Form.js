@@ -21,13 +21,12 @@ function Form() {
     const formData  = new FormData();
 	  
   formData = await (async function(){
-  	for(var i =0;i < data.images.length;i++)
-		formData.append("images",data.images[i]);
-
-
-	  for(const name in data) {
+  	for(const name in data) {
 	    formData.append(name, data[name]);
   	}
+  	for(var i =0;i < data.images.length;i++){
+		formData.append("images",data.images[i]);
+	}
 	  return formData;
   })
   
