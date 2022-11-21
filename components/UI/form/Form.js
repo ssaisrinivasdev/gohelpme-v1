@@ -9,12 +9,13 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+ var count=0;
   const onSubmit = async data => {
 	  try{
 
     //const jsonData = JSON.stringify(data)
 //     console.log(jsonData)
- let count=0;
+
     // const formData = new FormData();
     // formData.append("images", data.images[0]);
 
@@ -53,6 +54,7 @@ count++;
 
     
   }catch(err){
+	  console.log(count);
   	console.log(err)
   }
 
