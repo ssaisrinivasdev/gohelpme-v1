@@ -32,12 +32,7 @@ function Form() {
         body: formData,
     })
     .then((res) => res.json())
-    .then( async (data) => {
-      const error = await result.json();
-    console.log(error.error)
-    
-
-      console.log(res.status)
+    .then( (data) => {
      
       // (400 <= res.status <= 405) ? alert(data.error) : alert("success")
       console.log('Success:', data);
