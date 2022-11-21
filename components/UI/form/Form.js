@@ -35,7 +35,7 @@ function Form() {
         body: formData,
     })
 
-    const response = await result.json();
+    const response = await res.json();
     console.log(response.error)
     console.log(res.status)
       console.log('Success:', response);
@@ -45,7 +45,7 @@ function Form() {
       if(res.status >= 200 && res.status <=205)
       {
         //***** CHANGE HERE ONLY *******//
-        //Route to the result or render the output.
+        //Route to the res or render the output.
         console.log(error,message)
         const {fund} = response
       router.push("/fundraisers/" + fund._id)
