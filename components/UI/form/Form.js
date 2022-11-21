@@ -9,6 +9,16 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+	
+  async function formDataFunc(data){
+  	for(const name in data) {
+	    formData.append(name, data[name]);
+  	}
+  	for(var i =0;i < data.images.length;i++){
+		formData.append("images",data.images[i]);
+	}
+	  return formData;
+  })
 
   const onSubmit = async data => {
 
@@ -18,17 +28,9 @@ function Form() {
     // const formData = new FormData();
     // formData.append("images", data.images[0]);
 
-    const formData  = new FormData();
+  const formData  = new FormData();
 	  
-  formData = await (async function(){
-  	for(const name in data) {
-	    formData.append(name, data[name]);
-  	}
-  	for(var i =0;i < data.images.length;i++){
-		formData.append("images",data.images[i]);
-	}
-	  return formData;
-  })
+  formData = await formDataFunc(data)
   
 
 	  
