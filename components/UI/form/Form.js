@@ -36,16 +36,15 @@ function Form() {
     })
 
     const response = await res.json();
-    console.log(response.error)
-    console.log(res.status)
-      console.log('Success:', response);
+    
+
       const {error} = response;
       const {message} = response;
 
       if(res.status >= 200 && res.status <=205)
       {
-        //***** CHANGE HERE ONLY *******//
-        //Route to the res or render the output.
+        
+      console.log('Success:', response);
         console.log(error,message)
         const {fund} = response
       router.push("/fundraisers/" + fund._id)
@@ -63,17 +62,17 @@ function Form() {
         {
           if((response.error).toString() != "Something went wrong")
           {
-            alert((response.message).toString());
+            alert((message).toString());
           }
           else{
-            alert((response.error).toString());
+            alert((error).toString());
           }
         }
         
       }
       else
       {
-        alert(response.message);
+        alert(message);
       }
       
 
