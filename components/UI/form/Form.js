@@ -50,7 +50,7 @@ function Form() {
       router.push("/fundraisers/" + fund._id)
       } else if(res.status >= 400 && res.status <= 405)
       {
-        alert(error + ":" + message)
+        alert(`${error} : ${message}`)
 
         if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
         {
@@ -60,7 +60,7 @@ function Form() {
         }
         else
         {
-          if((response.error).toString() != "Something went wrong")
+          if((error).toString() != "Something went wrong")
           {
             alert((message).toString());
           }
@@ -70,11 +70,6 @@ function Form() {
         }
         
       }
-      else
-      {
-        alert(message);
-      }
-      
 
 
 
