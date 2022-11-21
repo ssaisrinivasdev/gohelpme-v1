@@ -11,20 +11,22 @@ function Form() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async data => {
 
-    console.log(data)
+    const jsonData = JSON.stringify(data)
+    console.log(jsonData)
 
     // const formData = new FormData();
     // formData.append("images", data.images[0]);
 
     const formData  = new FormData();
+	  
 
-  for(const name in data) {
-    formData.append(name, data[name]);
+  for(const name in jsonData) {
+    formData.append(name, jsonData[name]);
   }
 
 	  
-  for(var i =0;i < data.images.length;i++)
-	formData.append("images",data.images[i]);
+  for(var i =0;i < jsonData.images.length;i++)
+	formData.append("images",jsonData.images[i]);
 
   // formData.append("images", data.images[0]);
 	  
@@ -40,8 +42,8 @@ function Form() {
     })
     .then((res) => res.json())
     .then((data) => {
-      console.log('Success:', data);
-      const {fund} = data
+      console.log('Success:', jsonData);
+      const {fund} = jsonData
       router.push("/fundraisers/" + fund._id)
     })
     alert(JSON.stringify(`${res.message}, status: ${res.status}`));
