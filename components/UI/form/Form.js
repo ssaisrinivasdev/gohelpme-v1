@@ -9,28 +9,24 @@ function Form() {
   const globalData = useContext(GlobalContext)
   const router = useRouter()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const formData  = new FormData();
+  
 	
-  async function formDataFunc(data){
-  	for(const name in data) {
-	    formData.append(name, data[name]);
-  	}
-  	for(var i =0;i < data.images.length;i++){
-		formData.append("images",data.images[i]);
-	}
-	  return formData;
-  }
 
   const onSubmit = async data => {
 
     //const jsonData = JSON.stringify(data)
-//     console.log(jsonData)
+    console.log(data)
 
     // const formData = new FormData();
     // formData.append("images", data.images[0]);
-
+  const formData  = new FormData();
 	  
-  formData = await formDataFunc(data)
+	for(const name in data) {
+	    formData.append(name, data[name]);
+	}
+	for(var i =0;i < data.images.length;i++){
+		formData.append("images",data.images[i]);
+	}
   
 
 	  
@@ -45,13 +41,13 @@ function Form() {
         },
         body: formData,
     })
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log('Success:', data);
-//       const {fund} = data
-//       router.push("/fundraisers/" + fund._id)
-//     })
-//     alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('Success:', data);
+      const {fund} = data
+      router.push("/fundraisers/" + fund._id)
+    })
+    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
 
 
