@@ -32,37 +32,12 @@ function Form() {
         body: formData,
     })
     .then((res) => res.json())
-    .then((response) => {
-
-      if(res.status >= 200 && res.status <=205) {
-        console.log('Success:', data);
-        const {fund} = data
-        router.push("/fundraisers/" + fund._id)
-      } else if(res.status >= 400 && res.status <= 405)
-      {
-        if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
-        {
-          //Route to LOGIN and change global variable status!!
-        }
-        else
-        {
-          if((response.error).toString() != "Something went wrong")
-          {
-            alert((response.message).toString());
-          }
-          else{
-            alert((response.error).toString());
-          }
-        }
-        
-      }
-      else
-      {
-        alert(response.message);
-      }
-      
+    .then((data) => {
+      console.log('Success:', data);
+      const {fund} = data
+      router.push("/fundraisers/" + fund._id)
     })
-    
+    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
     
 
