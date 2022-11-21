@@ -18,7 +18,7 @@ function Form() {
 		formData.append("images",data.images[i]);
 	}
 	  return formData;
-  })
+  }
 
   const onSubmit = async data => {
 
