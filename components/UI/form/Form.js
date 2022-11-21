@@ -62,7 +62,7 @@ function Form() {
       }
       
     })
-    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    
 
     
 
