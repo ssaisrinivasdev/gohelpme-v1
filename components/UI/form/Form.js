@@ -37,6 +37,7 @@ function Form() {
     .then((res) => res.json())
     .then((data) => {
       console.log('Success:', data);
+      console.log(res.status)
       const error = data.error;
       const message = data.message;
       if(res.status >= 200 && res.status <=205)
