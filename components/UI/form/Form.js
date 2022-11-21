@@ -11,7 +11,7 @@ function Form() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async data => {
 
-    // console.log(data)
+    console.log(data)
 
     // const formData = new FormData();
     // formData.append("images", data.images[0]);
@@ -22,7 +22,7 @@ function Form() {
     formData.append(name, data[name]);
   }
 
-  for(var i = 0;i < data.images.length;i++)
+  for(var i =0;i < data.images.length;i++)
 	formData.append("images",data.images[i]);
 
   // formData.append("images", data.images[0]);
@@ -32,15 +32,12 @@ function Form() {
         body: formData,
     })
     .then((res) => res.json())
-    .then( (data) => {
-     
-      // (400 <= res.status <= 405) ? alert(data.error) : alert("success")
+    .then((data) => {
       console.log('Success:', data);
       const {fund} = data
       router.push("/fundraisers/" + fund._id)
-      
     })
-    // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
 
     
 
