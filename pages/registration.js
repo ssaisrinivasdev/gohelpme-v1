@@ -39,6 +39,14 @@ function Registration() {
       });
 
     
+
+
+
+
+
+      
+
+
 // const {status} = result;
     
     // console.log(error.error)

@@ -75,7 +75,7 @@ const LogoutHandler = async () => {
   return (
     <div>
       <nav ref={navRef} className="bg-white w-full top-0 z-20">
-        <div className="items-center px-4 max-w-screen-xl mx-auto lg:flex lg:px-8">
+        <div className="items-center px-4 max-w-screen-2xl mx-auto lg:flex lg:px-8">
           <div className="flex items-center justify-between py-3 lg:py-4 lg:block">
             <Link href="/">
               <img
@@ -153,6 +153,15 @@ const LogoutHandler = async () => {
                     className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
                   >
                     Sign Up
+                  </Link>
+                </li> }
+
+                {globalData[1].isLoggedIn && <li className="mt-8 lg:mt-0">
+                  <Link
+                    href="/dashboard"
+                    className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
+                  >
+                    My Dashboard
                   </Link>
                 </li> }
 
