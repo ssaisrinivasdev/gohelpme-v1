@@ -3,6 +3,7 @@ import Header from "../components/UI/Header";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import GlobalContext from "../store/global-context";
+import Footer from "../components/UI/Footer";
 
 export default function Login() {
 
@@ -51,7 +52,7 @@ export default function Login() {
   return (
     <div>
       <Header />
-      <div className="py-24">
+      <div className="py-24 drop-shadow-md bg-slate-100">
         <div class="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-md shadow-md">
           <h1 class="text-3xl font-semibold text-center text-color1">
             Sign In
@@ -107,6 +108,7 @@ export default function Login() {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

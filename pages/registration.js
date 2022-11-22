@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import GlobalContext from "../store/global-context";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import Footer from "../components/UI/Footer";
 
 
 function Registration() {
@@ -42,8 +43,9 @@ function Registration() {
       globalData[2].setUsername(name)
         globalData[0].setEmail(email)
         router.push("/verification")
-    } else if(res.status >= 400 && res.status <= 405)
+    } else if (res.status >= 400 && res.status <= 405)
     {
+      console.log(`${error} : ${message}`)
       alert(`${error} : ${message}`)
 
       if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
@@ -63,6 +65,8 @@ function Registration() {
       //   }
       // }
       
+    } else {
+
     }
 
 
@@ -115,7 +119,7 @@ function Registration() {
 
 <div>
       <Header />
-      <div className="py-24">
+      <div className="py-24 drop-shadow-md bg-slate-100">
         <div class="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-md shadow-md">
           <h1 class="text-3xl font-semibold text-center text-color1">
             Sign Up
@@ -186,6 +190,7 @@ function Registration() {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
 
 
