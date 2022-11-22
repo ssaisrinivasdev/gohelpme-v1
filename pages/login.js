@@ -17,7 +17,7 @@ export default function Login() {
   const globalData = useContext(GlobalContext)
  
 
-  const LoginPost = (data) => {
+  const LoginPost = async (data) => {
 
 
     
@@ -26,75 +26,97 @@ export default function Login() {
 
 
 
-    fetch('http://gohelpme.online/api/login', {
-      method: 'POST', // or 'PUT'
+
+
+    const res = await fetch("http://gohelpme.online/api/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-      },
+            'Content-Type': 'application/json',
+          },
       body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
+  })
 
+  const response = await res.json();
+  
 
-        if(res.status >= 200 && res.status <=205)
-        {
-
-          const {response} = data
-          
-          console.log('Success:', data);
-        globalData[1].setIsLoggedIn(true)
-        globalData[2].setUsername(response.name)
-        router.push("/dashboard")
-        } else if (res.status >= 400 && res.status <= 405)
-        {
-          const error = data.error
-          alert(`${data.error} : ${data.message}`)
-          
+    const {error} = response;
+    const {message} = response;
     
-          if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
-          {
-            //Route to LOGIN and change global variable status!!
-            router.push("/login")
-            globalData[1].setIsLoggedIn(false)
-          }
-          return error
-          // else
-          // {
-          //   if((error).toString() != "Something went wrong")
-          //   {
-          //     alert((message).toString());
-          //   }
-          //   else{
-          //     alert((error).toString());
-          //   }
-          // }
-          
-        } 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+    if(res.status >= 200 && res.status <=205)
+    {
       
+      console.log('Success:', response);
      
-      // // localStorage.setItem('userId',response.user._id);
-      // // localStorage.setItem('token',data.token);
-      //   console.log('Success:', data.error);
-      //   globalData[1].setIsLoggedIn(true)
-      //   globalData[2].setUsername(response.name)
-      //   router.push("/dashboard")
-      })
+      const name = response.response.name
+        console.log('Success:', response.response.message);
+        globalData[1].setIsLoggedIn(true)
+        globalData[2].setUsername(name)
+        router.push("/dashboard")
+    } else if (res.status >= 400 && res.status <= 405)
+    {
+      console.log(`${error} : ${message}`)
+      alert(`${error} : ${message}`)
+
+      if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
+      {
+        //Route to LOGIN and change global variable status!!
+        router.push("/login")
+        globalData[1].setIsLoggedIn(false)
+      }
+      // else
+      // {
+      //   if((error).toString() != "Something went wrong")
+      //   {
+      //     alert((message).toString());
+      //   }
+      //   else{
+      //     alert((error).toString());
+      //   }
+      // }
+      
+    } 
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // fetch('http://gohelpme.online/api/login', {
+    //   method: 'POST', // or 'PUT'
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log('Success:', data);
+    //   const {response} = data
+     
+    //   // localStorage.setItem('userId',response.user._id);
+    //   // localStorage.setItem('token',data.token);
+    //     console.log('Success:', data.message);
+    //     globalData[1].setIsLoggedIn(true)
+    //     globalData[2].setUsername(response.name)
+    //     router.push("/dashboard")
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
+
       
 
   }
@@ -156,9 +178,7 @@ export default function Login() {
             <p className="errorMsg">
               Password should be at-least 8 characters.
             </p>
-          )} 
-          {400 <= res.status <= 405 && error} 
-
+          )}
             </div>
 
             <div class="mt-6">
