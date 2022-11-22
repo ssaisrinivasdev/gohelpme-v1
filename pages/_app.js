@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken"
 
 function MyApp({ Component, pageProps }) {
 const [email, setEmail] = useState("")
-const [isLoggedIn, setIsLoggedIn] = useState(false)
+const [isLoggedIn, setIsLoggedIn] = useState(null)
 const [username, setUsername] = useState("")
 
 
