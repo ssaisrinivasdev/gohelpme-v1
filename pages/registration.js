@@ -232,9 +232,9 @@ function Registration() {
               </button>
 
               <div className="mt-6 text-center ">
-                <a href="#" className="text-sm text-blue-500 hover:underline ">
+                <Link href="/login" className="text-sm text-blue-500 hover:underline ">
                   Already have an account?
-                </a>
+                </Link>
               </div>
             </div>
           </form>
