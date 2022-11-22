@@ -133,7 +133,9 @@ function Registration() {
               <input
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                {...register("name")}  
+                {...register("name", {
+              required: "Username is required.",
+            })}
               />
             </div>
 
@@ -155,8 +157,15 @@ function Registration() {
               <input
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                {...register("email")}  
+                {...register("email", {
+              required: "Email is required.",
+              pattern: {
+                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                message: "Email is not valid."
+              }
+            })}  
               />
+              {errors.email && <p className="errorMsg">{errors.email.message}</p>}
             </div>
 
             <div>
@@ -169,8 +178,17 @@ function Registration() {
               <input
                 type="password"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                {...register("password")}  
+                {...register("password", {
+              required: "Password is required.",
+              minLength: {
+                value: 8,
+                message: "Password should be at-least 8 characters."
+              }
+            })} 
               />
+               {errors.password && (
+            <p className="errorMsg">{errors.password.message}</p>
+          )}
             </div>
 
             <div class="mt-6">
