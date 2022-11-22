@@ -90,9 +90,9 @@ export default function Login() {
                 <label for="password" class="block text-sm text-gray-800 ">
                   Password
                 </label>
-                <a href="#" class="text-xs text-gray-600 ">
-                  Forget Password?
-                </a>
+                <Link href="/forgotpassword" class="text-xs text-gray-600 ">
+                  Forgot Password?
+                </Link>
               </div>
 
               <input

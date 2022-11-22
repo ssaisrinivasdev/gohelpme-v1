@@ -137,6 +137,9 @@ function Registration() {
               required: "Username is required.",
             })}
               />
+              {errors.name && errors.name.type === "required" && (
+            <p className="errorMsg">Username is required.</p>
+          )}
             </div>
 
             <div>
@@ -146,12 +149,17 @@ function Registration() {
               <input
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                {...register("lastname")}  
+                {...register("lastname", {
+              required: "Lastname is required.",
+            })}
               />
+              {errors.lastname && errors.name.type === "required" && (
+            <p className="errorMsg">Lastname is required.</p>
+          )}
             </div>
 
             <div>
-              <label for="username" class="block text-sm text-gray-800 ">
+              <label for="Email" class="block text-sm text-gray-800 ">
                 Email
               </label>
               <input
@@ -165,7 +173,12 @@ function Registration() {
               }
             })}  
               />
-              {errors.email && <p className="errorMsg">{errors.email.message}</p>}
+              {errors.email && errors.email.type === "required" && (
+            <p className="errorMsg">Email is required.</p>
+          )}
+          {errors.email && errors.email.type === "pattern" && (
+            <p className="errorMsg">Email is not valid.</p>
+          )}
             </div>
 
             <div>
@@ -186,8 +199,13 @@ function Registration() {
               }
             })} 
               />
-               {errors.password && (
-            <p className="errorMsg">{errors.password.message}</p>
+               {errors.password && errors.password.type === "required" && (
+            <p className="errorMsg">Password is required.</p>
+          )}
+          {errors.password && errors.password.type === "minLength" && (
+            <p className="errorMsg">
+              Password should be at-least 6 characters.
+            </p>
           )}
             </div>
 
