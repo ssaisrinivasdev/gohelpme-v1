@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Header from "../components/UI/Header";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -37,17 +37,26 @@ export default function Login() {
   })
 
   const response = await res.json();
-  
-
-    const {error} = response;
-    const {message} = response;
-    
 
     if(res.status >= 200 && res.status <=205)
     {
-      
+      const {token} = response;
       console.log('Success:', response);
+
+
+
+
+      
+        // Perform localStorage action
+        localStorage.setItem('token',token);
+  
+
      
+
+
+
+
+
       const name = response.response.name
         console.log('Success:', response.response.message);
         globalData[1].setIsLoggedIn(true)
@@ -55,6 +64,8 @@ export default function Login() {
         router.push("/dashboard")
     } else if (res.status >= 400 && res.status <= 405)
     {
+      const {error} = response;
+    const {message} = response;
       console.log(`${error} : ${message}`)
       alert(`${error} : ${message}`)
 

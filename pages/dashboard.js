@@ -1,13 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import CategoryFunds from '../components/UI/CategoryFunds'
 import Footer from '../components/UI/Footer'
 import Header from '../components/UI/Header'
 import InfoButtons from '../components/UI/InfoButtons'
 import Profile from '../components/UI/Profile'
 import ProfileCards from '../components/UI/ProfileCards'
+import GlobalContext from '../store/global-context'
+import Router, { useRouter } from 'next/router'
+import jwt  from 'jsonwebtoken'
 
 function Dashboard() {
 const [buttonActive, setButtonActive] = useState("profile")
+const globalData = useContext(GlobalContext)
+const router = useRouter()
+
+useEffect(() => {
+    // Perform localStorage action
+    const token = localStorage.getItem('token');
+  
+    if(token)
+    {
+      jwt.verify(token, '$tr0ngkEy123!@#', function(err, decoded) {
+        if (err) {
+            globalData[1].setIsLoggedIn(false) 
+        }else{
+          globalData[1].setIsLoggedIn(true) 
+        }	
+      });
+    }
+    
+  }, [])
 
 console.log(buttonActive)
 

@@ -49,6 +49,7 @@ const LogoutHandler = async () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        localStorage.removeItem('token');
         console.log('Success:', data);
         globalData[1].setIsLoggedIn(false)
         router.push("/")

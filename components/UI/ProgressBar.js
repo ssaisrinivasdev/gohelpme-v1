@@ -12,13 +12,13 @@ function ProgressBar(props) {
           </div>
           <div className="text-right">
             <span className="text-xs font-semi  bold inline-block text-color1">
-              30%
+              
             </span>
           </div>
         </div>
         <div className="overflow-hidden my-3 grow-1 h-2 text-xs flex rounded bg-red-300 w-[276px]">
           <div
-            style={{ width: "30%" }}
+            style={{ width: "" }}
             className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-color1"
           ></div>
         </div>
