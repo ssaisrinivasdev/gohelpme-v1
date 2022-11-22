@@ -65,9 +65,7 @@ function Registration() {
       //   }
       // }
       
-    } else {
-
-    }
+    } 
 
 
 

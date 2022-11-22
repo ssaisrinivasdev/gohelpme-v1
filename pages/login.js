@@ -35,20 +35,66 @@ export default function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Success:', data);
-      const {response} = data
-     
-      // localStorage.setItem('userId',response.user._id);
-      // localStorage.setItem('token',data.token);
-        console.log('Success:', data.message);
+
+
+        if(res.status >= 200 && res.status <=205)
+        {
+
+          const {response} = data
+          
+          console.log('Success:', data);
         globalData[1].setIsLoggedIn(true)
         globalData[2].setUsername(response.name)
         router.push("/dashboard")
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+        } else if (res.status >= 400 && res.status <= 405)
+        {
+          const error = data.error
+          alert(`${data.error} : ${data.message}`)
+          
+    
+          if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
+          {
+            //Route to LOGIN and change global variable status!!
+            router.push("/login")
+            globalData[1].setIsLoggedIn(false)
+          }
+          return error
+          // else
+          // {
+          //   if((error).toString() != "Something went wrong")
+          //   {
+          //     alert((message).toString());
+          //   }
+          //   else{
+          //     alert((error).toString());
+          //   }
+          // }
+          
+        } 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      
+     
+      // // localStorage.setItem('userId',response.user._id);
+      // // localStorage.setItem('token',data.token);
+      //   console.log('Success:', data.error);
+      //   globalData[1].setIsLoggedIn(true)
+      //   globalData[2].setUsername(response.name)
+      //   router.push("/dashboard")
+      })
       
 
   }
@@ -110,7 +156,9 @@ export default function Login() {
             <p className="errorMsg">
               Password should be at-least 8 characters.
             </p>
-          )}
+          )} 
+          {400 <= res.status <= 405 && error} 
+
             </div>
 
             <div class="mt-6">
