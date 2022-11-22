@@ -60,7 +60,7 @@ export default function Login() {
           <form class="mt-6">
             <div>
               <label for="username" class="block text-sm text-gray-800 ">
-                Username
+                Email
               </label>
               <input
                 type="text"
