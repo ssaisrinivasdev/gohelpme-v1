@@ -143,7 +143,7 @@ const LogoutHandler = async () => {
                     href="/login"
                     className="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
                   >
-                    Login
+                    SignIn
                   </Link>
                 </li>
                 }
