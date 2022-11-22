@@ -4,19 +4,25 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import GlobalContext from "../store/global-context";
 import Footer from "../components/UI/Footer";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
 
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
+  // const [email,setEmail] = useState("")
+  // const [password,setPassword] = useState("")
 
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const router = useRouter()
   const globalData = useContext(GlobalContext)
  
 
-  const LoginPost = () => {
-    const loginCredentials = {email, password}
+  const LoginPost = (data) => {
+
+
+    
+    console.log(data)
+    const{email, password}  = data
 
 
 
@@ -25,7 +31,7 @@ export default function Login() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(loginCredentials),
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -58,7 +64,7 @@ export default function Login() {
             Sign In
           </h1>
 
-          <form class="mt-6">
+          <form class="mt-6" onSubmit={handleSubmit(LoginPost)}>
             <div>
               <label for="username" class="block text-sm text-gray-800 ">
                 Email
@@ -66,9 +72,17 @@ export default function Login() {
               <input
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                value={email}
-                onChange={(e) => {setEmail(e.target.value)}}
+                {...register("email", {
+              required: true,
+              pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
+            })}
               />
+              {errors.email && errors.email.type === "required" && (
+            <p className="errorMsg">Email is required.</p>
+          )}
+          {errors.email && errors.email.type === "pattern" && (
+            <p className="errorMsg">Email is not valid.</p>
+          )}
             </div>
 
             <div class="mt-4">
@@ -84,15 +98,24 @@ export default function Login() {
               <input
                 type="password"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                value={password}
-                onChange={(e) => {setPassword(e.target.value)}}
+                {...register("password", {
+              required: true,
+              minLength: 8
+            })}
               />
+                {errors.password && errors.password.type === "required" && (
+            <p className="errorMsg">Password is required.</p>
+          )}
+          {errors.password && errors.password.type === "minLength" && (
+            <p className="errorMsg">
+              Password should be at-least 8 characters.
+            </p>
+          )}
             </div>
 
             <div class="mt-6">
-              <button onClick={LoginPost} type="button" class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-                Login
-              </button>
+              <input type="submit" value="SignIn" class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
+                
             </div>
           </form>
 
