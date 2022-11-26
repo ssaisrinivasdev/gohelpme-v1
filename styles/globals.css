@@ -6,6 +6,12 @@
   animation: sticky-nav 300ms;
 }
 
+div.scroll
+{
+  overflow-x:scroll;
+  white-space: nowrap;
+}
+
 @keyframes sticky-nav {
   0% {
     transform: translateY(-6em);

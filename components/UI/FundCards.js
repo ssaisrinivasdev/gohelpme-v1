@@ -2,12 +2,12 @@ import Image from "next/image";
 
 import ProgressBar from "./ProgressBar";
 
-export default function Cards() {
+export default function Cards(data) {
   return (
     <div className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-9 ml-10 mr-10">
       <Image
         className="object-cover object-center w-full h-56"
-        src="/images/patient.jpg"
+        src={data.items.images[0]!=null?data.items.images[0]:"/images/patient.jpg"}
         alt="avatar"
         width={1250}
         height={750}
@@ -21,11 +21,11 @@ export default function Cards() {
 
       <div className="px-6 py-4">
         <h1 className="text-xl font-semibold text-gray-800 text-left ">
-          Created by johnson
+          {data.items.title}
         </h1>
 
         <p className="py-2 text-gray-700 text-left">
-          The above fund is created for medical <br /> emergencies of cancer patients
+          {data.items.long_description}
         </p>
 
         <div className="flex items-center mt-4 text-gray-700 ">
@@ -44,7 +44,7 @@ export default function Cards() {
             />
           </svg>
 
-          <h1 className="px-2 text-sm">10-10-2020</h1>
+          <h1 className="px-2 text-sm">{data.items.createdAt}</h1>
         </div>
 
         <div className="flex items-center mt-4 text-gray-700 ">

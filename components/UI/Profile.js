@@ -1,11 +1,29 @@
 import Link from 'next/link'
 import React from 'react'
 import GlobalContext from '../../store/global-context'
-import {useContext} from 'react'
+import {useContext, useEffect, useState} from 'react'
 
 function Profile() {
+  const [data, setData] = useState(null)
+  const globalData = useContext(GlobalContext)
+ 
+  useEffect(() => {
+    handler()
+  }, []);
 
-const globalData = useContext(GlobalContext)
+  async function handler ()  {
+    let result = await fetch("http://gohelpme.online/api/user/637a3e91d5edc93ca1fc446e", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+    const jsonresultData = await result.json();
+    console.log(jsonresultData.response.name)
+    setData(jsonresultData.response.name)
+  }
+  
 
   return (
     <div>
@@ -23,7 +41,7 @@ const globalData = useContext(GlobalContext)
       </div>
 
       <div className="lg:py-24">
-        <h2 className="text-3xl font-bold sm:text-4xl">Hii {globalData[2].username}</h2>
+        <h2 className="text-3xl font-bold sm:text-4xl">Hii {data} </h2>
 
         <p className="mt-4 text-gray-600">
           You've been raising funds for the people in need, keep on helping people and spreading love.
