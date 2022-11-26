@@ -1,35 +1,19 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState } from 'react'
 import CategoryFunds from '../components/UI/CategoryFunds'
 import Footer from '../components/UI/Footer'
 import Header from '../components/UI/Header'
 import InfoButtons from '../components/UI/InfoButtons'
 import Profile from '../components/UI/Profile'
 import ProfileCards from '../components/UI/ProfileCards'
-import GlobalContext from '../store/global-context'
-import Router, { useRouter } from 'next/router'
-import jwt  from 'jsonwebtoken'
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
 
 function Dashboard() {
-const [buttonActive, setButtonActive] = useState("profile")
-const globalData = useContext(GlobalContext)
-const router = useRouter()
+// const isLoggedIn = useSelector((state) => state.isLoggedIn)
+// console.log(isLoggedIn)
 
-useEffect(() => {
-    // Perform localStorage action
-    const token = localStorage.getItem('token');
-  
-    if(token)
-    {
-      jwt.verify(token, '$tr0ngkEy123!@#', function(err, decoded) {
-        if (err) {
-            globalData[1].setIsLoggedIn(false) 
-        }else{
-          globalData[1].setIsLoggedIn(true) 
-        }	
-      });
-    }
-    
-  }, [])
+
+const [buttonActive, setButtonActive] = useState("profile")
 
 console.log(buttonActive)
 
@@ -38,19 +22,23 @@ console.log(buttonActive)
   return (
     <div>
 <Header />
-<div className='mx-10 xl:mx-80 align-middle text-left py-10'>
-<div class="inline-flex">
-    <button onClick={() => {setButtonActive("profile")}} class="flex items-center h-12 px-8 py-2 text-sm text-center text-gray-700 border border-b-0 border-gray-300 sm:text-base  rounded-t-md  whitespace-nowrap focus:outline-none">
+<div className='xl:mx-80'>
+<div className='mx-10 text-left py-10 xl:text-center'>
+<div class=" inline-flex border-b border-gray-200">
+
+    <button onClick={() => {setButtonActive("profile")}} class="flex items-center h-10 px-2 py-2 -mb-px text-center text-blue-600 bg-transparent border-b-2 border-blue-500 sm:px-4 -px-1  whitespace-nowrap focus:outline-none">
         Profile
     </button>
 
-    <button onClick={() => {setButtonActive("info")}} class="flex items-center h-12 px-8 py-2 text-sm text-center text-gray-700 bg-transparent border-b border-gray-300 sm:text-base   whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400 ">
+    <button onClick={() => {setButtonActive("info")}} class="flex items-center h-10 px-2 py-2 -mb-px text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:px-4 -px-1  whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400 ">
         Info
     </button>
 
-    <button onClick={() => {setButtonActive("funds")}} class="flex items-center h-12 px-8 py-2 text-sm text-center text-gray-700 bg-transparent border-b border-gray-300 sm:text-base whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400 ">
+    <button onClick={() => {setButtonActive("funds")}} class="flex items-center h-10 px-2 py-2 -mb-px text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:px-4 -px-1  whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400 ">
         Funds
     </button>
+    
+</div>
 </div>
 
 {buttonActive === "profile" ? <div><Profile />
