@@ -34,7 +34,7 @@ function Success() {
   // console.log(router.query)
 
   return (
-    <div><p>Query: {success}</p></div>
+    <div><p>Query: The payment processed succesfully</p></div>
   )
 }
 

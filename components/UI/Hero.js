@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Search from "./Search";
 
@@ -18,18 +19,18 @@ function Hero() {
             </p>
           </div>
           <div className="mt-12 justify-center items-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex">
-            <a
-              href="javascript:void(0)"
+            <Link
+              href="/createfund"
               className="px-10 py-3.5 w-full bg-color1 text-white text-center rounded-md shadow-md block sm:w-auto"
             >
-              Get started
-            </a>
-            <a
-              href="javascript:void(0)"
+              Create a fund
+            </Link>
+            <Link
+              href="/blog"
               className="px-10 py-3.5 w-full text-gray-100 text-center border rounded-md duration-300 hover:text-black hover:shadow hover:bg-[#e4e4e4] bg-[#333333] block sm:w-auto"
             >
               How it Works
-            </a>
+            </Link>
           </div>
         </section>
       </div>
