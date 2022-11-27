@@ -1,73 +1,62 @@
-import React from 'react'
-import Footer from '../../components/UI/Footer'
-import FundData from '../../components/UI/FundData'
-import Header from '../../components/UI/Header'
+import React from "react";
+import Footer from "../../components/UI/Footer";
+import FundData from "../../components/UI/FundData";
+import Header from "../../components/UI/Header";
 
-function Fundraiser({fund}) {
-console.log(fund)
+function Fundraiser({ fund }) {
+  console.log(fund);
 
   return (
     <div>
-    
-<Header />
-    
-    
-    <FundData title={fund.title} desc={fund.long_description} amount={fund.goal} image={fund.images} id={fund._id} />
+      <Header />
 
+      <FundData
+        title={fund.title}
+        desc={fund.long_description}
+        amount={fund.goal}
+        image={fund.images}
+        id={fund._id}
+      />
 
-<Footer />
-
-
-
+      <Footer />
     </div>
-  )
+  );
 }
 
-
-
 export async function getStaticProps(context) {
+  const { params } = context;
 
-  const { params } = context
-  
-  const fundraiserId = params.fundraiser
-  
+  const fundraiserId = params.fundraiser;
+
   let result = await fetch("http://gohelpme.online/api/fund/" + fundraiserId);
 
   const data = await result.json();
 
-  const fund = data.fund
-  
+  const fund = data.fund;
 
-
-  
   // let fund = posts.find(fund => fund._id === fundraiserId)
-  
-    return {
-      props: {
-        fund,
-      },
-      revalidate: 5,
-    };
-  }
 
+  return {
+    props: {
+      fund,
+    },
+    revalidate: 5,
+  };
+}
 
 export async function getStaticPaths() {
-
-  let result = await fetch("http://gohelpme.online/api/funds")
+  let result = await fetch("http://gohelpme.online/api/funds");
 
   const data = await result.json();
 
-  const ids = data.funds.map(fund => fund._id )
+  const ids = data.funds.map((fund) => fund._id);
 
-  const pathsWithParams = ids.map((id) => ({ params: { fundraiser: id}}));
-
+  const pathsWithParams = ids.map((id) => ({ params: { fundraiser: id } }));
 
   return {
     paths: pathsWithParams,
     fallback: "blocking", // can also be true or 'blocking'
-  }
+  };
 }
- 
- 
-export default Fundraiser
 
+export default Fundraiser;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ImageSlider from "./ImageSlider";
 import ProgressBar from "./ProgressBar";
 import { useRouter } from "next/router";
