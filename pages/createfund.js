@@ -1,9 +1,7 @@
 import { useForm } from "react-hook-form";
 import Footer from "../components/UI/Footer";
 import Header from "../components/UI/Header";
-import GlobalContext from "../store/global-context";
-import { useContext } from "react";
-import { useRouter } from "next/router";
+
 import FormLayout from "../components/UI/form/FormLayout";
 
 

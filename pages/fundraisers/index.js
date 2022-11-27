@@ -9,7 +9,7 @@ function funds() {
     <div>
       <Header />
       <PageTitle title="Fundraisers" desc="Home/Fundraisers" />
-<div className=" xl:mx-[320px]">
+<div className="">
       <CategoryFunds categoryTitle="Top Performing Funds" />
 
       <CategoryFunds categoryTitle="Medical Fundraisers" />

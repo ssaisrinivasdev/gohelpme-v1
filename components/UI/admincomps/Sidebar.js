@@ -1,8 +1,17 @@
     import React from 'react'
     import Menu from './Menu'
     import { useState } from 'react'
+import { produceWithPatches } from 'immer'
+import { data } from 'autoprefixer'
+import Link from 'next/link'
 
-    function Sidebar() {
+    function Sidebar({data}) {
+
+
+  const [buttonActive, setButtonActive] = useState("dashboard")
+
+
+    
 
        
 
@@ -41,7 +50,7 @@
 
 
         
-        <div class="flex h-screen w-16 flex-col justify-between border-r bg-white sticky top-0">
+  <div class="flex h-screen w-16 flex-col justify-between border-r bg-white sticky top-0">
   <div>
     <div class="inline-flex h-16 w-16 items-center justify-center">
       <span class="block h-10 w-10 rounded-lg bg-gray-200"></span>
@@ -50,7 +59,7 @@
     <div class="border-t border-gray-100" >
       <nav aria-label="Main Nav" class="flex flex-col p-2">
         <div class="py-4">
-          <a
+          <Link
             href=""
             class="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
           >
@@ -79,12 +88,15 @@
             >
               Dashboard
             </span>
-          </a>
+          </Link>
         </div>
 
         <ul class="space-y-1 border-t border-gray-100 pt-4">
-          <li>
-            <a
+          <li onClick={() => {setButtonActive("finstats")
+          data(buttonActive)
+          }}>
+            <Link
+            
               href=""
               class="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -106,9 +118,9 @@
               <span
                 class="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100"
               >
-                Fin Stats
+                Financial Stats
               </span>
-            </a>
+            </Link>
           </li>
 
           <li>

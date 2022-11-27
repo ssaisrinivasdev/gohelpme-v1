@@ -1,5 +1,5 @@
 import React from 'react'
-import DashboardUi from '../../components/UI/admincomps/ModulesFolder/DashboardUi'
+import AdminUi from '../../components/UI/admincomps/ModulesFolder/AdminUi'
 import Sidebar from '../../components/UI/admincomps/Sidebar'
 import { useState } from 'react'
 
@@ -13,11 +13,11 @@ function Admin() {
 
 
   return (  
-    <div className='flex'>
+    <div className='flex gap-10'>
    
   <Sidebar />
 
-  <DashboardUi />
+  <AdminUi />
 
 
   {/* {buttonActive === "profile" ? <div><Profile /> */}
