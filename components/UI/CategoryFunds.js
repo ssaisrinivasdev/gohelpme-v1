@@ -2,7 +2,7 @@ import DefaultTitle from "./DefaultTitle";
 import Cards from "./FundCards";
 import PageTitle from "./PageTitle";
 import { React, useEffect, useState } from "react";
-import Jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 function CategoryFunds({ title, desc, categoryTitle, id }) {
   const [data, setData] = useState(null);
