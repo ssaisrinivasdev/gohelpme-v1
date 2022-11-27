@@ -1,12 +1,12 @@
-import React from 'react'
-import Stats from '../stats'
+import React from "react";
+import Stats from "../Stats";
 
 function FInStats() {
   return (
     <div>
       <Stats />
     </div>
-  )
+  );
 }
 
-export default FInStats
+export default FInStats;

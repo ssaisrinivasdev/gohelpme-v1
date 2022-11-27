@@ -5,12 +5,8 @@ import Header from "../components/UI/Header";
 import InfoButtons from "../components/UI/InfoButtons";
 import Profile from "../components/UI/Profile";
 import ProfileCards from "../components/UI/ProfileCards";
-import { useSelector } from "react-redux";
 
 function Dashboard() {
-  // const isLoggedIn = useSelector((state) => state.isLoggedIn)
-  // console.log(isLoggedIn)
-
   const [buttonActive, setButtonActive] = useState("profile");
 
   console.log(buttonActive);

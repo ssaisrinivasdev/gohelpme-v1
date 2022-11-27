@@ -1,9 +1,9 @@
 import React from "react";
 import InfoCards from "../InfoCards";
-import Menu from "../Menu";
+
 import Stats from "./FInStats";
 
-function DashboardUi() {
+function AdminUi() {
   return (
     <div>
       <div className="py-10 xl:gap-7 xl:flex xl:flex-row flex flex-col gap-10 mx-11">
@@ -19,4 +19,4 @@ function DashboardUi() {
   );
 }
 
-export default DashboardUi;
+export default AdminUi;
