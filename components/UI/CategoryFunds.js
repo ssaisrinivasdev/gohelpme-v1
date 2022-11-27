@@ -33,7 +33,7 @@ function CategoryFunds({ title, desc, categoryTitle }) {
 
       if (jsonresultData) {
         createdFunds = jsonresultData.response.created_funds.map((items) => {
-          return <Cards items={items} />;
+          return <Cards key={items.title} items={items} />;
         });
       }
 
