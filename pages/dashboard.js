@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import CategoryFunds from "../components/UI/CategoryFunds";
 import Footer from "../components/UI/Footer";
@@ -11,9 +10,6 @@ function Dashboard() {
   const [buttonActive, setButtonActive] = useState("profile");
 
   console.log(buttonActive);
-
-  const router = useRouter();
-  const { id } = router.query;
 
   return (
     <div>
@@ -83,9 +79,9 @@ function Dashboard() {
         )}
         {buttonActive === "funds" ? (
           <div>
-            <CategoryFunds categoryTitle="Funds Following" id={id} />
-            <CategoryFunds categoryTitle="Funds Created" id={id} />
-            <CategoryFunds categoryTitle="Donations" id={id} />
+            <CategoryFunds categoryTitle="Funds Following" />
+            <CategoryFunds categoryTitle="Funds Created" />
+            <CategoryFunds categoryTitle="Donations" />
           </div>
         ) : (
           ""

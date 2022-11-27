@@ -2,6 +2,7 @@ import DefaultTitle from "./DefaultTitle";
 import Cards from "./FundCards";
 import PageTitle from "./PageTitle";
 import { React, useEffect, useState } from "react";
+import Jwt from "jsonwebtoken";
 
 function CategoryFunds({ title, desc, categoryTitle, id }) {
   const [data, setData] = useState(null);
@@ -11,6 +12,17 @@ function CategoryFunds({ title, desc, categoryTitle, id }) {
   }, []);
 
   async function handler() {
+    const token = localStorage.getItem("token");
+    let id = null;
+    if (token) {
+      jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
+        if (err) {
+          setIsLoggedIn(false);
+        } else {
+          id = decoded.id;
+        }
+      });
+    }
     let result = await fetch("http://gohelpme.online/api/user/" + id, {
       method: "GET",
 
