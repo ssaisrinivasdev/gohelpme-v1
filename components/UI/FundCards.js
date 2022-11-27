@@ -7,7 +7,11 @@ export default function Cards(data) {
     <div className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-9 mx-10">
       <Image
         className="object-cover object-center w-full h-56"
-        src={data.items?.images[0]!=null?data.items.images[0]:"/images/patient.jpg"}
+        src={
+          data.items?.images[0] != null
+            ? data.items.images[0]
+            : "/images/patient.jpg"
+        }
         alt="avatar"
         width={1250}
         height={750}
@@ -15,7 +19,11 @@ export default function Cards(data) {
 
       <div className="flex items-left px-3 py-3 bg-white">
         <h1 className="mx-3 text-lg font-semibold text-white">
-          <ProgressBar props = {data.items}/>
+          <ProgressBar
+            goal={data.items?.goal}
+            percent={data.items?.percent}
+            currentValue={data.items?.currentValue}
+          />
         </h1>
       </div>
 

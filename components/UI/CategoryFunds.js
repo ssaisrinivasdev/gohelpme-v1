@@ -3,7 +3,7 @@ import Cards from "./FundCards";
 import PageTitle from "./PageTitle";
 import { React, useEffect, useState } from "react";
 
-function CategoryFunds({ title, desc, categoryTitle }) {
+function CategoryFunds({ title, desc, categoryTitle, id }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -11,18 +11,15 @@ function CategoryFunds({ title, desc, categoryTitle }) {
   }, []);
 
   async function handler() {
-    let result = await fetch(
-      "http://gohelpme.online/api/user/637a3e91d5edc93ca1fc446e",
-      {
-        method: "GET",
+    let result = await fetch("http://gohelpme.online/api/user/" + id, {
+      method: "GET",
 
-        headers: {
-          "Content-Type": "application/json",
+      headers: {
+        "Content-Type": "application/json",
 
-          Accept: "application/json",
-        },
-      }
-    );
+        Accept: "application/json",
+      },
+    });
 
     if (result.status >= 200 && result.status <= 300) {
       const jsonresultData = await result.json();

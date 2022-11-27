@@ -43,10 +43,6 @@ function Profile() {
       console.log(jsonresultData.response.name);
 
       setData(jsonresultData.response.name);
-
-      console.log(result.status);
-
-      alert("Not Authorized");
     }
   }
 

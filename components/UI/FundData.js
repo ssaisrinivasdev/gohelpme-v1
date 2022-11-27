@@ -3,7 +3,7 @@ import ImageSlider from "./ImageSlider";
 import ProgressBar from "./ProgressBar";
 import { useRouter } from "next/router";
 
-function FundData({ title, desc, amount, image, id }) {
+function FundData({ title, desc, goal, percent, currentValue, image, id }) {
   const [isAnonymous, setIsAnonymous] = useState(false);
   const router = useRouter();
 
@@ -47,7 +47,11 @@ function FundData({ title, desc, amount, image, id }) {
                   <h1 className="text-2xl font-bold">{title}</h1>
 
                   <div className="drop-shadow-md my-5">
-                    <ProgressBar amount={amount} />
+                    <ProgressBar
+                      goal={goal}
+                      percent={percent}
+                      currentValue={currentValue}
+                    />
                   </div>
                   <label class="inline-flex relative items-center cursor-pointer">
                     <input
@@ -76,23 +80,21 @@ function FundData({ title, desc, amount, image, id }) {
               </div>
 
               <details className="group relative mt-4">
-                <summary className="block">
-                  <div>
-                    <div className="prose max-w-none group-open:hidden">
-                      <p>{desc}</p>
-                    </div>
-
-                    <span className="mt-4 cursor-pointer text-sm font-medium underline group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0">
-                      Read More
-                    </span>
+                <div>
+                  <div className="prose max-w-none group-open:hidden">
+                    <p>{desc}</p>
                   </div>
-                </summary>
 
-                <div className="prose max-w-none pb-6">
-                  <p>{desc}</p>
-
-                  <p>{desc}</p>
+                  {/* <span className="mt-4 cursor-pointer text-sm font-medium underline group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0">
+                      Read More
+                    </span> */}
                 </div>
+
+                {/* <div className="prose max-w-none pb-6">
+                  <p>{desc}</p>
+
+                  <p>{desc}</p>
+                </div> */}
               </details>
             </div>
           </div>

@@ -13,7 +13,9 @@ function Fundraiser({ fund }) {
       <FundData
         title={fund.title}
         desc={fund.long_description}
-        amount={fund.goal}
+        goal={fund.goal}
+        percent={fund.percent}
+        currentValue={fund.currentValue}
         image={fund.images}
         id={fund._id}
       />

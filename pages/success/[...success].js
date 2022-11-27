@@ -1,41 +1,47 @@
+import { useRouter } from "next/router";
 
-import { useRouter } from 'next/router'
+import { useEffect } from "react";
 
-import { useEffect } from 'react'
-
-import React from 'react'
+import React from "react";
 
 function Success() {
-
-  const router = useRouter()
-  const { success } = router.query
+  const router = useRouter();
+  const { success } = router.query;
 
   useEffect(() => {
     const sync = async () => {
+      let result = await fetch(
+        "http://gohelpme.online/api/successpayment/",
+        {
+          method: "PUT",
+          body: JSON.stringify({ id: success.toString() }),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        },
+        []
+      );
 
-      await fetch("http://gohelpme.online/api/successpayment/", {
-        method: "PUT",
-        body:JSON.stringify({"id": success.toString()}),
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      },[])
-  
-    } 
-  
-    
-  sync()
+      if (result.status >= 200 && result.status <= 299) {
+        const jsonresultData = await result.json();
+        const timeout = setTimeout(() => {
+          router.push("/fundraisers/" + jsonresultData.donationLog.fund_id);
+        }, 5000);
+        return () => clearTimeout(timeout);
+      }
+    };
+
+    sync();
   });
-
-  
-    
 
   // console.log(router.query)
 
   return (
-    <div><p>Query: The payment processed succesfully</p></div>
-  )
+    <div>
+      <h1>Payment Successful. Redirecting in 5 seconds </h1>
+    </div>
+  );
 }
 
-export default Success
+export default Success;
