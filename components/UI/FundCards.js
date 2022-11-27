@@ -1,8 +1,9 @@
 import Image from "next/image";
-
+import { useRouter } from "next/router";
 import ProgressBar from "./ProgressBar";
 
 export default function Cards(data) {
+  const router = useRouter();
   return (
     <div
       onClick={() => {
