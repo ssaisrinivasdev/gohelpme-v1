@@ -4,7 +4,12 @@ import ProgressBar from "./ProgressBar";
 
 export default function Cards(data) {
   return (
-    <div className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-9 mx-10">
+    <div
+      onClick={() => {
+        router.push("/fundraisers/" + data.items?._id);
+      }}
+      className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-9 mx-10"
+    >
       <Image
         className="object-cover object-center w-full h-56"
         src={
