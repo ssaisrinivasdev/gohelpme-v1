@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 import Header from "../../components/UI/Header";
+import { useForm } from "react-hook-form";
 
 function Fundraiser({ fund }) {
   console.log(fund);

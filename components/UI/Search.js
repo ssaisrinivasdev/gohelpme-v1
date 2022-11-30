@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
-function Search() {
+function Search({ placeholder }) {
   const router = useRouter();
   const {
     register,
@@ -17,7 +17,7 @@ function Search() {
   };
 
   return (
-    <form onSubmit={handleSubmit(searchNow)} className="max-w-xl px-4 mt-12">
+    <form onSubmit={handleSubmit(searchNow)} className="max-w-xl px-4">
       <div className="relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -36,8 +36,8 @@ function Search() {
         <input
           {...register("search")}
           type="text"
-          placeholder="Search the funds"
-          className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-color1"
+          placeholder={placeholder}
+          className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white"
         />
       </div>
     </form>

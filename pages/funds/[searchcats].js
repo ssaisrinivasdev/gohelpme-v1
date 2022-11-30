@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Cards from "../components/UI/FundCards";
-import Header from "../components/UI/Header";
-import Footer from "../components/UI/Footer";
-import Search from "../components/UI/Search";
+import React, { useEffect, useState } from "react";
+import Footer from "../../components/UI/Footer";
+import Cards from "../../components/UI/FundCards";
+import Header from "../../components/UI/Header";
+import CatSearch from "../../components/UI/CatSearch";
+import { useForm } from "react-hook-form";
 
-function SearchPage() {
+function Search() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   const router = useRouter();
 
-  const { keyword, page } = router.query;
+  const { keyword, category, page } = router.query;
 
   const [data, setData] = useState(null);
 
@@ -17,6 +25,8 @@ function SearchPage() {
       let result = await fetch(
         "http://gohelpme.online/api/funds/search?keyword=" +
           keyword +
+          "&category=" +
+          category +
           "&page=" +
           page,
         {
@@ -46,14 +56,12 @@ function SearchPage() {
     };
 
     sync();
-  }, [keyword, page]);
+  }, [keyword, category, page]);
 
   return (
     <div>
       <Header />
-      <div className="w-[450px] xl:w-[600px] mx-auto">
-        <Search placeholder="Search all funds" />
-      </div>
+      <CatSearch />
       <div className="xl:w-[1200px] mx-10 min-md:mx-auto xl:mx-auto max-md:flex-col max-md:flex">
         {data}
       </div>
@@ -63,4 +71,4 @@ function SearchPage() {
   );
 }
 
-export default SearchPage;
+export default Search;
