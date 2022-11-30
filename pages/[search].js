@@ -17,8 +17,7 @@ function SearchPage() {
       let result = await fetch(
         "http://gohelpme.online/api/funds/search?keyword=" +
           keyword +
-          "&page=" +
-          page,
+          "&category=&page=1",
         {
           method: "GET",
           headers: {

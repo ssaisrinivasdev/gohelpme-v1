@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import DefaultTitle from "../../components/UI/DefaultTitle";
 import { useRouter } from "next/router";
 
-function funds() {
+function Funds() {
   const router = useRouter();
   const {
     register,
@@ -76,4 +76,4 @@ function funds() {
   );
 }
 
-export default funds;
+export default Funds;

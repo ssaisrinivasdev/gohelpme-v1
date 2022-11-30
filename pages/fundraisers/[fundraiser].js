@@ -2,7 +2,6 @@ import React from "react";
 import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 import Header from "../../components/UI/Header";
-import { useForm } from "react-hook-form";
 
 function Fundraiser({ fund }) {
   console.log(fund);
@@ -10,7 +9,6 @@ function Fundraiser({ fund }) {
   return (
     <div>
       <Header />
-
       <FundData
         title={fund.title}
         desc={fund.long_description}
@@ -19,6 +17,7 @@ function Fundraiser({ fund }) {
         currentValue={fund.currentValue}
         image={fund.images}
         id={fund._id}
+        key={fund._id}
       />
 
       <Footer />
