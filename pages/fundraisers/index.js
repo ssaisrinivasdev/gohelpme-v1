@@ -51,6 +51,7 @@ function Funds() {
         {categories.map((item) => {
           return (
             <Button
+              key={item.category}
               title={item.category}
               link={`/funds/search?keyword=help&category=${item.category}&page=1`}
             />
