@@ -40,7 +40,7 @@ function Funds() {
   ];
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <Header />
       <PageTitle title="Fundraisers" desc="Home/Fundraisers" />
       <div className="xl:w-[1000px] mx-auto text-center">
