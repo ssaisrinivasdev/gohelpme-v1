@@ -50,7 +50,9 @@ function Search() {
   return (
     <div>
       <Header />
-
+      <div className="w-[450px] xl:w-[600px] mx-auto">
+        <Search />{" "}
+      </div>
       <div className="xl:w-[1550px] xl:mx-auto max-md:flex-col max-md:flex">
         {data}
       </div>
