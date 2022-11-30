@@ -5,12 +5,10 @@ import { useContext, useEffect, useRef, useState } from "react";
 import GlobalContext from "../../store/global-context";
 
 export default function Header() {
-
-  
   const [state, setState] = useState(false);
   const navRef = useRef();
-  const globalData=useContext(GlobalContext)
-  const router = useRouter()
+  const globalData = useContext(GlobalContext);
+  const router = useRouter();
 
   // Replace javascript:void(0) path with your path
   const navigation = [
@@ -38,27 +36,24 @@ export default function Header() {
     };
   }, [state]);
 
-const LogoutHandler = async () => {
-
-  fetch('http://gohelpme.online/api/logout', {
-      method: 'POST', // or 'PUT'
+  const LogoutHandler = async () => {
+    fetch("http://gohelpme.online/api/logout", {
+      method: "POST", // or 'PUT'
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(),
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.removeItem('token');
-        console.log('Success:', data);
-        globalData[1].setIsLoggedIn(false)
-        router.push("/")
+        localStorage.removeItem("token");
+        console.log("Success:", data);
+        globalData[1].setIsLoggedIn(false);
+        router.push("/");
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
-
-  
 
     // const error = await result.json();
     // console.log(error.error)
@@ -67,12 +62,10 @@ const LogoutHandler = async () => {
     // if(data.message === "success") {
 
     //   router.push("/")
-    //   } 
+    //   }
+  };
 
-      
-}
-
-// console.log(globalData[1].isLoggedIn)
+  // console.log(globalData[1].isLoggedIn)
   return (
     <div>
       <nav ref={navRef} className="bg-white w-full top-0 z-20">
@@ -138,44 +131,49 @@ const LogoutHandler = async () => {
                     Contact
                   </Link>
                 </li>
-                {!globalData[1].isLoggedIn &&
-                <li className="mt-4 lg:mt-0">
-                  <Link
-                    href="/login"
-                    className="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
-                  >
-                    SignIn
-                  </Link>
-                </li>
-                }
-                {!globalData[1].isLoggedIn && <li className="mt-8 lg:mt-0">
-                  <Link
-                    href="/registration"
-                    className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
-                  >
-                    Sign Up
-                  </Link>
-                </li> }
+                {!globalData[1].isLoggedIn && (
+                  <li className="mt-4 lg:mt-0">
+                    <Link
+                      href="/login"
+                      className="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
+                    >
+                      SignIn
+                    </Link>
+                  </li>
+                )}
+                {!globalData[1].isLoggedIn && (
+                  <li className="mt-8 lg:mt-0">
+                    <Link
+                      href="/registration"
+                      className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
+                    >
+                      Sign Up
+                    </Link>
+                  </li>
+                )}
 
-                {globalData[1].isLoggedIn && <li className="mt-8 lg:mt-0">
-                  <Link
-                    href="/dashboard"
-                    className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
-                  >
-                    My Dashboard
-                  </Link>
-                </li> }
+                {globalData[1].isLoggedIn && (
+                  <li className="mt-8 lg:mt-0">
+                    <Link
+                      href="/dashboard"
+                      className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
+                    >
+                      My Dashboard
+                    </Link>
+                  </li>
+                )}
 
-                {globalData[1].isLoggedIn && <li className="mt-8 lg:mt-0">
-                  <Link
-                    href="/"
-                    onClick={LogoutHandler}
-                    className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
-                  >
-                    Logout
-                  </Link>
-                </li> }
-                
+                {globalData[1].isLoggedIn && (
+                  <li className="mt-8 lg:mt-0">
+                    <Link
+                      href="/"
+                      onClick={LogoutHandler}
+                      className="py-3 px-4 text-center text-white bg-color1 hover:bg-white hover:text-[#333333] rounded-md shadow block lg:inline"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
             <div className="flex-1">

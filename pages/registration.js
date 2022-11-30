@@ -6,116 +6,58 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import Footer from "../components/UI/Footer";
 
-
 function Registration() {
-  
-  
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const router = useRouter()
-  const globalData = useContext(GlobalContext)
+  const router = useRouter();
+  const globalData = useContext(GlobalContext);
 
   const regisHandler = async (data) => {
-      
-
-    const {name, lastname, email, password} = data
-    console.log(data)
-
+    const { name, lastname, email, password } = data;
+    console.log(data);
 
     const res = await fetch("http://gohelpme.online/api/register", {
       method: "POST",
       headers: {
-            'Content-Type': 'application/json',
-          },
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
-  })
+    });
 
-  const response = await res.json();
-  
+    const response = await res.json();
 
-    const {error} = response;
-    const {message} = response;
+    const { error } = response;
+    const { message } = response;
 
-    if(res.status >= 200 && res.status <=205)
-    {
-      
-      console.log('Success:', data);
-      globalData[2].setUsername(name)
-        globalData[0].setEmail(email)
-        router.push("/verification")
-    } else if (res.status >= 400 && res.status <= 405)
-    {
-      console.log(`${error} : ${message}`)
-      alert(`${error} : ${message}`)
+    if (res.status >= 200 && res.status <= 205) {
+      console.log("Success:", data);
+      globalData[2].setUsername(name);
+      globalData[0].setEmail(email);
+      router.push("/verification");
+    } else if (res.status >= 400 && res.status <= 405) {
+      console.log(`${error} : ${message}`);
+      alert(`${error} : ${message}`);
 
-      if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
-      {
+      if (
+        response.toString().includes("Invalid User") ||
+        response.toString().includes("User not logged in ") ||
+        response.toString().includes("User Not Found") ||
+        response.toString().includes("Please Login to Access")
+      ) {
         //Route to LOGIN and change global variable status!!
-        router.push("/login")
-        globalData[1].setIsLoggedIn(false)
+        router.push("/login");
+        globalData[1].setIsLoggedIn(false);
       }
-      // else
-      // {
-      //   if((error).toString() != "Something went wrong")
-      //   {
-      //     alert((message).toString());
-      //   }
-      //   else{
-      //     alert((error).toString());
-      //   }
-      // }
-      
-    } 
-
-
-
-
-
-
-
-
-
-
-
-    // fetch('http://gohelpme.online/api/register', {
-    //   method: 'POST', // or 'PUT'
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: data,
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log('Success:', data);
-    //   globalData[2].setUsername(response.name)
-    //     globalData[0].setEmail(email)
-    //     router.push("/verification")
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
-
-    
-
-
-
-
-
-      
-
-
-// const {status} = result;
-    
-    // console.log(error.error)
-    // console.log(result.status)
-    // console.log(globalData.email)
-    // console.log(email)
-
+    }
   };
 
   return (
-
-<div>
+    <div>
       <Header />
       <div className="py-24 drop-shadow-md bg-slate-100">
         <div class="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-md shadow-md">
@@ -132,12 +74,12 @@ function Registration() {
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 {...register("name", {
-              required: "Username is required.",
-            })}
+                  required: "Username is required.",
+                })}
               />
               {errors.name && errors.name.type === "required" && (
-            <p className="errorMsg">Username is required.</p>
-          )}
+                <p className="errorMsg">Username is required.</p>
+              )}
             </div>
 
             <div>
@@ -148,12 +90,12 @@ function Registration() {
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 {...register("lastname", {
-              required: "Lastname is required.",
-            })}
+                  required: "Lastname is required.",
+                })}
               />
               {errors.lastname && errors.name.type === "required" && (
-            <p className="errorMsg">Lastname is required.</p>
-          )}
+                <p className="errorMsg">Lastname is required.</p>
+              )}
             </div>
 
             <div>
@@ -164,51 +106,53 @@ function Registration() {
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 {...register("email", {
-              required: "Email is required.",
-              pattern: {
-                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                message: "Email is not valid."
-              }
-            })}  
+                  required: "Email is required.",
+                  pattern: {
+                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                    message: "Email is not valid.",
+                  },
+                })}
               />
               {errors.email && errors.email.type === "required" && (
-            <p className="errorMsg">Email is required.</p>
-          )}
-          {errors.email && errors.email.type === "pattern" && (
-            <p className="errorMsg">Email is not valid.</p>
-          )}
+                <p className="errorMsg">Email is required.</p>
+              )}
+              {errors.email && errors.email.type === "pattern" && (
+                <p className="errorMsg">Email is not valid.</p>
+              )}
             </div>
 
             <div>
-              
-                <label for="password" class="block text-sm text-gray-800 ">
-                  Password
-                </label>
-             
+              <label for="password" class="block text-sm text-gray-800 ">
+                Password
+              </label>
 
               <input
                 type="password"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 {...register("password", {
-              required: "Password is required.",
-              minLength: {
-                value: 8,
-                message: "Password should be at-least 8 characters."
-              }
-            })} 
+                  required: "Password is required.",
+                  minLength: {
+                    value: 8,
+                    message: "Password should be at-least 8 characters.",
+                  },
+                })}
               />
-               {errors.password && errors.password.type === "required" && (
-            <p className="errorMsg">Password is required.</p>
-          )}
-          {errors.password && errors.password.type === "minLength" && (
-            <p className="errorMsg">
-              Password should be at-least 6 characters.
-            </p>
-          )}
+              {errors.password && errors.password.type === "required" && (
+                <p className="errorMsg">Password is required.</p>
+              )}
+              {errors.password && errors.password.type === "minLength" && (
+                <p className="errorMsg">
+                  Password should be at-least 6 characters.
+                </p>
+              )}
             </div>
 
             <div class="mt-6">
-              <input type="submit" class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" value="SignUp" />
+              <input
+                type="submit"
+                class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                value="SignUp"
+              />
             </div>
           </form>
 
@@ -227,28 +171,6 @@ function Registration() {
       <Footer />
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     // <div>
     //   <Header />
     //   <section className="bg-white ">
@@ -431,7 +353,6 @@ function Registration() {
     //     </div>
     //   </section>
     // </div>
-   
   );
 }
 

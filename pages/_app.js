@@ -2,24 +2,16 @@ import "../styles/globals.css";
 import GlobalContext from "../store/global-context";
 import { useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
+import store, { Persistor } from "../store/index";
+import { Provider, useSelector } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 function MyApp({ Component, pageProps }) {
   const [email, setEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [username, setUsername] = useState("");
 
-  // const token = localStorage.getItem('token');
-
-  // if(token)
-  // {
-  // 	jwt.verify(token, '$tr0ngkEy123!@#', function(err, decoded) {
-  //   	if (err) {
-  //     		isLoggedIn = false
-  //   	}else{
-  //     		isLoggedIn = true
-  // 	  }
-  // 	});
-  // }
+  // const token = useSelector((state) => state.token.input);
 
   useEffect(() => {
     // Perform localStorage action
@@ -37,17 +29,19 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    // <Provider store={store} >
-    <GlobalContext.Provider
-      value={[
-        { email, setEmail },
-        { isLoggedIn, setIsLoggedIn },
-        { username, setUsername },
-      ]}
-    >
-      <Component {...pageProps} />
-    </GlobalContext.Provider>
-    // </Provider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={Persistor}>
+        <GlobalContext.Provider
+          value={[
+            { email, setEmail },
+            { isLoggedIn, setIsLoggedIn },
+            { username, setUsername },
+          ]}
+        >
+          <Component {...pageProps} />
+        </GlobalContext.Provider>
+      </PersistGate>
+    </Provider>
   );
 }
 

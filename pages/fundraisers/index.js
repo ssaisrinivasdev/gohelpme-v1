@@ -9,18 +9,18 @@ function funds() {
     <div>
       <Header />
       <PageTitle title="Fundraisers" desc="Home/Fundraisers" />
-<div className="">
-      <CategoryFunds categoryTitle="Top Performing Funds" />
+      <div className="w-[1500px] mx-auto">
+        <CategoryFunds categoryTitle="Top Performing Funds" />
 
-      <CategoryFunds categoryTitle="Medical Fundraisers" />
+        <CategoryFunds categoryTitle="Medical Fundraisers" />
 
-      <CategoryFunds categoryTitle="Memorial Fundraisers" />
+        <CategoryFunds categoryTitle="Memorial Fundraisers" />
 
-      <CategoryFunds categoryTitle="Emergency Fundraisers" />
+        <CategoryFunds categoryTitle="Emergency Fundraisers" />
 
-      <CategoryFunds categoryTitle="Charity Fundraisers" />
+        <CategoryFunds categoryTitle="Charity Fundraisers" />
 
-      <CategoryFunds categoryTitle="Education Fundraisers" />
+        <CategoryFunds categoryTitle="Education Fundraisers" />
       </div>
       <Footer />
     </div>

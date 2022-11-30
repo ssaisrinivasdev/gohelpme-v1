@@ -4,16 +4,12 @@ import Header from "../components/UI/Header";
 
 import FormLayout from "../components/UI/form/FormLayout";
 
-
 export default function Createfund() {
   // const globalData = useContext(GlobalContext)
   // const router = useRouter()
-  
-
 
   // const { register, handleSubmit, watch, formState: { errors } } = useForm();
   // const onSubmit = data => {
-
 
   //   fetch('http://gohelpme.online/api/createfund', {
   //     method: 'POST', // or 'PUT'
@@ -32,18 +28,14 @@ export default function Createfund() {
   //       console.error('Error:', error);
   //     });
 
-
-
-
   // };
 
-
   return (
-<div className="align-center">
-<Header />
-{/* <div className="px-7 xl:px-0"> */}
-    {/* "handleSubmit" will validate your inputs before invoking "onSubmit"  */}
-    {/* <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xl mx-auto my-20 flex flex-col">
+    <div className="align-center">
+      <Header />
+      {/* <div className="px-7 xl:px-0"> */}
+      {/* "handleSubmit" will validate your inputs before invoking "onSubmit"  */}
+      {/* <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xl mx-auto my-20 flex flex-col">
 
     <div className="flex flex-wrap -mx-3 mb-6">
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -172,15 +164,9 @@ export default function Createfund() {
     </form>
     </div> */}
 
+      <FormLayout />
 
-
-    <FormLayout />
-
-    
-    <Footer />
+      <Footer />
     </div>
   );
 }
-
-
-

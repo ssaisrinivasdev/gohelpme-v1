@@ -5,75 +5,73 @@ import { useRouter } from "next/router";
 import GlobalContext from "../store/global-context";
 import Footer from "../components/UI/Footer";
 import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
+import { addName } from "../store/actions/user";
+import { addToken } from "../store/actions/token";
 
+// import { connect } from "react-redux";
 export default function Login() {
-
   // const [email,setEmail] = useState("")
   // const [password,setPassword] = useState("")
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const user = useSelector((state) => state.name.input);
+  const dispatch = useDispatch();
 
-  const router = useRouter()
-  const globalData = useContext(GlobalContext)
- 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const router = useRouter();
+  const globalData = useContext(GlobalContext);
 
   const LoginPost = async (data) => {
-
-
-    
-    console.log(data)
-    const{email, password}  = data
-
-
-
-
+    console.log(data);
+    const { email, password } = data;
 
     const res = await fetch("http://gohelpme.online/api/login", {
       method: "POST",
       headers: {
-            'Content-Type': 'application/json',
-          },
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
-  })
+    });
 
-  const response = await res.json();
+    const response = await res.json();
 
-    if(res.status >= 200 && res.status <=205)
-    {
-      const {token} = response;
-      console.log('Success:', response);
+    if (res.status >= 200 && res.status <= 205) {
+      const { token } = response;
+      console.log("Success:", response);
 
+      // Perform localStorage action
+      localStorage.setItem("token", token);
 
+      // dispatch(addToken("token", token));
 
+      const name = response.response.name;
+      console.log("Success:", response.response.message);
+      globalData[1].setIsLoggedIn(true);
+      dispatch(addName(name));
+      globalData[2].setUsername(name);
 
-      
-        // Perform localStorage action
-        localStorage.setItem('token',token);
-  
+      router.push("/dashboard");
+    } else if (res.status >= 400 && res.status <= 405) {
+      const { error } = response;
+      const { message } = response;
+      console.log(`${error} : ${message}`);
+      alert(`${error} : ${message}`);
 
-     
-
-
-
-
-
-      const name = response.response.name
-        console.log('Success:', response.response.message);
-        globalData[1].setIsLoggedIn(true)
-        globalData[2].setUsername(name)
-        router.push("/dashboard")
-    } else if (res.status >= 400 && res.status <= 405)
-    {
-      const {error} = response;
-    const {message} = response;
-      console.log(`${error} : ${message}`)
-      alert(`${error} : ${message}`)
-
-      if((response.toString()).includes("Invalid User") || (response.toString()).includes("User not logged in ") || (response.toString()).includes("User Not Found") || (response.toString()).includes("Please Login to Access"))
-      {
+      if (
+        response.toString().includes("Invalid User") ||
+        response.toString().includes("User not logged in ") ||
+        response.toString().includes("User Not Found") ||
+        response.toString().includes("Please Login to Access")
+      ) {
         //Route to LOGIN and change global variable status!!
-        router.push("/login")
-        globalData[1].setIsLoggedIn(false)
+        router.push("/login");
+        globalData[1].setIsLoggedIn(false);
       }
       // else
       // {
@@ -85,25 +83,7 @@ export default function Login() {
       //     alert((error).toString());
       //   }
       // }
-      
-    } 
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     // fetch('http://gohelpme.online/api/login', {
     //   method: 'POST', // or 'PUT'
@@ -116,7 +96,7 @@ export default function Login() {
     //   .then((data) => {
     //     console.log('Success:', data);
     //   const {response} = data
-     
+
     //   // localStorage.setItem('userId',response.user._id);
     //   // localStorage.setItem('token',data.token);
     //     console.log('Success:', data.message);
@@ -127,12 +107,7 @@ export default function Login() {
     //   .catch((error) => {
     //     console.error('Error:', error);
     //   });
-
-      
-
-  }
-
-
+  };
 
   return (
     <div>
@@ -152,16 +127,16 @@ export default function Login() {
                 type="text"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 {...register("email", {
-              required: true,
-              pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
-            })}
+                  required: true,
+                  pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                })}
               />
               {errors.email && errors.email.type === "required" && (
-            <p className="errorMsg">Email is required.</p>
-          )}
-          {errors.email && errors.email.type === "pattern" && (
-            <p className="errorMsg">Email is not valid.</p>
-          )}
+                <p className="errorMsg">Email is required.</p>
+              )}
+              {errors.email && errors.email.type === "pattern" && (
+                <p className="errorMsg">Email is not valid.</p>
+              )}
             </div>
 
             <div class="mt-4">
@@ -178,23 +153,26 @@ export default function Login() {
                 type="password"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 {...register("password", {
-              required: true,
-              minLength: 8
-            })}
+                  required: true,
+                  minLength: 8,
+                })}
               />
-                {errors.password && errors.password.type === "required" && (
-            <p className="errorMsg">Password is required.</p>
-          )}
-          {errors.password && errors.password.type === "minLength" && (
-            <p className="errorMsg">
-              Password should be at-least 8 characters.
-            </p>
-          )}
+              {errors.password && errors.password.type === "required" && (
+                <p className="errorMsg">Password is required.</p>
+              )}
+              {errors.password && errors.password.type === "minLength" && (
+                <p className="errorMsg">
+                  Password should be at-least 8 characters.
+                </p>
+              )}
             </div>
 
             <div class="mt-6">
-              <input type="submit" value="SignIn" class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
-                
+              <input
+                type="submit"
+                value="SignIn"
+                class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+              />
             </div>
           </form>
 

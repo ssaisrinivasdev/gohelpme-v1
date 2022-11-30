@@ -9,7 +9,7 @@ export default function Cards(data) {
       onClick={() => {
         router.push("/fundraisers/" + data.items?._id);
       }}
-      className="inline-block w-80 max-w-sm overflow-hidden bg-white rounded-lg shadow-lg my-9 mx-10"
+      className="inline-block w-80 overflow-hidden bg-white rounded-lg shadow-lg my-9 mx-10"
     >
       <Image
         className="object-cover object-center w-full h-56"
@@ -33,13 +33,15 @@ export default function Cards(data) {
         </h1>
       </div>
 
-      <div className="px-6 py-4">
+      <div className="px-5 pb-4">
         <h1 className="text-xl font-semibold text-gray-800 text-left ">
           {data.items?.title}
         </h1>
 
         <p className="py-2 text-gray-700 break-words mx-auto">
-          {data.items?.long_description}
+          {data.items?.long_description?.length > 40
+            ? data.items?.long_description?.substring(0, 80 - 2) + "..."
+            : data.items?.long_description}
         </p>
 
         <div className="flex items-center mt-4 text-gray-700 ">

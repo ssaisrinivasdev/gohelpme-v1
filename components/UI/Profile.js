@@ -1,12 +1,15 @@
 import Link from "next/link";
 import React from "react";
-import GlobalContext from "../../store/global-context";
+
 import { useContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import jwt from "jsonwebtoken";
 
 function Profile() {
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
+  // const user = useSelector((state) => (state));
+  const user = useSelector((state) => state.name.input);
 
   useEffect(() => {
     handler();
@@ -60,7 +63,7 @@ function Profile() {
             </div>
 
             <div className="lg:py-24">
-              <h2 className="text-3xl font-bold sm:text-4xl">Hii {data}</h2>
+              <h2 className="text-3xl font-bold sm:text-4xl">Hii {user} </h2>
 
               <p className="mt-4 text-gray-600">
                 You've been raising funds for the people in need, keep on

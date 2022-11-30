@@ -23,6 +23,7 @@ function CategoryFunds({ title, desc, categoryTitle, id }) {
         }
       });
     }
+
     let result = await fetch("http://gohelpme.online/api/user/" + id, {
       method: "GET",
 
