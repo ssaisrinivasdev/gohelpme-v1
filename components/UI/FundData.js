@@ -79,23 +79,24 @@ function FundData({ title, desc, goal, percent, currentValue, image, id }) {
                 </div>
               </div>
 
-              <details className="group relative mt-4">
-                <div>
-                  <div className="prose max-w-none group-open:hidden">
-                    <p>{desc}</p>
-                  </div>
+              <div className="prose max-w-none group-open:hidden">
+                <p>{desc}</p>
+              </div>
 
-                  {/* <span className="mt-4 cursor-pointer text-sm font-medium underline group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0">
+              {/* <details className="group relative mt-4">
+                <div> */}
+
+              {/* <span className="mt-4 cursor-pointer text-sm font-medium underline group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0">
                       Read More
                     </span> */}
-                </div>
+              {/* </div> */}
 
-                {/* <div className="prose max-w-none pb-6">
+              {/* <div className="prose max-w-none pb-6">
                   <p>{desc}</p>
 
                   <p>{desc}</p>
                 </div> */}
-              </details>
+              {/* </details> */}
             </div>
           </div>
         </div>
