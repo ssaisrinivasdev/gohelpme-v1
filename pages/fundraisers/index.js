@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../components/UI/Header";
 import Footer from "../../components/UI/Footer";
-import CategoryFunds from "../../components/UI/ProfileFunds";
+import CategoryFunds from "../../components/UI/CategoryFunds";
 import PageTitle from "../../components/UI/PageTitle";
 import Button from "../../components/UI/Button";
 import { useForm } from "react-hook-form";
@@ -61,17 +61,15 @@ function Funds() {
         </div>
       </div>
       <div className="w-[1500px] mx-auto">
-        <CategoryFunds categoryTitle="Top Performing Funds" />
+        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
 
-        <CategoryFunds categoryTitle="Medical Fundraisers" />
+        <CategoryFunds categoryTitle="Memorial Funds" category="Medical" />
 
-        <CategoryFunds categoryTitle="Memorial Fundraisers" />
+        <CategoryFunds categoryTitle="Emergency Funds" category="Medical" />
 
-        <CategoryFunds categoryTitle="Emergency Fundraisers" />
+        <CategoryFunds categoryTitle="Charity Funds" category="Medical" />
 
-        <CategoryFunds categoryTitle="Charity Fundraisers" />
-
-        <CategoryFunds categoryTitle="Education Fundraisers" />
+        <CategoryFunds categoryTitle="Education Funds" category="Medical" />
       </div>
       <Footer />
     </div>
