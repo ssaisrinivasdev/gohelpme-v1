@@ -20,7 +20,7 @@ function FundData({ fund }) {
     if (fund.donations) {
       donations = fund.donations.map((data) => {
         return (
-          <Donations data={data} />
+          <Donations data={data} key={data.donator_name} />
         )
       })
       setDonationsData(donations);
