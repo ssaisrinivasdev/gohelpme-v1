@@ -34,11 +34,11 @@ export default function Cards(data) {
       </div>
 
       <div className="px-5 pb-4">
-        <h1 className="text-xl font-semibold text-gray-800 text-left ">
+        <h1 className="text-xl font-semibold text-gray-800 text-left whitespace-normal ">
           {data.items?.title}
         </h1>
 
-        <p className="py-2 text-gray-700 break-words mx-auto">
+        <p className="py-2 text-gray-700 break-words mx-auto whitespace-normal">
           {data.items?.long_description?.length > 40
             ? data.items?.long_description?.substring(0, 80 - 2) + "..."
             : data.items?.long_description}

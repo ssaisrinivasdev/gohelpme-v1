@@ -68,7 +68,7 @@ function CatSearch({ placeholder }) {
             <input
               {...register("search")}
               type="text"
-              placeholder="Search by fund"
+              placeholder={placeholder}
               className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white"
             />
           </div>

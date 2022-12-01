@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../components/UI/Header";
 import Footer from "../../components/UI/Footer";
-import CategoryFunds from "../../components/UI/CategoryFunds";
+import CategoryFunds from "../../components/UI/ProfileFunds";
 import PageTitle from "../../components/UI/PageTitle";
 import Button from "../../components/UI/Button";
 import { useForm } from "react-hook-form";
@@ -43,22 +43,23 @@ function Funds() {
     <div className="overflow-hidden">
       <Header />
       <PageTitle title="Fundraisers" desc="Home/Fundraisers" />
-      <div className="xl:w-[1000px] mx-auto text-center">
-        <DefaultTitle title="All Categories" />
-      </div>
 
-      <div className=" py-10 xl:w-[1000px] xl:mx-auto lg:w-[800px] lg:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-3 justify-items-center">
-        {categories.map((item) => {
-          return (
-            <Button
-              key={item.category}
-              title={item.category}
-              link={`/funds/search?keyword=help&category=${item.category}&page=1`}
-            />
-          );
-        })}
+      <div className=" bg-slate-100">
+        <div className="xl:w-[1000px] mx-auto text-center">
+          <DefaultTitle title="All Categories" />
+        </div>
+        <div className=" py-10 xl:w-[1000px] xl:mx-auto lg:w-[800px] lg:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-3 justify-items-center">
+          {categories.map((item) => {
+            return (
+              <Button
+                key={item.category}
+                title={item.category}
+                link={`/funds/search?keyword=help&category=${item.category}&page=1`}
+              />
+            );
+          })}
+        </div>
       </div>
-
       <div className="w-[1500px] mx-auto">
         <CategoryFunds categoryTitle="Top Performing Funds" />
 

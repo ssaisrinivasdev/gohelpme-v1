@@ -97,12 +97,29 @@ function Form() {
               Title
             </label>
             <input
-              {...register("title")}
+              {...register("title", {
+                required: true,
+                minLength: 20,
+                maxLength: 40,
+              })}
               className="w-full rounded-lg border-gray-200 p-3 text-sm"
               placeholder="Title"
               type="text"
               id="title"
             />
+            {errors.title && errors.title.type === "required" && (
+              <p className="errorMsg">Title is required.</p>
+            )}
+            {errors.title && errors.title.type === "minLength" && (
+              <p className="errorMsg">
+                Title should be at-least 30 characters.
+              </p>
+            )}
+            {errors.title && errors.title.type === "maxLength" && (
+              <p className="errorMsg">
+                Title should not be greater than 50 characters.
+              </p>
+            )}
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

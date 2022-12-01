@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import CategoryFunds from "../components/UI/CategoryFunds";
 import Footer from "../components/UI/Footer";
 import Header from "../components/UI/Header";
 import InfoButtons from "../components/UI/InfoButtons";
 import Profile from "../components/UI/Profile";
 import ProfileCards from "../components/UI/ProfileCards";
-import Search from "../components/UI/Search";
+import ProfileFunds from "../components/UI/ProfileFunds";
+import Search from "../components/UI/CatSearch";
 
 function Dashboard() {
   const [buttonActive, setButtonActive] = useState("Dashboard");
@@ -15,8 +15,8 @@ function Dashboard() {
   return (
     <div className="overflow-hidden">
       <Header />
-      <div className="w-[450px] xl:w-[600px] mx-auto">
-        <Search />{" "}
+      <div>
+        <Search placeholder="Search any funds" />{" "}
       </div>
       <div>
         <div className="w-[1500px] mx-auto">
@@ -68,7 +68,8 @@ function Dashboard() {
             <div>
               <div className="md:flex">
                 <ProfileCards title="Address" />{" "}
-                <ProfileCards title="Details" /> <ProfileCards title="Help" />{" "}
+                <ProfileCards title="Details" />
+                <ProfileCards title="Help" />{" "}
               </div>
             </div>
           ) : (
@@ -86,9 +87,9 @@ function Dashboard() {
               <div className="max-md:w-[450px]">
                 <Profile />
               </div>
-              <CategoryFunds categoryTitle="Funds Created" />
-              <CategoryFunds categoryTitle="Donations" />
-              <CategoryFunds categoryTitle="Funds Following" />
+              <ProfileFunds categoryTitle="Funds Created" />
+              <ProfileFunds categoryTitle="Donations" />
+              <ProfileFunds categoryTitle="Funds Following" />
             </div>
           ) : (
             ""

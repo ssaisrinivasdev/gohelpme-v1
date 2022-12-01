@@ -61,7 +61,7 @@ function Search() {
   return (
     <div>
       <Header />
-      <CatSearch />
+      <CatSearch placeholder="Search by fund" />
       <div className="xl:w-[1200px] mx-10 min-md:mx-auto xl:mx-auto max-md:flex-col max-md:flex">
         {data}
       </div>

@@ -17,7 +17,6 @@ function Fundraiser({ fund }) {
         currentValue={fund.currentValue}
         image={fund.images}
         id={fund._id}
-        key={fund._id}
       />
 
       <Footer />
