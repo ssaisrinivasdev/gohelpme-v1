@@ -53,7 +53,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
     <div>
       <PageTitle title={title} desc={desc} />
       <DefaultTitle title={categoryTitle} />
-      <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
+      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
         <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
           {data}
         </div>
