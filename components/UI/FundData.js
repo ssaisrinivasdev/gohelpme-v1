@@ -1,19 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageSlider from "./ImageSlider";
 import ProgressBar from "./ProgressBar";
 import { useRouter } from "next/router";
+import Donations from "./Donations";
+import DefaultTitle from "./DefaultTitle";
 
-function FundData({ title, desc, goal, percent, currentValue, image, id }) {
+function FundData({ fund }) {
   const [isAnonymous, setIsAnonymous] = useState(false);
+  const [donationsData, setDonationsData] = useState(null);
   const router = useRouter();
 
-  console.log(id);
+  useEffect(() => {
+    console.log(fund)
+    donationHandler();
+  }, []);
+
+  async function donationHandler() {
+    let donations
+    if (fund.donations) {
+      donations = fund.donations.map((data) => {
+        return (
+          <Donations data={data} />
+        )
+      })
+      setDonationsData(donations);
+    }
+  }
 
   async function handler() {
     const name = isAnonymous ? "Anonymous" : "null";
     let result = await fetch("http://gohelpme.online/api/payment", {
       method: "PUT",
-      body: JSON.stringify({ fund_id: id, title: title, donator_name: name }),
+      body: JSON.stringify({
+        "id": fund._id,
+        "title": fund.title,
+        "donator_name": name,
+      }),
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -27,30 +49,25 @@ function FundData({ title, desc, goal, percent, currentValue, image, id }) {
     if (redirectLink) {
       router.push(redirectLink);
     }
-
-    // const error = await result.json();
-    // console.log(error.error)
-    // console.log(result.status)
   }
 
   return (
-    <div>
       <section>
         <div className="relative mx-auto max-w-screen-xl px-4 py-8">
-          <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 ">
             {/* here comes the slider */}
-            <ImageSlider image={image} />
+            <ImageSlider image={fund.images} />
 
-            <div className="sticky top-0">
+            <div className="xl:mx-20">
               <div className="mt-8 flex justify-between">
                 <div className="max-w-[35ch]">
-                  <h1 className="text-2xl font-bold">{title}</h1>
+                  <h1 className="text-2xl font-bold">{fund.title}</h1>
 
                   <div className="drop-shadow-md my-5">
                     <ProgressBar
-                      goal={goal}
-                      percent={percent}
-                      currentValue={currentValue}
+                      goal={fund.goal}
+                      percent={fund.percent}
+                      currentValue={fund.currentValue}
                     />
                   </div>
                   <label class="inline-flex relative items-center cursor-pointer">
@@ -78,30 +95,19 @@ function FundData({ title, desc, goal, percent, currentValue, image, id }) {
                   </button>
                 </div>
               </div>
-
-              <div className="prose max-w-none group-open:hidden">
-                <p>{desc}</p>
+              <DefaultTitle title="Recent Donations" />
+              <div>{donationsData}</div>
+              
+            </div>
+            
+            <div className="prose max-w-none group-open:hidden">
+                <p>{fund.long_description}</p>
               </div>
 
-              {/* <details className="group relative mt-4">
-                <div> */}
-
-              {/* <span className="mt-4 cursor-pointer text-sm font-medium underline group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0">
-                      Read More
-                    </span> */}
-              {/* </div> */}
-
-              {/* <div className="prose max-w-none pb-6">
-                  <p>{desc}</p>
-
-                  <p>{desc}</p>
-                </div> */}
-              {/* </details> */}
-            </div>
           </div>
+          
         </div>
       </section>
-    </div>
   );
 }
 

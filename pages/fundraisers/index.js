@@ -45,10 +45,10 @@ function Funds() {
       <PageTitle title="Fundraisers" desc="Home/Fundraisers" />
 
       <div className=" bg-slate-100">
-        <div className="xl:w-[1000px] mx-auto text-center">
+        <div className="xl:w-[1000px] mx-auto pt-5">
           <DefaultTitle title="All Categories" />
         </div>
-        <div className=" py-10 xl:w-[1000px] xl:mx-auto lg:w-[800px] lg:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-3 justify-items-center">
+        <div className=" pb-10 xl:w-[1000px] xl:mx-auto lg:w-[800px] lg:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-3 justify-items-center">
           {categories.map((item) => {
             return (
               <Button

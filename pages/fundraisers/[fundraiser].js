@@ -9,16 +9,7 @@ function Fundraiser({ fund }) {
   return (
     <div>
       <Header />
-      <FundData
-        title={fund.title}
-        desc={fund.long_description}
-        goal={fund.goal}
-        percent={fund.percent}
-        currentValue={fund.currentValue}
-        image={fund.images}
-        id={fund._id}
-      />
-
+      <FundData fund={fund} />
       <Footer />
     </div>
   );

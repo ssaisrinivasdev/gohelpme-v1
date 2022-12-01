@@ -6,6 +6,7 @@ import Profile from "../components/UI/Profile";
 import ProfileCards from "../components/UI/ProfileCards";
 import ProfileFunds from "../components/UI/ProfileFunds";
 import Search from "../components/UI/CatSearch";
+import ProfileForm from "../components/UI/ProfileForm";
 
 function Dashboard() {
   const [buttonActive, setButtonActive] = useState("Dashboard");
@@ -19,7 +20,7 @@ function Dashboard() {
         <Search placeholder="Search any funds" />{" "}
       </div>
       <div>
-        <div className="w-[1500px] mx-auto">
+        <div className="xl:w-[1500px] mx-auto">
           <div className="mx-10 text-left py-10">
             <div class=" inline-flex border-b border-gray-200">
               <button
@@ -65,18 +66,16 @@ function Dashboard() {
           </div>
 
           {buttonActive === "profile" ? (
-            <div>
-              <div className="md:flex">
-                <ProfileCards title="Address" />{" "}
-                <ProfileCards title="Details" />
-                <ProfileCards title="Help" />{" "}
-              </div>
-            </div>
+            
+              <div>
+                <ProfileForm />
+             </div>
+            
           ) : (
             ""
           )}
           {buttonActive === "info" ? (
-            <div className="w-[400px]">
+            <div className="w-[400px] mx-auto">
               <InfoButtons />
             </div>
           ) : (
