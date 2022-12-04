@@ -12,8 +12,7 @@ function ImageSlider({image, id, status}) {
 
 const handler = async () => {
   console.log(followStatus)
-if(followStatus == "not_loggedin") {
-  
+if(status == "not_loggedin") {
   router.push("/login")
 } else {
   
