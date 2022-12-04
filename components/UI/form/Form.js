@@ -17,9 +17,6 @@ function Form() {
   const onSubmit = async (data) => {
     console.log(data);
 
-    // const formData = new FormData();
-    // formData.append("images", data.images[0]);
-
     const formData = new FormData();
 
     for (const name in data) {
@@ -28,8 +25,6 @@ function Form() {
 
     for (var i = 0; i < data.images.length; i++)
       formData.append("images", data.images[i]);
-
-    // formData.append("images", data.images[0]);
 
     const res = await fetch("http://gohelpme.online/api/createfund", {
       method: "POST",
@@ -66,26 +61,6 @@ function Form() {
         }
       }
     }
-
-    // console.log('Success:', data);
-    // const {fund} = data
-    // router.push("/fundraisers/" + fund._id)
-
-    //     alert(JSON.stringify(`${res.message}, status: ${res.status}`));
-
-    // fetch('http://gohelpme.online/api/createfund', {
-    //   method: 'POST', // or 'PUT'
-    //   body: formData,
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log('Success:', data);
-    //     const {fund} = data
-    //     router.push("/fundraisers/" + fund._id)
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
   };
 
   return (

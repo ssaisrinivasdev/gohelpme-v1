@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Donations from "./Donations";
 import DefaultTitle from "./DefaultTitle";
 
-function FundData({ fund }) {
+function FundData({ fund, followingStatus }) {
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [donationsData, setDonationsData] = useState(null);
   const router = useRouter();
@@ -52,11 +52,11 @@ function FundData({ fund }) {
   }
 
   return (
-      <section>
+      <section className=" bg-slate-100">
         <div className="relative mx-auto max-w-screen-xl px-4 py-8">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 ">
             {/* here comes the slider */}
-            <ImageSlider image={fund.images} />
+            <ImageSlider image={fund.images} id={fund._id} status={followingStatus} />
 
             <div className="xl:mx-20">
               <div className="mt-8 flex justify-between">

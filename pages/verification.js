@@ -40,7 +40,7 @@ function Verification() {
   return (
     <div>
       <Header />
-      <div className=" my-44">
+      <div className=" my-44 bg-slate-100">
         <section class="flex flex-col max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg  md:flex-row md:h-48">
           <div class="md:flex md:items-center md:justify-center md:w-1/2 md:bg-color1 ">
             <div class="px-6 py-6 md:px-8 md:py-0">

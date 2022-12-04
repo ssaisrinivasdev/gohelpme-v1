@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-import { useContext, useEffect, useState } from "react";
+import {useEffect} from "react";
 import { useSelector } from "react-redux";
 
 import jwt from "jsonwebtoken";
@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken";
 function Profile() {
   // const [data, setData] = useState(null);
   // const user = useSelector((state) => (state));
-  const user = useSelector((state) => state.name.input);
+  const user = useSelector((state) => state.name);
 
   useEffect(() => {
     handler();

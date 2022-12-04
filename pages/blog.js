@@ -8,7 +8,7 @@ import BlogCards from "../components/UI/BlogCards";
 
 function Blog() {
   return (
-    <div>
+    <div className=" bg-slate-100">
       <Header />
       <PageTitle title="Blog" desc="Home/Blog" />
 

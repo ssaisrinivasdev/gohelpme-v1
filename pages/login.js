@@ -5,19 +5,16 @@ import { useRouter } from "next/router";
 import GlobalContext from "../store/global-context";
 import Footer from "../components/UI/Footer";
 import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
-import { addName } from "../store/actions/user";
-import { addToken } from "../store/actions/token";
+import { useDispatch } from "react-redux";
+import { addDetails } from "../store/actions/user";
 
-// import { connect } from "react-redux";
+
 export default function Login() {
-  // const [email,setEmail] = useState("")
-  // const [password,setPassword] = useState("")
 
-  const user = useSelector((state) => state.name.input);
+
   const dispatch = useDispatch();
 
-  const {
+  const { 
     register,
     handleSubmit,
     watch,
@@ -28,7 +25,7 @@ export default function Login() {
   const globalData = useContext(GlobalContext);
 
   const LoginPost = async (data) => {
-    console.log(data);
+    
     const { email, password } = data;
 
     const res = await fetch("http://gohelpme.online/api/login", {
@@ -51,9 +48,18 @@ export default function Login() {
       // dispatch(addToken("token", token));
 
       const name = response.response.name;
+      const lastname = response.response.lastname;
+      const email = response.response.email
+
       console.log("Success:", response.response.message);
       globalData[1].setIsLoggedIn(true);
-      dispatch(addName(name));
+      
+      dispatch(addDetails({
+        name: name,
+        lastname: lastname,
+        email: email,
+      }));
+      
       globalData[2].setUsername(name);
 
       router.push("/dashboard");
@@ -85,32 +91,10 @@ export default function Login() {
       // }
     }
 
-    // fetch('http://gohelpme.online/api/login', {
-    //   method: 'POST', // or 'PUT'
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log('Success:', data);
-    //   const {response} = data
-
-    //   // localStorage.setItem('userId',response.user._id);
-    //   // localStorage.setItem('token',data.token);
-    //     console.log('Success:', data.message);
-    //     globalData[1].setIsLoggedIn(true)
-    //     globalData[2].setUsername(response.name)
-    //     router.push("/dashboard")
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
   };
 
   return (
-    <div>
+    <div >
       <Header />
       <div className="py-24 drop-shadow-md bg-slate-100">
         <div class="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-md shadow-md">

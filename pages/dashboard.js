@@ -14,7 +14,7 @@ function Dashboard() {
   console.log(buttonActive);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden bg-slate-100">
       <Header />
       <div>
         <Search placeholder="Search any funds" />{" "}

@@ -3,13 +3,13 @@ import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 import Header from "../../components/UI/Header";
 
-function Fundraiser({ fund }) {
+function Fundraiser({ fund, following_status }) {
   console.log(fund);
 
   return (
     <div>
       <Header />
-      <FundData fund={fund} />
+      <FundData fund={fund} followingStatus={following_status} />
       <Footer />
     </div>
   );
@@ -26,11 +26,14 @@ export async function getStaticProps(context) {
 
   const fund = data.fund;
 
+  const following_status = data.following_status
+
   // let fund = posts.find(fund => fund._id === fundraiserId)
 
   return {
     props: {
       fund,
+      following_status
     },
     revalidate: 5,
   };

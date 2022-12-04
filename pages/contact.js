@@ -4,7 +4,7 @@ import Header from "../components/UI/Header";
 
 function contact() {
   return (
-    <div>
+    <div className=" bg-slate-100">
       <Header />
       <section class="bg-white dark:bg-gray-900">
         <div class="container px-6 py-12 mx-auto">

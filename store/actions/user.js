@@ -1,13 +1,13 @@
 import * as C from "../types/user";
 
-const addName = (input) => ({
-  type: C.ADD_USER,
-  payload: { input },
+const addDetails = ({name, lastname, email}) => ({
+  type: C.ADD_DETAILS,
+  payload: { name, lastname, email },
 });
 
-const removeName = () => ({
-  type: C.REMOVE_USER,
-  payload: "",
-});
+// const addLName = (lname) => ({
+//   type: C.ADD_LNAME,
+//   payload: {lname},
+// });
 
-export { addName, removeName };
+export { addDetails };
