@@ -35,7 +35,7 @@ function Fundraiser({ fund }) {
 
   console.log(data.following_status)
 
-  if(IsLoading){
+  if(isLoading){
     return (
       <div>
         <Header />
