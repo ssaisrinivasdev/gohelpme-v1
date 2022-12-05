@@ -45,7 +45,7 @@ function Profile() {
 
       console.log(jsonresultData.response.name);
 
-      setData(jsonresultData.response.name);
+      
     }
   }
 
