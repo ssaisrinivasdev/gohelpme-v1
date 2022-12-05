@@ -94,9 +94,9 @@ function ProfileFunds({ title, desc, categoryTitle }) {
           </div>
           )
         :(
-        <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
+        <div className="grid grid-flow-row col-auto grid-cols-1 items-center mx-auto">
           <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
-            {created_funds}
+            
             {created_funds ? created_funds : <p className="text-left mx-10 mb-10">You haven't created any funds yet</p>}
 
           </div>
@@ -143,7 +143,6 @@ function ProfileFunds({ title, desc, categoryTitle }) {
         ):(
           <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
             <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
-              
               {following_funds ? following_funds : <p className="text-left mx-10 mb-10">You haven't followed any funds</p>}
 
             </div>
