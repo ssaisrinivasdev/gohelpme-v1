@@ -1,16 +1,45 @@
+import { data } from "autoprefixer";
 import React from "react";
 import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 import Header from "../../components/UI/Header";
 
-function Fundraiser({ fund, following_status }) {
+function Fundraiser({ fund }) {
   console.log(fund);
-  console.log(following_status);
+
+  useEffect(() => {
+    const sync = async () => {
+      let result = await fetch(
+        "http://gohelpme.online/api/fund/" + fund._id,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+
+
+      const data = await result.json();
+
+
+      if (result.status >= 200 && result.status <= 299) {
+        const jsonresultData = await result.json();
+        const timeout = setTimeout(() => {
+          router.push("/fundraisers/" + jsonresultData.donationLog.fund_id);
+        }, 5000);
+        return () => clearTimeout(timeout);
+      }
+    };
+
+    sync();
+  });
 
   return (
     <div>
       <Header />
-      <FundData fund={fund} followingStatus={following_status} />
+      <FundData fund={fund} followingStatus={data.following_status} />
       <Footer />
     </div>
   );
