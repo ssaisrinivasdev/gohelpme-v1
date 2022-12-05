@@ -5,6 +5,7 @@ import Header from "../../components/UI/Header";
 
 function Fundraiser({ fund, following_status }) {
   console.log(fund);
+  console.log(following_status);
 
   return (
     <div>
