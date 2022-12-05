@@ -43,21 +43,21 @@ function ProfileFunds({ title, desc, categoryTitle }) {
 
       let createdFunds, donateFunds, followingFunds      
       if (jsonresultData) {
-        createdFunds = jsonresultData.response.created_funds.map((items) => {
+        createdFunds = jsonresultData.response.created_funds == null ? false : (jsonresultData.response.created_funds.map((items) => {
           return (
             <Cards key={items._id} items={items} />
           )
-        });
-        donateFunds = jsonresultData.response.donated_funds.map((items) => {
+        }))
+        donateFunds = jsonresultData.response.donated_funds == null ? false : (jsonresultData.response.donated_funds.map((items) => {
           return (
             <Cards key={items._id} items={items} />
           )
-        });
-        followingFunds = jsonresultData.response.followed_funds.map((items) => {
+        }))
+        followingFunds = jsonresultData.response.followed_funds == null ? false : (jsonresultData.response.followed_funds.map((items) => {
           return (
             <Cards key={items._id} items={items} />
-          )
-        })
+          )
+        }))
       }
       setCreated_FundsData(createdFunds)
       setFollowing_FundsData(followingFunds)
