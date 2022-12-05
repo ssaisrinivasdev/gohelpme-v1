@@ -1,12 +1,14 @@
 import { data } from "autoprefixer";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 import Header from "../../components/UI/Header";
 
 function Fundraiser({ fund }) {
+  const [isLoading, setIsLoading] = useState(false)
   console.log(fund);
+  
 
   useEffect(() => {
     const sync = async () => {
@@ -23,7 +25,7 @@ function Fundraiser({ fund }) {
 
 
       const data = await result.json();
-
+      setIsLoading(true)
       return data
     };
 
@@ -33,13 +35,15 @@ function Fundraiser({ fund }) {
 
   console.log(data.following_status)
 
-  return (
-    <div>
-      <Header />
-      <FundData fund={fund} followingStatus={data.following_status} />
-      <Footer />
-    </div>
-  );
+  if(IsLoading){
+    return (
+      <div>
+        <Header />
+        <FundData fund={fund} followingStatus={data.following_status} />
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export async function getStaticProps(context) {
