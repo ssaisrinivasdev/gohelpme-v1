@@ -23,19 +23,10 @@ function Fundraiser({ fund }) {
 
 
       const data = await result.json();
-
-
-      if (result.status >= 200 && result.status <= 299) {
-        const jsonresultData = await result.json();
-        const timeout = setTimeout(() => {
-          router.push("/fundraisers/" + jsonresultData.donationLog.fund_id);
-        }, 5000);
-        return () => clearTimeout(timeout);
-      }
     };
 
     sync();
-  });
+  },[]);
 
   return (
     <div>
