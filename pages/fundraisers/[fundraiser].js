@@ -20,7 +20,12 @@ export async function getStaticProps(context) {
 
   const fundraiserId = params.fundraiser;
 
-  let result = await fetch("http://gohelpme.online/api/fund/" + fundraiserId);
+  let result = await fetch("http://gohelpme.online/api/fund/" + fundraiserId,{
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
   const data = await result.json();
 

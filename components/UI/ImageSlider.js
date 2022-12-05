@@ -12,9 +12,9 @@ function ImageSlider({image, id, status}) {
 
 const handler = async () => {
   console.log(followStatus)
-if(status == "not_loggedin") {
+if(followStatus == "not_loggedin") {
   router.push("/login")
-} else {
+} else {  
   
   const res = await fetch("http://gohelpme.online/api/followfund/" + id, {
     method: "PUT",
