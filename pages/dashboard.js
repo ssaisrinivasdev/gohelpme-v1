@@ -86,9 +86,7 @@ function Dashboard() {
               <div className="max-md:w-[450px]">
                 <Profile />
               </div>
-              <ProfileFunds categoryTitle="Funds Created" />
-              <ProfileFunds categoryTitle="Donations" />
-              <ProfileFunds categoryTitle="Funds Following" />
+             <ProfileFunds />
             </div>
           ) : (
             ""

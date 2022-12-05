@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import store, { Persistor } from "../store/index";
 import { Provider, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import NextNProgress from 'nextjs-progressbar'
 
 function MyApp({ Component, pageProps }) {
   const [email, setEmail] = useState("");
@@ -38,6 +39,8 @@ function MyApp({ Component, pageProps }) {
             { username, setUsername },
           ]}
         >
+        <NextNProgress color="#DB162F"
+/>
           <Component {...pageProps} />
         </GlobalContext.Provider>
       </PersistGate>
