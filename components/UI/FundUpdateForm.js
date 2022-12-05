@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
 
-function ProfileForm() {
+function FundUpdateForm() {
 
   const lastName = useSelector((state) => state.lastname);
   const firstName = useSelector((state) => state.name);
@@ -16,6 +16,11 @@ function ProfileForm() {
     watch,
     formState: { errors },
   } = useForm();
+
+
+
+
+
 
 const handler = async (data) => {
 
@@ -95,4 +100,4 @@ const handler = async (data) => {
   )
 }
 
-export default ProfileForm
+export default FundUpdateForm

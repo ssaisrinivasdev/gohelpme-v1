@@ -6,9 +6,13 @@ import React from "react";
 
 function Success() {
   const router = useRouter();
-  const { success } = router.query;
+  
+
 
   useEffect(() => {
+    if(!router.isReady) return;
+    const { success } = router.query;
+
     const sync = async () => {
       let result = await fetch(
         "http://gohelpme.online/api/successpayment/",
@@ -33,7 +37,8 @@ function Success() {
     };
 
     sync();
-  });
+    
+  },[router.isReady])
 
   // console.log(router.query)
 
