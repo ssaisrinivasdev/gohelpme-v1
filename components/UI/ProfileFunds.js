@@ -43,17 +43,17 @@ function ProfileFunds({ title, desc, categoryTitle }) {
 
       let createdFunds, donateFunds, followingFunds      
       if (jsonresultData) {
-        createdFunds = jsonresultData.response.created_funds == null ? false : (jsonresultData.response.created_funds.map((items) => {
+        createdFunds = jsonresultData.response.created_funds == '[]' ? false : (jsonresultData.response.created_funds.map((items) => {
           return (
             <Cards key={items._id} items={items} />
           )
         }))
-        donateFunds = jsonresultData.response.donated_funds == null ? false : (jsonresultData.response.donated_funds.map((items) => {
+        donateFunds = jsonresultData.response.donated_funds == '[]' ? false : (jsonresultData.response.donated_funds.map((items) => {
           return (
             <Cards key={items._id} items={items} />
           )
         }))
-        followingFunds = jsonresultData.response.followed_funds == null ? false : (jsonresultData.response.followed_funds.map((items) => {
+        followingFunds = jsonresultData.response.followed_funds == '[]' ? false : (jsonresultData.response.followed_funds.map((items) => {
           return (
             <Cards key={items._id} items={items} />
           )
@@ -63,6 +63,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
       setFollowing_FundsData(followingFunds)
       setDonated_FundsData(donateFunds)
       setIsLoading(false)
+      console.log(donated_funds)
     }
   }
 
@@ -121,6 +122,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
         ):(
           <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
             <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
+            
               {donated_funds ? donated_funds : <p className="text-left mx-10 mb-10">You haven't donated yet</p>}
             </div>
           </div>
