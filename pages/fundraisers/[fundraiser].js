@@ -8,16 +8,16 @@ import Header from "../../components/UI/Header";
 
 function Fundraiser() {
   const router = useRouter();
-  const { fundraiser } = router.query;
-  console.log(fundraiser)
+  
+
 
   const [fundData, setFundData] = useState(null)
-  console.log(fundData)
+
 
   useEffect(() => {
+    if(!router.isReady) return;
 
-    
-
+    const { fundraiser } = router.query;
 
     const sync = async () => {
       let result = await fetch(
@@ -38,17 +38,23 @@ function Fundraiser() {
     };
 
     sync();
+
+
+  },[router.isReady, fundData])
+  
+
+
     
-  },[fundData]);
+
+   
+    
+  
 
   return (
 
     <div>
       <Header />
-
       {fundData && <FundData fund={fundData.fund} followingStatus={fundData.following_status} />}
-            
-            
       <Footer />
     </div>
   );
