@@ -98,7 +98,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
         <div className="grid grid-flow-row col-auto grid-cols-1 items-center mx-auto">
           <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
             
-            {created_funds != null ? created_funds : <p className="text-left mx-10 mb-10">You haven't created any funds yet</p>}
+            {(created_funds != null) ? created_funds : (<p className="text-left mx-10 mb-10">You haven't created any funds yet</p>)}
 
           </div>
         </div>
@@ -123,7 +123,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
           <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
             <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
             
-              {donated_funds != null ? donated_funds : <p className="text-left mx-10 mb-10">You haven't donated yet</p>}
+              {(donated_funds != null) ? donated_funds : (<p className="text-left mx-10 mb-10">You haven't donated yet</p>)}
             </div>
           </div>
         )
@@ -145,7 +145,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
         ):(
           <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
             <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
-              {following_funds != null ? following_funds : <p className="text-left mx-10 mb-10">You haven't followed any funds</p>}
+              {(following_funds != null) ? following_funds : (<p className="text-left mx-10 mb-10">You haven't followed any funds</p>)}
 
             </div>
           </div>
