@@ -1,5 +1,6 @@
 import { data } from "autoprefixer";
 import React from "react";
+import { useEffect } from "react";
 import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 import Header from "../../components/UI/Header";
