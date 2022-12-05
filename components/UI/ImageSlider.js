@@ -22,15 +22,7 @@ if(status == "not_loggedin") {
     },
   });
 
-  const response = await res.json()
-
-  if (res.status >= 200 && res.status <= 205) {
-    if(response.status == "Post Followed") {
-      setFollowStatus("following")
-    } else if (response.status == "Post Unfollowed") {
-      setFollowStatus("not_following")
-    }
-  }
+  
 }
    
 }
