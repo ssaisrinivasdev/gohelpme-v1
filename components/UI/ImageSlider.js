@@ -5,17 +5,16 @@ import { useRouter } from 'next/router';
 
 function ImageSlider({image, id, status}) {
 
-  const [followStatus, setFollowStatus] = useState(status)
+  
 
   const router = useRouter()
 
 
 const handler = async () => {
-  console.log(followStatus)
-if(followStatus == "not_loggedin") {
+ 
+if(status == "not_loggedin") {
   router.push("/login")
 } else {  
-  
   const res = await fetch("http://gohelpme.online/api/followfund/" + id, {
     method: "PUT",
     headers: {
@@ -41,19 +40,19 @@ if(followStatus == "not_loggedin") {
   return (
     <div className='relative'>
 
-{ followStatus === "not_loggedin" ?  <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
+{ status === "not_loggedin" ?  <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
             <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full bg-slate-100 hover:text-white hover:bg-color1 mx-auto font-medium transition-colors text-red-600 active:text-red-500">
               Follow +
             </span>
           </div> : "" }
     
-    { followStatus === "not_following" ?  <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
+    { status === "not_following" ?  <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
             <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full bg-slate-100 hover:text-white hover:bg-color1 mx-auto font-medium transition-colors text-red-600 active:text-red-500">
               Follow +
             </span>
           </div> : "" }
 
-     {followStatus === "following" ? <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
+     {status === "following" ? <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
             <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full text-white bg-color1 mx-auto font-medium transition-colors ">
               Following
             </span>

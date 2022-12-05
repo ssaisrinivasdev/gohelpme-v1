@@ -41,7 +41,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   let result = await fetch("http://gohelpme.online/api/funds");
-
+  
   const data = await result.json();
 
   const ids = data.funds.map((fund) => fund._id);
