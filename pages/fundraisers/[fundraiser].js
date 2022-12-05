@@ -30,6 +30,9 @@ function Fundraiser({ fund }) {
     sync();
   },[]);
 
+
+  console.log(data.following_status)
+
   return (
     <div>
       <Header />
