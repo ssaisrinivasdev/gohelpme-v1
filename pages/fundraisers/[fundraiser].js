@@ -39,7 +39,7 @@ function Fundraiser() {
 
     sync();
     
-  },[]);
+  },[fundData]);
 
   return (
 
