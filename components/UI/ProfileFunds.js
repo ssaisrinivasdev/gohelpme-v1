@@ -45,17 +45,17 @@ function ProfileFunds({ title, desc, categoryTitle }) {
       if (jsonresultData) {
         createdFunds = jsonresultData.response.created_funds.map((items) => {
           return (
-            <Cards items={items} />
+            <Cards key={items._id} items={items} />
           )
         });
         donateFunds = jsonresultData.response.donated_funds.map((items) => {
           return (
-            <Cards items={items} />
+            <Cards key={items._id} items={items} />
           )
         });
         followingFunds = jsonresultData.response.followed_funds.map((items) => {
           return (
-            <Cards items={items} />
+            <Cards key={items._id} items={items} />
           )
         })
       }
