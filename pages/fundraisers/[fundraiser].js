@@ -23,6 +23,8 @@ function Fundraiser({ fund }) {
 
 
       const data = await result.json();
+
+      return data
     };
 
     sync();
