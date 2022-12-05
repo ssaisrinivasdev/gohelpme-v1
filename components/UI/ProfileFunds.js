@@ -97,6 +97,8 @@ function ProfileFunds({ title, desc, categoryTitle }) {
         <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
           <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
             {created_funds}
+            {created_funds ? created_funds : <p className="text-left mx-10 mb-10">You haven't created any funds yet</p>}
+
           </div>
         </div>
         )
@@ -106,6 +108,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
         <DefaultTitle title="Donated Funds" />
         {isLoading ? (
           <div>
+          
             <Skeleton width="20%" />
             <Skeleton
               animation="wave"
@@ -118,7 +121,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
         ):(
           <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
             <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
-              {donated_funds}
+              {donated_funds ? donated_funds : <p className="text-left mx-10 mb-10">You haven't donated yet</p>}
             </div>
           </div>
         )
@@ -140,7 +143,9 @@ function ProfileFunds({ title, desc, categoryTitle }) {
         ):(
           <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
             <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
-              {following_funds}
+              
+              {following_funds ? following_funds : <p className="text-left mx-10 mb-10">You haven't followed any funds</p>}
+
             </div>
           </div>
         )}
