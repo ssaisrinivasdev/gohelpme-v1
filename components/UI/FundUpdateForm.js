@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 
 function FundUpdateForm({id, owner}) {
+
+  console.log(id, owner)
   
   const {
     register,

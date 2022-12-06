@@ -13,12 +13,18 @@ function Fundraiser() {
   const router = useRouter();
   const [updating, setUpdating] = useState(false)
   const [fundData, setFundData] = useState(null)
-  const thisFund = router.query
-  console.log(thisFund)
+  const [thisFund, setThisFund] = useState(null)
 
   useEffect(() => {
+    setThisFund(router.query)
+  },[])
+  
+ 
+
+  useEffect(() => {
+    
     if(!router.isReady) return;
-    const { fundraiser } = router.query;
+    const { fundraiser } = thisFund;
 
     const sync = async () => {
       let result = await fetch(
