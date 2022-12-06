@@ -18,7 +18,7 @@ function FundUpdateForm({id, owner}) {
   return (
     <div className=" max-w-4xl mx-auto my-3">
       <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-        <form onSubmit={handleSubmit(onSubmit)} action="" className="space-y-4">
+        <form onSubmit={handleSubmit()  } action="" className="space-y-4">
           <div>
             <label className="sr-only" for="name">
               Title

@@ -11,8 +11,8 @@ import EditIcon from "../../public/icons/edit"
 
 function Fundraiser() {
   const router = useRouter();
-  const [updating, setUpdating] = useState(false)
   const [fundData, setFundData] = useState(null)
+
 
   useEffect(() => {
     if(!router.isReady) return;
@@ -44,17 +44,11 @@ function Fundraiser() {
     <div>
       <Header />
       <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
-      {updating && <FundUpdateForm />}
 
-      {updating && <button type="button" onClick={() => {setUpdating(false) }} class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-      
-      <span class="mx-1">Update</span>
-      </button>}
-
-      {!updating && <button type="button" onClick={() => {setUpdating(true) }} class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+       <button type="button" onClick={() => { router.push(`/fundraisers/${fundData.fund._id}/updating=true`)}} class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
       
       <span class="mx-1">Edit</span>
-      </button>}
+      </button>
       </div>
       
       {fundData && <FundData fund={fundData.fund} followingStatus={fundData.following_status} />}
