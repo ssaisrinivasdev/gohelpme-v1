@@ -7,25 +7,16 @@ import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 import FundUpdateForm from "../../components/UI/FundUpdateForm";
 import Header from "../../components/UI/Header";
-
+import EditIcon from "../../public/icons/edit"
 
 function Fundraiser() {
   const router = useRouter();
   const [updating, setUpdating] = useState(false)
   const [fundData, setFundData] = useState(null)
-  const [thisFund, setThisFund] = useState(null)
 
   useEffect(() => {
-    setThisFund(router.query)
-  },[])
-  
- 
-
-  useEffect(() => {
-    
     if(!router.isReady) return;
-    const { fundraiser } = thisFund;
-
+    const { fundraiser } = router.query;
     const sync = async () => {
       let result = await fetch(
         "http://gohelpme.online/api/fund/" + fundraiser,
@@ -53,11 +44,11 @@ function Fundraiser() {
     <div>
       <Header />
       <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
-      {updating && <FundUpdateForm id={thisFund.fundraiser} owner={fundData.owner} />}
+      {updating && <FundUpdateForm />}
 
       {updating && <button type="button" onClick={() => {setUpdating(false) }} class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
       
-      <span class="mx-1">Close Editor</span>
+      <span class="mx-1">Update</span>
       </button>}
 
       {!updating && <button type="button" onClick={() => {setUpdating(true) }} class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
