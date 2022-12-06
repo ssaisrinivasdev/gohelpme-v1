@@ -5,63 +5,13 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 
 function FundUpdateForm({id, owner}) {
-  const globalData = useContext(GlobalContext);
-  const router = useRouter();
+  
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = async (data) => {
-    console.log(data);
-
-    const formData = new FormData();
-
-    for (const name in data) {
-      formData.append(name, data[name]);
-    }
-
-    for (var i = 0; i < data.images.length; i++)
-      formData.append("images", data.images[i]);
-
-    const res = await fetch("http://gohelpme.online/api/createfund", {
-      method: "POST",
-      body: formData,
-    });
-
-    const response = await res.json();
-
-    const { error } = response;
-    const { message } = response;
-
-    if (res.status >= 200 && res.status <= 205) {
-      console.log("Success:", response);
-      console.log(error, message);
-      const { fund } = response;
-      router.push("/fundraisers/" + fund._id);
-    } else if (res.status >= 400 && res.status <= 405) {
-      alert(`${error} : ${message}`);
-
-      if (
-        response.toString().includes("Invalid User") ||
-        response.toString().includes("User not logged in ") ||
-        response.toString().includes("User Not Found") ||
-        response.toString().includes("Please Login to Access")
-      ) {
-        //Route to LOGIN and change global variable status!!
-        router.push("/login");
-        globalData[1].setIsLoggedIn(false);
-      } else {
-        if (error.toString() != "Something went wrong") {
-          alert(message.toString());
-        } else {
-          alert(error.toString());
-        }
-      }
-    }
-  };
 
   return (
     <div className=" max-w-4xl mx-auto my-3">
