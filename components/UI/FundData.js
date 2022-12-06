@@ -28,6 +28,7 @@ function FundData({ fund, followingStatus }) {
   }
 
   async function handler() {
+    console.log(fund.id+" "+fund._id)
     const name = isAnonymous ? "Anonymous" : "null";
     let result = await fetch("http://gohelpme.online/api/payment", {
       method: "PUT",
