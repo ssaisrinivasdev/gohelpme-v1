@@ -4,9 +4,9 @@ import GlobalContext from "../../store/global-context";
 import { useContext } from "react";
 import { useRouter } from "next/router";
 
-function FundUpdateForm({id, owner}) {
+function FundUpdateForm({fund}) {
 
-  console.log(id, owner)
+  
   
   const {
     register,
@@ -15,10 +15,54 @@ function FundUpdateForm({id, owner}) {
     formState: { errors },
   } = useForm();
 
+
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    for (const name in data) {
+      formData.append(name, data[name]);
+    }
+    formData.append('owner',fund.fund.owner)
+    console.log(formData)
+    const res = await fetch("http://gohelpme.online/api/updatefund/"+fund.fund._id, {
+      method: "PUT",
+      body: formData,
+    });
+
+    const response = await res.json();
+    const { error } = response;
+    const { message } = response;
+
+    if (res.status >= 200 && res.status <= 205) {
+      console.log("Success:", response);
+      console.log(error, message);
+      const { fund } = response;
+      router.push("/fundraisers/" + fund._id);
+    } else if (res.status >= 400 && res.status <= 405) {
+      alert(`${error} : ${message}`);
+
+      if (
+        response.toString().includes("Invalid User") ||
+        response.toString().includes("User not logged in ") ||
+        response.toString().includes("User Not Found") ||
+        response.toString().includes("Please Login to Access")
+      ) {
+        //Route to LOGIN and change global variable status!!
+        router.push("/login");
+        globalData[1].setIsLoggedIn(false);
+      } else {
+        if (error.toString() != "Something went wrong") {
+          alert(message.toString());
+        } else {
+          alert(error.toString());
+        }
+      }
+    }
+  };
+
   return (
     <div className=" max-w-4xl mx-auto my-3">
       <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-        <form onSubmit={handleSubmit()  } action="" className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} action="" className="space-y-4">
           <div>
             <label className="sr-only" for="name">
               Title
@@ -30,7 +74,7 @@ function FundUpdateForm({id, owner}) {
                 maxLength: 40,
               })}
               className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Title"
+              placeholder={fund?.fund.title}
               type="text"
               id="title"
             />
@@ -55,9 +99,9 @@ function FundUpdateForm({id, owner}) {
                 Country
               </label>
               <input
-                {...register("country")}
+                {...register("Country")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Country"
+                placeholder={fund?.fund.Country}
                 type="text"
                 id="country"
               />
@@ -70,7 +114,7 @@ function FundUpdateForm({id, owner}) {
               <input
                 {...register("phone")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Phone Number"
+                placeholder={fund?.fund.phone}
                 type="tel"
                 id="phone"
               />
@@ -83,9 +127,9 @@ function FundUpdateForm({id, owner}) {
                 Zip
               </label>
               <input
-                {...register("zip_code")}
+                {...register("Zip_code")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Zip Code"
+                placeholder={fund?.fund.Zip_code}
                 type="number"
                 id="zip"
               />
@@ -98,7 +142,7 @@ function FundUpdateForm({id, owner}) {
               <input
                 {...register("city")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="City"
+                placeholder={fund?.fund.city}
                 type="text"
                 id="city"
               />
@@ -111,9 +155,10 @@ function FundUpdateForm({id, owner}) {
               <input
                 {...register("goal")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Goal"
+                placeholder={fund?.fund.goal}
                 type="number"
                 id="goal"
+                disabled
               />
             </div>
           </div>
@@ -124,9 +169,9 @@ function FundUpdateForm({id, owner}) {
                 Currency
               </label>
               <input
-                {...register("currency")}
+                {...register("Currency")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Currency"
+                placeholder={fund?.fund.currency}
                 type="text"
                 id="currency"
               />
@@ -135,7 +180,7 @@ function FundUpdateForm({id, owner}) {
             <div>
               <select
                 {...register("category")}
-                className=" mb-6 block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className=" mb-6 block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" value={fund?.fund.category}
               >
                 <option value="Medical">Medical</option>
                 <option value="Memorial">Memorial</option>
@@ -178,37 +223,11 @@ function FundUpdateForm({id, owner}) {
             <textarea
               {...register("long_description")}
               className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Fund Description"
+              placeholder={fund?.fund.long_description}
               rows="8"
               id="description"
             ></textarea>
           </div>
-
-          {/* Images  */}
-
-          <label
-            for="dropzone-file"
-            className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-md cursor-pointer "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 text-gray-300 "
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-              />
-            </svg>
-
-            <h2 className="mx-3 text-gray-400">Upload Images</h2>
-
-            <input type="file" multiple {...register("images")} />
-          </label>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
@@ -216,9 +235,9 @@ function FundUpdateForm({id, owner}) {
                 Address
               </label>
               <input
-                {...register("address")}
+                {...register("Address")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Address"
+                placeholder={fund?.fund.Address}
                 type="text"
                 id="address"
               />

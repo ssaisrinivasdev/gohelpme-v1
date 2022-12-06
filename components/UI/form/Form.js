@@ -103,7 +103,7 @@ function Form() {
                 Country
               </label>
               <input
-                {...register("country")}
+                {...register("Country")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Country"
                 type="text"
@@ -131,7 +131,7 @@ function Form() {
                 Zip
               </label>
               <input
-                {...register("zip_code")}
+                {...register("Zip_code")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Zip Code"
                 type="number"
@@ -172,7 +172,7 @@ function Form() {
                 Currency
               </label>
               <input
-                {...register("currency")}
+                {...register("Currency")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Currency"
                 type="text"
@@ -264,7 +264,7 @@ function Form() {
                 Address
               </label>
               <input
-                {...register("address")}
+                {...register("Address")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Address"
                 type="text"
