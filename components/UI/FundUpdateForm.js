@@ -23,13 +23,15 @@ function FundUpdateForm({fund}) {
     //   formData.append(name, data[name]);
     // }
     // formData.append('owner',fund.fund.owner)
-   
+
+    const formData = {...data, owner: fund.fund.owner}
+   console.log(formData)
     const res = await fetch("http://gohelpme.online/api/updatefund/"+fund.fund._id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({...data, owner: fund.fund.owner}),
+      body: JSON.stringify(formData),
     });
 
     const response = await res.json();
