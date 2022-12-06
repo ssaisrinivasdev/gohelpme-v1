@@ -75,7 +75,7 @@ function ForgotPassword() {
 
   const resetHandler = async (data) => {    
 
-    let result = await fetch("http://gohelpme.online/api/resetpassword", {
+    let result_confirm_password = await fetch("http://gohelpme.online/api/resetpassword", {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -85,10 +85,10 @@ function ForgotPassword() {
     });
 
     const response = await result.json();
-    console.log(response.error);
-    console.log(result.status);
+    console.log(result_confirm_password.error);
+    console.log(result_confirm_password.status);
 
-    if (200 <= result.status < 300) {
+    if (200 <= parseInt(result_confirm_password.status) < 300) {
 
       router.push("/dashboard")
     }
