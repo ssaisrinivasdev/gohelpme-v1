@@ -88,7 +88,7 @@ function ForgotPassword() {
       },
     });
 
-    const response = await result.json();
+    const response = await result_confirm_password.json();
     console.log(result_confirm_password.error);
     console.log(result_confirm_password.status);
 
