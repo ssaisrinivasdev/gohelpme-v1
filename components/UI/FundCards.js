@@ -9,7 +9,7 @@ export default function Cards(data) {
       onClick={() => {
         router.push("/fundraisers/" + data.items?._id);
       }}
-      className="inline-block w-80 overflow-hidden bg-white rounded-lg shadow-lg my-9 mx-10"
+      className="inline-block w-80 overflow-hidden bg-white rounded-lg shadow-lg my-5 mx-3 "
     >
       <Image
         className="object-cover object-center w-full h-56"
@@ -23,7 +23,7 @@ export default function Cards(data) {
         height={750}
       />
 
-      <div className="flex items-left px-3 py-3 bg-white">
+      <div className="flex items-left px-2 py-2 bg-white">
         <h1 className="mx-3 text-lg font-semibold text-white">
           <ProgressBar
             goal={data.items?.goal}

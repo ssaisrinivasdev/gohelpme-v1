@@ -20,8 +20,8 @@ function Dashboard() {
         <Search placeholder="Search any funds" />{" "}
       </div>
       <div>
-        <div className="xl:w-[1500px] mx-auto">
-          <div className="mx-10 text-left py-10">
+        <div className="xl:w-[1500px] xl:mx-auto">
+          <div className="mx-3 text-left pb-10">
             <div class=" inline-flex border-b border-gray-200">
               <button
                 className={`check_button ${
@@ -83,10 +83,12 @@ function Dashboard() {
           )}
           {buttonActive === "Dashboard" ? (
             <div>
-              <div className="max-md:w-[450px]">
+              <div className="">
                 <Profile />
               </div>
+              <div className="mx-3 py-4">
              <ProfileFunds />
+             </div>
             </div>
           ) : (
             ""

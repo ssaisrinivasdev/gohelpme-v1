@@ -42,7 +42,7 @@ function CategoryFunds({ category, categoryTitle }) {
   }
 
   return (
-    <div>
+    <div className="mt-5">
       <DefaultTitle title={categoryTitle} />
       <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
         <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">

@@ -38,8 +38,8 @@ const handler = async (data) => {
 
   return (
     <section class="bg-gray-100">
-  <div class=" max-w-screen-xl py-16 sm:px-6 lg:px-8 max-md:w-[500px] mx-auto">
-    <div class="max-md:w-[400px] mx-auto lg:w-[600px]">
+  <div class=" max-w-screen-xl sm:px-6 lg:px-8 max-md:w-[350px] mx-auto">
+    <div class="max-md:w-[350px] mx-auto lg:w-[600px]">
 
       <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
         <form action="" onSubmit={handleSubmit(handler)} class="space-y-4">

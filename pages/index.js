@@ -19,7 +19,9 @@ export default function Home() {
       <Hero />
       {/* <div className="relative grid grid-flow-row grid-cols-1 items-center">
         <div className="w-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide"> */}
+        <div className="mx-5">
       <CategoryFunds categoryTitle="Top Performing Funds" category="Medical" />
+      </div>
       {/* </div>
       </div> */}
       <Hero2 />
