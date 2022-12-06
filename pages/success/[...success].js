@@ -6,8 +6,6 @@ import React from "react";
 
 function Success() {
   const router = useRouter();
-  
-
 
   useEffect(() => {
     if(!router.isReady) return;

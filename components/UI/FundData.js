@@ -52,8 +52,8 @@ function FundData({ fund, followingStatus }) {
   }
 
   return (
-      <section className=" bg-slate-100">
-        <div className="relative mx-auto max-w-screen-xl px-4 py-8">
+      <section className="">
+        <div className="relative mx-auto max-w-screen-xl px-4 pb-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 ">
             {/* here comes the slider */}
             <ImageSlider image={fund.images} id={fund._id} status={followingStatus} />
