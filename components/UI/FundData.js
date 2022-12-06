@@ -32,7 +32,7 @@ function FundData({ fund, followingStatus }) {
     let result = await fetch("http://gohelpme.online/api/payment", {
       method: "PUT",
       body: JSON.stringify({
-        "id": fund._id,
+        "id": fund.id,
         "title": fund.title,
         "donator_name": name,
       }),
