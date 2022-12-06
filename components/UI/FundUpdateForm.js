@@ -80,7 +80,8 @@ function FundUpdateForm({fund}) {
                 maxLength: 40,
               })}
               className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder={fund?.fund.title}
+              placeholder="Title"
+              defaultValue={fund?.fund.title}
               type="text"
               id="title"
             />
@@ -105,9 +106,10 @@ function FundUpdateForm({fund}) {
                 Country
               </label>
               <input
+              placeholder="Country"
+              defaultValue={fund?.fund.Country}
                 {...register("Country")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={fund?.fund.Country}
                 type="text"
                 id="country"
               />
@@ -118,9 +120,10 @@ function FundUpdateForm({fund}) {
                 Phone
               </label>
               <input
+              placeholder="Phone"
+              defaultValue={fund?.fund.phone}
                 {...register("phone")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={fund?.fund.phone}
                 type="tel"
                 id="phone"
               />
@@ -133,9 +136,10 @@ function FundUpdateForm({fund}) {
                 Zip
               </label>
               <input
+              placeholder="Zip Code"
+              defaultValue={fund?.fund.Zip_code}
                 {...register("Zip_code")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={fund?.fund.Zip_code}
                 type="number"
                 id="zip"
               />
@@ -146,6 +150,8 @@ function FundUpdateForm({fund}) {
                 City
               </label>
               <input
+              placeholder="City"
+              defaultValue={fund?.fund.city}
                 {...register("city")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder={fund?.fund.city}
@@ -159,9 +165,10 @@ function FundUpdateForm({fund}) {
                 Goal
               </label>
               <input
+              placeholder="Goal"
+              defaultValue={fund?.fund.goal}
                 {...register("goal")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={fund?.fund.goal}
                 type="number"
                 id="goal"
                 disabled
@@ -175,9 +182,10 @@ function FundUpdateForm({fund}) {
                 Currency
               </label>
               <input
+              placeholder="Currency"
+              defaultValue={fund?.fund.Currency}
                 {...register("Currency")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={fund?.fund.currency}
                 type="text"
                 id="currency"
               />
@@ -186,7 +194,7 @@ function FundUpdateForm({fund}) {
             <div>
               <select
                 {...register("category")}
-                className=" mb-6 block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" value={fund?.fund.category}
+                className=" mb-6 block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" defaultValue={fund?.fund.category}
               >
                 <option value="Medical">Medical</option>
                 <option value="Memorial">Memorial</option>
@@ -212,6 +220,8 @@ function FundUpdateForm({fund}) {
 
             <div>
               <select
+              placeholder="Fund Type"
+              defaultValue={fund?.fund.fund_type}
                 {...register("fund_type")}
                 className=" mb-6 block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
@@ -227,9 +237,10 @@ function FundUpdateForm({fund}) {
               Fund description
             </label>
             <textarea
+            placeholder="Description"
+              defaultValue={fund?.fund.long_description}
               {...register("long_description")}
               className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder={fund?.fund.long_description}
               rows="8"
               id="description"
             ></textarea>
@@ -241,9 +252,11 @@ function FundUpdateForm({fund}) {
                 Address
               </label>
               <input
+              placeholder="Address"
+              defaultValue={fund?.fund.Address}
                 {...register("Address")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={fund?.fund.Address}
+               
                 type="text"
                 id="address"
               />
@@ -254,9 +267,10 @@ function FundUpdateForm({fund}) {
                 Tags
               </label>
               <input
+              placeholder="Tags"
+              defaultValue={fund?.fund.Tags}
                 {...register("tags")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Tags"
                 type="text"
                 id="tags"
               />

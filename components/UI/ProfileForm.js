@@ -50,18 +50,20 @@ const handler = async (data) => {
               <input
               {...register("name")}
                 class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={firstName}
                 type="text"
                 id="firstname"
+                placeholder="Firstname"
+              defaultValue={firstName}
               />
             </div>
 
             <div>
               <label class="sr-only" for="phone">Phone</label>
               <input
+              placeholder="Lastname"
+              defaultValue={lastName}
               {...register("lastname")}
                 class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={lastName}
                 type="text"
                 id="lastname"
               />
@@ -71,11 +73,10 @@ const handler = async (data) => {
           <div>
             <label class="sr-only" for="name">Name</label>
             <input
+            placeholder="Email"
+              defaultValue={email}
             {...register("email")}
-            value={email}
-              class="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder={email}
-              
+              class="w-full rounded-lg border-gray-200 p-3 text-sm"              
               type="text"
               id="email"
               disabled
