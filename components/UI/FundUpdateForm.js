@@ -26,7 +26,7 @@ function FundUpdateForm({fund}) {
    
     const res = await fetch("http://gohelpme.online/api/updatefund/"+fund.fund._id, {
       method: "PUT",
-      body: {...data, owner: fund.fund.owner},
+      body: JSON.stringify({...data, owner: fund.fund.owner}),
     });
 
     const response = await res.json();
