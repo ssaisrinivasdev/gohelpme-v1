@@ -154,7 +154,6 @@ function FundUpdateForm({fund}) {
               defaultValue={fund?.fund.city}
                 {...register("city")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder={fund?.fund.city}
                 type="text"
                 id="city"
               />
@@ -256,7 +255,6 @@ function FundUpdateForm({fund}) {
               defaultValue={fund?.fund.Address}
                 {...register("Address")}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
-               
                 type="text"
                 id="address"
               />
