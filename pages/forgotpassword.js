@@ -43,7 +43,8 @@ function ForgotPassword() {
   
     if (res.status >= 200 && res.status <= 205) {
          setCodeSent("enterotp")
-      
+    }else{
+      alert("Please enter your registered email");
     }
   }
 
@@ -67,15 +68,18 @@ function ForgotPassword() {
     console.log(response.error);
     console.log(result.status);
 
-    if (200 <= result.status < 300) {
+    if (result.status >= 200 && result.status <= 205) {
       setCodeSent("verified")
       setIsVerified(true)
+    }else{
+      alert("Verification code is wrong");
+      router.push("/forgotpassword")
     }
   }
 
   const resetHandler = async (data) => {    
 
-    let result = await fetch("http://gohelpme.online/api/resetpassword", {
+    let result_confirm_password = await fetch("http://gohelpme.online/api/resetpassword", {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -84,13 +88,15 @@ function ForgotPassword() {
       },
     });
 
-    const response = await result.json();
-    console.log(response.error);
-    console.log(result.status);
+    const response = await result_confirm_password.json();
+    console.log(result_confirm_password.error);
+    console.log(result_confirm_password.status);
 
-    if (200 <= result.status < 300) {
-
+    if (result_confirm_password.status >= 200 && result_confirm_password.status <= 205) {
       router.push("/dashboard")
+    }else{
+      alert("Something went wrong please try again");
+      router.push("/login")
     }
   }
 
