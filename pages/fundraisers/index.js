@@ -60,16 +60,71 @@ function Funds() {
           })}
         </div>
       </div>
-      <div className="xl:w-[1500px] xl:mx-auto w-[350px] mx-3 ">
+      <div className="xl:w-[1500px] xl:mx-auto w-[350px] mx-3 my-4 ">
+
+<div>
+      <DefaultTitle title="Medical Funds" />
+      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
         <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+        </div>
+        </div>
+        </div>
 
-        <CategoryFunds categoryTitle="Memorial Funds" category="Medical" />
 
-        <CategoryFunds categoryTitle="Emergency Funds" category="Medical" />
 
-        <CategoryFunds categoryTitle="Charity Funds" category="Medical" />
+        <div>
+      <DefaultTitle title="Memorial Funds" />
+      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+        </div>
+        </div>
+        </div>
 
-        <CategoryFunds categoryTitle="Education Funds" category="Medical" />
+
+
+        <div>
+      <DefaultTitle title="Emergency Funds" />
+      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+        </div>
+        </div>
+        </div>
+
+
+        <div>
+      <DefaultTitle title="Charity Funds" />
+      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+        </div>
+        </div>
+        </div>
+
+
+        <div>
+      <DefaultTitle title="Education Funds" />
+      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+        </div>
+        </div>
+        </div>
+
+
+        <div>
+      <DefaultTitle title="Medical Funds" />
+      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+        </div>
+        </div>
+        </div>
+
+
+       
       </div>
       <Footer />
     </div>

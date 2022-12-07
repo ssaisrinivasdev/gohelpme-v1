@@ -7,9 +7,11 @@ import FormLayout from "../components/UI/form/FormLayout";
 export default function Createfund() {
  
   return (
-    <div className="align-center bg-slate-100">
+    <div className="flex flex-col bg-slate-100">
       <Header />
+      <div>
       <FormLayout />
+      </div>
       <Footer />
     </div>
   );

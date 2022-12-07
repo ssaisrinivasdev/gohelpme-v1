@@ -83,42 +83,42 @@ const Footer = () => {
               <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <div>
                   <h3 class="text-gray-700 uppercase ">Fundraise for</h3>
-                  <a
-                    href="#"
+                  <Link
+                    href="/funds/search?keyword=help&category=Medical&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Medical
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href="/funds/search?keyword=help&category=Emergency&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Emergency
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href="/funds/search?keyword=help&category=Memorial&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
-                    Medical
-                  </a>
-                  <a
-                    href="#"
+                    Memorial
+                  </Link>
+                  <Link
+                    href="/funds/search?keyword=help&category=Education&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Education
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href="/funds/search?keyword=help&category=Charity&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Charity
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href="/funds/search?keyword=help&category=FinancialEmergency&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
-                    Coronavirus Funding
-                  </a>
+                    Financial Emergency
+                  </Link>
                 </div>
 
                 <div>

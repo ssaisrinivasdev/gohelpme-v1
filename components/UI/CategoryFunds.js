@@ -1,6 +1,7 @@
 import DefaultTitle from "./DefaultTitle";
 import Cards from "./FundCards";
 import { React, useEffect, useState } from "react";
+import Pagination from "./Pagination";
 
 function CategoryFunds({ category, categoryTitle }) {
   const [data, setData] = useState(null);
@@ -10,10 +11,15 @@ function CategoryFunds({ category, categoryTitle }) {
   }, []);
 
   async function handler() {
+  let api = "http://gohelpme.online/api/funds/search?keyword=&category=" + category + "&page=1";
+
+
+  if (category == "Top") {
+    api = "http://Gohelpme.online/api/trendingfunds"
+  }
+
     let result = await fetch(
-      "http://gohelpme.online/api/funds/search?keyword=&category=" +
-        category +
-        "&page=1",
+      api,
       {
         method: "GET",
 
@@ -32,9 +38,16 @@ function CategoryFunds({ category, categoryTitle }) {
       let funds;
 
       if (jsonresultData) {
+        if (category == "Top") {
+
+          funds = jsonresultData.funds[0]?.donations?.map((items) => {
+            return <Cards key={items._id} items={items?.funds} />;
+          });
+        } else {
         funds = jsonresultData.funds.map((items) => {
           return <Cards key={items.title} items={items} />;
         });
+      }
       }
 
       setData(funds);
@@ -43,12 +56,7 @@ function CategoryFunds({ category, categoryTitle }) {
 
   return (
     <div className="mt-5">
-      <DefaultTitle title={categoryTitle} />
-      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
-        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
           {data}
-        </div>
-      </div>
     </div>
   );
 }

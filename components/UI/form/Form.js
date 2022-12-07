@@ -64,7 +64,7 @@ function Form() {
   };
 
   return (
-    <div className=" max-w-4xl mx-auto">
+    <div className="w-full h-auto mx-auto">
       <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
         <form onSubmit={handleSubmit(onSubmit)} action="" className="space-y-4">
           <div>
@@ -103,7 +103,9 @@ function Form() {
                 Country
               </label>
               <input
-                {...register("Country")}
+                {...register("Country", {
+                  required: true,
+                })}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Country"
                 type="text"
@@ -116,7 +118,9 @@ function Form() {
                 Phone
               </label>
               <input
-                {...register("phone")}
+                {...register("phone", {
+                  required: true,
+                })}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Phone Number"
                 type="tel"
@@ -131,7 +135,10 @@ function Form() {
                 Zip
               </label>
               <input
-                {...register("Zip_code")}
+              {...register("Zip_code", {
+                  required: true,
+                })}
+                
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Zip Code"
                 type="number"
@@ -144,7 +151,9 @@ function Form() {
                 City
               </label>
               <input
-                {...register("city")}
+              {...register("city", {
+                  required: true,
+                })}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="City"
                 type="text"
@@ -157,7 +166,10 @@ function Form() {
                 Goal
               </label>
               <input
-                {...register("goal")}
+              {...register("goal", {
+                  required: true,
+                })}
+                
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Goal"
                 type="number"
@@ -172,7 +184,10 @@ function Form() {
                 Currency
               </label>
               <input
-                {...register("Currency")}
+              {...register("Currency", {
+                  required: true,
+                })}
+                
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Currency"
                 type="text"
@@ -182,7 +197,10 @@ function Form() {
 
             <div>
               <select
-                {...register("category")}
+              {...register("category", {
+                  required: true,
+                })}
+                
                 className=" mb-6 block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
                 <option value="Medical">Medical</option>
@@ -209,7 +227,10 @@ function Form() {
 
             <div>
               <select
-                {...register("fund_type")}
+              {...register("fund_type", {
+                  required: true,
+                })}
+                
                 className=" mb-6 block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
                 <option value="Individual">Individual</option>
@@ -224,7 +245,9 @@ function Form() {
               Fund description
             </label>
             <textarea
-              {...register("long_description")}
+            {...register("long_description", {
+                  required: true,
+                })}
               className="w-full rounded-lg border-gray-200 p-3 text-sm"
               placeholder="Fund Description"
               rows="8"
@@ -264,7 +287,10 @@ function Form() {
                 Address
               </label>
               <input
-                {...register("Address")}
+               
+                {...register("Address", {
+                  required: true,
+                })}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Address"
                 type="text"
@@ -277,7 +303,10 @@ function Form() {
                 Tags
               </label>
               <input
-                {...register("tags")}
+                
+                {...register("tags", {
+                  required: true,
+                })}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Tags"
                 type="text"

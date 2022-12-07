@@ -5,6 +5,7 @@ import Cards from "../../components/UI/FundCards";
 import Header from "../../components/UI/Header";
 import CatSearch from "../../components/UI/CatSearch";
 import { useForm } from "react-hook-form";
+import Pagination from "../../components/UI/Pagination";
 
 function Search() {
   const {
@@ -17,6 +18,11 @@ function Search() {
   const router = useRouter();
 
   const { keyword, category, page } = router.query;
+  
+  
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+
 
   const [data, setData] = useState(null);
 
@@ -40,6 +46,8 @@ function Search() {
 
       if (result.status >= 200 && result.status <= 300) {
         const jsonresultData = await result.json();
+        setCurrentPage(jsonresultData.current)
+        setTotalPages(jsonresultData.pages)
 
         //console.log(jsonresultData.response.created_funds)
 
@@ -58,6 +66,12 @@ function Search() {
     sync();
   }, [keyword, category, page]);
 
+
+
+  const paginationHandler = (data) => {
+console.log(`page.no: ${data}`)
+  }
+
   return (
     <div>
       <Header />
@@ -65,7 +79,9 @@ function Search() {
       <div className="xl:w-[1200px] mx-10 min-md:mx-auto xl:mx-auto max-md:flex-col max-md:flex">
         {data}
       </div>
-
+      <div>
+          <Pagination handler={paginationHandler} currentpage={currentPage} totalpages={totalPages}  />
+        </div>
       <Footer />
     </div>
   );
