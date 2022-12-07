@@ -34,7 +34,7 @@ function Search() {
           "&category=" +
           category +
           "&page=" +
-          page,
+          currentPage,
         {
           method: "GET",
           headers: {
@@ -64,12 +64,14 @@ function Search() {
     };
 
     sync();
-  }, [keyword, category, page]);
+  }, [keyword, category, currentPage]);
 
 
 
   const paginationHandler = (data) => {
 console.log(`page.no: ${data}`)
+setCurrentPage(data)
+
   }
 
   return (
@@ -79,7 +81,7 @@ console.log(`page.no: ${data}`)
       <div className="xl:w-[1200px] mx-10 min-md:mx-auto xl:mx-auto max-md:flex-col max-md:flex">
         {data}
       </div>
-      <div>
+      <div className="cursor-pointer">
           <Pagination handler={paginationHandler} currentpage={currentPage} totalpages={totalPages}  />
         </div>
       <Footer />
