@@ -4,6 +4,7 @@ import ProgressBar from "./ProgressBar";
 import { useRouter } from "next/router";
 import Donations from "./Donations";
 import DefaultTitle from "./DefaultTitle";
+import { data } from "autoprefixer";
 
 function FundData({ fund, followingStatus }) {
   const [isAnonymous, setIsAnonymous] = useState(false);
@@ -95,8 +96,26 @@ function FundData({ fund, followingStatus }) {
                   </button>
                 </div>
               </div>
-              <DefaultTitle title="Recent Donations" />
-              <div>{donationsData}</div>
+              {(fund.highest_donated[0]) ? (
+                <><DefaultTitle title="Highest Donation" />
+              <Donations data={fund.highest_donated[0]} key={fund.highest_donated[0]?.donator_name} /></>
+              ) : ("")}
+
+
+              {(fund.first_donated[0]) ? (
+                <><DefaultTitle title="First Donation" />
+              <Donations data={fund.first_donated[0]} key={fund.first_donated[0]?.donator_name} /></>
+              ) : ("")}
+              
+
+              {(fund.recent_donated[0]) ? (
+                <><DefaultTitle title="Recent Donations" />
+              <Donations data={fund.recent_donated[0]} key={fund.recent_donated[0]?.donator_name} /></>
+              ) : ("")}
+              
+              
+              
+              
               
             </div>
             
