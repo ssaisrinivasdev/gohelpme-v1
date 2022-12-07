@@ -41,7 +41,7 @@ function CategoryFunds({ category, categoryTitle }) {
         if (category == "Top") {
 
           funds = jsonresultData.funds[0]?.donations?.map((items) => {
-            return <Cards key={items._id} items={items?.funds} />;
+            return <Cards key={items._id} items={items?.funds[0]} />;
           });
         } else {
         funds = jsonresultData.funds.map((items) => {
