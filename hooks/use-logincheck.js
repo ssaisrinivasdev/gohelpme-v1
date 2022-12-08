@@ -16,8 +16,10 @@ function useLoginCheck() {
           setIsLoggedIn(true);
         }
       });
+    } else {
+      console.log("token notthere");
     }
-  }, []);
+  }, [isLoggedIn]);
   return isLoggedIn;
 }
 

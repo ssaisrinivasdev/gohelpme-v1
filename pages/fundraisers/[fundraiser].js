@@ -13,8 +13,10 @@ import useFundData from "../../hooks/use-fundData";
 import useLoginCheck from "../../hooks/use-logincheck";
 
 function Fundraiser() {
+  const router = useRouter();
   // const { decodedId } = useLoginCheck();
   const fundData = useFundData();
+  console.log(fundData);
   return (
     <div>
       <Header />

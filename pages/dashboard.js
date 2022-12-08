@@ -16,12 +16,12 @@ function Dashboard() {
   const [buttonActive, setButtonActive] = useState("Dashboard");
 
   const isLoggedIn = useLoginCheck();
-  console.log(isLoggedIn);
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, []);
 
   if (!isLoggedIn) {
     router.push("/login");
-  } else {
-    router.push("/dashboard");
   }
 
   return (

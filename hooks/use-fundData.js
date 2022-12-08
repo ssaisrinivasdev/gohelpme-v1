@@ -10,7 +10,7 @@ function useFundData() {
   const { fundraiser } = router.query;
 
   // 3. Create out useEffect function
-  useEffect(() => {
+  const setter = useEffect(() => {
     if (!router.isReady) return;
     fetch("http://gohelpme.online/api/fund/" + fundraiser, {
       method: "GET",
@@ -22,7 +22,8 @@ function useFundData() {
       .then((response) => response.json())
       // 4. Setting *dogImage* to the image url that we received from the response above
       .then((data) => setFundData(data));
-  }, [router.isReady]);
+  }, [router.isReady, fundData]);
+  window.onload = setter;
 
   return fundData;
 }
