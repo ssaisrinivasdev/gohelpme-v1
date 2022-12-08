@@ -18,7 +18,6 @@ function Fundraiser() {
   const idOfUser = useSelector((state) => state.id);
 
   const { decodedId } = useLoginCheck();
-  console.log(`isLoggenIn: ${decodedId}`);
 
   useEffect(() => {
     if (!router.isReady) return;
