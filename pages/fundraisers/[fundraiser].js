@@ -44,7 +44,7 @@ function Fundraiser() {
     <div>
       <Header />
 
-      {decodedId == fundData.owner && (
+      {decodedId == fundData.fund?.owner && (
         <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
           <button
             type="button"
