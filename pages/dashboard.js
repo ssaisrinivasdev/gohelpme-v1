@@ -16,7 +16,9 @@ function Dashboard() {
 
   const isLoggedIn = useLoginCheck();
 
-  if (!isLoggedIn) {
+  if (isLoggedIn) {
+    console.log("userLoggedIn");
+  } else {
     router.push("/login");
   }
 
