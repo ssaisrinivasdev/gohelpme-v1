@@ -44,7 +44,6 @@ export default function Login() {
       const name = response.response.name;
       const lastname = response.response.lastname;
       const email = response.response.email;
-      const id = response.response.id;
 
       console.log("Success:", response.response.message);
       globalData[1].setIsLoggedIn(true);
@@ -54,7 +53,6 @@ export default function Login() {
           name: name,
           lastname: lastname,
           email: email,
-          id: id,
         })
       );
 

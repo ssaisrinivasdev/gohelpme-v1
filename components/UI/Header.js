@@ -2,6 +2,8 @@ import { data } from "autoprefixer";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeDetails } from "../../store/actions/user";
 import GlobalContext from "../../store/global-context";
 
 export default function Header() {
@@ -9,6 +11,7 @@ export default function Header() {
   const navRef = useRef();
   const globalData = useContext(GlobalContext);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   // Replace javascript:void(0) path with your path
   const navigation = [
@@ -50,6 +53,7 @@ export default function Header() {
         console.log("Success:", data);
         globalData[1].setIsLoggedIn(false);
         router.push("/");
+        dispatch(removeDetails());
       })
       .catch((error) => {
         console.error("Error:", error);

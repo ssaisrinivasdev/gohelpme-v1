@@ -11,9 +11,9 @@ function ProfileFunds({ title, desc, categoryTitle }) {
   const [donated_funds, setDonated_FundsData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(created_funds);
-  console.log(following_funds);
-  console.log(donated_funds);
+  // console.log(created_funds);
+  // console.log(following_funds);
+  // console.log(donated_funds);
 
   function waitforme(ms) {
     // here is the key!
