@@ -22,8 +22,6 @@ export default function Login() {
   const globalData = useContext(GlobalContext);
 
   const LoginPost = async (data) => {
-    const { email, password } = data;
-
     const res = await fetch("http://gohelpme.online/api/login", {
       method: "POST",
       headers: {
