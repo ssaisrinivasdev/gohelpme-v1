@@ -15,6 +15,16 @@ function ProfileFunds({ title, desc, categoryTitle }) {
   console.log(following_funds);
   console.log(donated_funds);
 
+  function waitforme(ms) {
+    // here is the key!
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("");
+      }, ms);
+    });
+  }
+
   useEffect(() => {
     handler();
   }, []);
@@ -66,6 +76,9 @@ function ProfileFunds({ title, desc, categoryTitle }) {
                 return <Cards key={items._id} items={items} />;
               });
       }
+
+      await waitforme(1500);
+
       setCreated_FundsData(createdFunds);
       setFollowing_FundsData(followingFunds);
       setDonated_FundsData(donateFunds);
@@ -108,7 +121,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
           </div>
         )}
       </div>
-      {created_funds == null ? (
+      {created_funds == null && !isLoading ? (
         <p className="text-left mb-10">You haven't created any funds yet</p>
       ) : (
         ""
@@ -134,7 +147,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
           </div>
         )}
       </div>
-      {donated_funds == null ? (
+      {donated_funds == null && !isLoading ? (
         <p className="text-left mb-10">You haven't donated yet</p>
       ) : (
         ""
@@ -161,7 +174,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
           </div>
         )}
       </div>
-      {following_funds == null ? (
+      {following_funds == null && !isLoading ? (
         <p className="text-left mb-10">You haven't followed any funds</p>
       ) : (
         ""
