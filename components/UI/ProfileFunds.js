@@ -121,7 +121,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
           </div>
         )}
       </div>
-      {created_funds == null && !isLoading ? (
+      {created_funds.length == 0 && !isLoading ? (
         <p className="text-left mb-10">You haven't created any funds yet</p>
       ) : (
         ""
@@ -147,7 +147,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
           </div>
         )}
       </div>
-      {donated_funds == null && !isLoading ? (
+      {donated_funds.length == 0 && !isLoading ? (
         <p className="text-left mb-10">You haven't donated yet</p>
       ) : (
         ""
@@ -174,7 +174,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
           </div>
         )}
       </div>
-      {following_funds == null && !isLoading ? (
+      {following_funds.length == 0 && !isLoading ? (
         <p className="text-left mb-10">You haven't followed any funds</p>
       ) : (
         ""
