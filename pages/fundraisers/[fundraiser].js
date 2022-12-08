@@ -16,9 +16,14 @@ function Fundraiser() {
   const router = useRouter();
   const [fundData, setFundData] = useState(null);
   const idOfUser = useSelector((state) => state.id);
+  const [isOwner, setIsOwner] = useState(false);
 
   const { decodedId } = useLoginCheck();
   console.log(`isLoggenIn: ${decodedId}`);
+
+  if (decodedId === idOfUser) {
+    setIsOwner(true);
+  }
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -46,7 +51,7 @@ function Fundraiser() {
     <div>
       <Header />
 
-      {decodedId == idOfUser ? (
+      {isOwner && (
         <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
           <button
             type="button"
@@ -58,8 +63,6 @@ function Fundraiser() {
             <span class="mx-1">Edit</span>
           </button>
         </div>
-      ) : (
-        ""
       )}
 
       {fundData && (
