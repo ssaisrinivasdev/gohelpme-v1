@@ -1,8 +1,8 @@
 import * as C from "../types/user";
 
-const addDetails = ({name, lastname, email}) => ({
+const addDetails = ({ name, lastname, email }) => ({
   type: C.ADD_DETAILS,
-  payload: { name, lastname, email },
+  payload: { name, lastname, email, id },
 });
 
 // const addLName = (lname) => ({

@@ -8,13 +8,10 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addDetails } from "../store/actions/user";
 
-
 export default function Login() {
-
-
   const dispatch = useDispatch();
 
-  const { 
+  const {
     register,
     handleSubmit,
     watch,
@@ -25,7 +22,6 @@ export default function Login() {
   const globalData = useContext(GlobalContext);
 
   const LoginPost = async (data) => {
-    
     const { email, password } = data;
 
     const res = await fetch("http://gohelpme.online/api/login", {
@@ -49,17 +45,21 @@ export default function Login() {
 
       const name = response.response.name;
       const lastname = response.response.lastname;
-      const email = response.response.email
+      const email = response.response.email;
+      const id = response.response.id;
 
       console.log("Success:", response.response.message);
       globalData[1].setIsLoggedIn(true);
-      
-      dispatch(addDetails({
-        name: name,
-        lastname: lastname,
-        email: email,
-      }));
-      
+
+      dispatch(
+        addDetails({
+          name: name,
+          lastname: lastname,
+          email: email,
+          id: id,
+        })
+      );
+
       globalData[2].setUsername(name);
 
       router.push("/dashboard");
@@ -90,11 +90,10 @@ export default function Login() {
       //   }
       // }
     }
-
   };
 
   return (
-    <div >
+    <div>
       <Header />
       <div className="py-24 drop-shadow-md bg-slate-100">
         <div class="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-md shadow-md">

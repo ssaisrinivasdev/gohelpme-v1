@@ -1,21 +1,27 @@
+import { deepOrange } from "@mui/material/colors";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 import FundUpdateForm from "../../components/UI/FundUpdateForm";
 import Header from "../../components/UI/Header";
-import EditIcon from "../../public/icons/edit"
+import useLoginCheck from "../../hooks/use-logincheck";
+import EditIcon from "../../public/icons/edit";
 
 function Fundraiser() {
   const router = useRouter();
-  const [fundData, setFundData] = useState(null)
+  const [fundData, setFundData] = useState(null);
+  const idOfUser = useSelector((state) => state.id);
 
+  const { decodedId } = useLoginCheck();
+  console.log(`isLoggenIn: ${decodedId}`);
 
   useEffect(() => {
-    if(!router.isReady) return;
+    if (!router.isReady) return;
     const { fundraiser } = router.query;
     const sync = async () => {
       let result = await fetch(
@@ -26,32 +32,42 @@ function Fundraiser() {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-        },
-      
+        }
       );
 
-      const data = await result.json()
-      setFundData(data)
-      
+      const data = await result.json();
+      setFundData(data);
     };
 
     sync();
-
-  },[router.isReady, fundData])
+  }, [router.isReady, fundData]);
 
   return (
-
     <div>
       <Header />
-      <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
 
-       <button type="button" onClick={() => { router.push(`/fundraisers/${fundData.fund._id}/updating=true`)}} class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-      
-      <span class="mx-1">Edit</span>
-      </button>
-      </div>
-      
-      {fundData && <FundData fund={fundData.fund} followingStatus={fundData.following_status} />}
+      {decodedId == idOfUser ? (
+        <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
+          <button
+            type="button"
+            onClick={() => {
+              router.push(`/fundraisers/${fundData.fund._id}/updating=true`);
+            }}
+            class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+          >
+            <span class="mx-1">Edit</span>
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {fundData && (
+        <FundData
+          fund={fundData.fund}
+          followingStatus={fundData.following_status}
+        />
+      )}
       <Footer />
     </div>
   );
@@ -83,7 +99,7 @@ function Fundraiser() {
 
 // export async function getStaticPaths() {
 //   let result = await fetch("http://gohelpme.online/api/funds");
-  
+
 //   const data = await result.json();
 
 //   const ids = data.funds.map((fund) => fund._id);

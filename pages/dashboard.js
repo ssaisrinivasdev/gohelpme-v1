@@ -7,9 +7,20 @@ import ProfileCards from "../components/UI/ProfileCards";
 import ProfileFunds from "../components/UI/ProfileFunds";
 import Search from "../components/UI/CatSearch";
 import ProfileForm from "../components/UI/ProfileForm";
+import useLoginCheck from "../hooks/use-logincheck";
+import { useRouter } from "next/router";
 
 function Dashboard() {
+  const router = useRouter();
   const [buttonActive, setButtonActive] = useState("Dashboard");
+
+  const { isLoggedIn } = useLoginCheck();
+  console.log(`isLoggenIn: ${isLoggedIn}`);
+
+  if (!isLoggedIn) {
+    router.push("/login");
+    return;
+  }
 
   console.log(buttonActive);
 
@@ -66,11 +77,9 @@ function Dashboard() {
           </div>
 
           {buttonActive === "profile" ? (
-            
-              <div>
-                <ProfileForm />
-             </div>
-            
+            <div>
+              <ProfileForm />
+            </div>
           ) : (
             ""
           )}
@@ -87,8 +96,8 @@ function Dashboard() {
                 <Profile />
               </div>
               <div className="mx-3 py-4">
-             <ProfileFunds />
-             </div>
+                <ProfileFunds />
+              </div>
             </div>
           ) : (
             ""
