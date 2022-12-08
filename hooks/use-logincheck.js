@@ -1,12 +1,15 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import jwt from "jsonwebtoken";
 
 function useLoginCheck() {
+  const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const [decodedId, setDecodedId] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
+  // 3. Create out useEffect function
   useEffect(() => {
+    if (!router.isReady) return;
     // Perform localStorage action
     const token = localStorage.getItem("token");
 
@@ -16,16 +19,15 @@ function useLoginCheck() {
           setIsLoggedIn(false);
         } else {
           setIsLoggedIn(true);
-          setDecodedId(decoded.id);
+          setIsLoaded(true);
         }
       });
     }
-  }, []);
+  }, [router.isReady]);
 
-  return {
-    isLoggedIn,
-    decodedId,
-  };
+  if (isLoaded) {
+    return isLoggedIn;
+  }
 }
 
 export default useLoginCheck;
