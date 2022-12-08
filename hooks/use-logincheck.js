@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 function useLoginCheck() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [decodedId, setDecodedId] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Perform localStorage action
@@ -19,17 +18,14 @@ function useLoginCheck() {
           setIsLoggedIn(true);
           setDecodedId(decoded.id);
         }
-        setIsLoaded(true);
       });
     }
-  }, []);
+  }, [isLoggedIn, decodedId]);
 
-  if (isLoaded) {
-    return {
-      isLoggedIn,
-      decodedId,
-    };
-  }
+  return {
+    isLoggedIn,
+    decodedId,
+  };
 }
 
 export default useLoginCheck;

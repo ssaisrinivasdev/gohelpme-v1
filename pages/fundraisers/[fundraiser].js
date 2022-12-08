@@ -4,26 +4,19 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+
 import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
-import FundUpdateForm from "../../components/UI/FundUpdateForm";
+
 import Header from "../../components/UI/Header";
 import useLoginCheck from "../../hooks/use-logincheck";
-import EditIcon from "../../public/icons/edit";
 
 function Fundraiser() {
   const router = useRouter();
   const [fundData, setFundData] = useState(null);
-  const idOfUser = useSelector((state) => state.id);
-  const [isOwner, setIsOwner] = useState(false);
 
   const { decodedId } = useLoginCheck();
   console.log(`decodedId: ${decodedId}`);
-
-  if (decodedId === idOfUser) {
-    setIsOwner(true);
-  }
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -45,13 +38,13 @@ function Fundraiser() {
     };
 
     sync();
-  }, [router.isReady, fundData]);
+  }, [router.isReady]);
 
   return (
     <div>
       <Header />
 
-      {isOwner && (
+      {decodedId == fundData.owner && (
         <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
           <button
             type="button"
