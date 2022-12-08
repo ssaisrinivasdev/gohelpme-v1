@@ -40,7 +40,7 @@ export default function Cards(data) {
       onClick={() => {
         router.push("/fundraisers/" + data.items?._id);
       }}
-      className="inline-block w-80 overflow-hidden bg-white rounded-lg shadow-lg my-5 mx-3 h-[500px] "
+      className="inline-block w-80 overflow-hidden bg-white rounded-lg shadow-lg my-5 mr-7 h-[500px] "
     >
       <Image
         className="object-cover object-center w-full h-56"

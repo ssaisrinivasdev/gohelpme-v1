@@ -77,7 +77,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
               });
       }
 
-      await waitforme(5000);
+      await waitforme(1650);
 
       setCreated_FundsData(createdFunds);
       setFollowing_FundsData(followingFunds);
