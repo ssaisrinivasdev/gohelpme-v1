@@ -9,42 +9,17 @@ import Footer from "../../components/UI/Footer";
 import FundData from "../../components/UI/FundData";
 
 import Header from "../../components/UI/Header";
+import useFundData from "../../hooks/use-fundData";
 import useLoginCheck from "../../hooks/use-logincheck";
 
 function Fundraiser() {
-  const router = useRouter();
-  const [fundData, setFundData] = useState(null);
-
   const { decodedId } = useLoginCheck();
-  console.log(`decodedId: ${decodedId}`);
-
-  useEffect(() => {
-    if (!router.isReady) return;
-    const { fundraiser } = router.query;
-    const sync = async () => {
-      let result = await fetch(
-        "http://gohelpme.online/api/fund/" + fundraiser,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
-
-      const data = await result.json();
-      setFundData(data);
-    };
-
-    sync();
-  }, [router.isReady]);
-
+  const fundData = useFundData();
   return (
     <div>
       <Header />
 
-      {decodedId == fundData.fund?.owner && (
+      {decodedId == fundData?.fund?.owner && (
         <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
           <button
             type="button"
