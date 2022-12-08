@@ -19,7 +19,7 @@ function Fundraiser() {
   const [isOwner, setIsOwner] = useState(false);
 
   const { decodedId } = useLoginCheck();
-  console.log(`isLoggenIn: ${decodedId}`);
+  console.log(`decodedId: ${decodedId}`);
 
   if (decodedId === idOfUser) {
     setIsOwner(true);
