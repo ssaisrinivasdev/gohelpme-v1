@@ -140,7 +140,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
             />
           </div>
         ) : (
-          <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
+          <div className="grid grid-flow-row col-auto grid-cols-1 items-center mx-auto">
             <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
               {donated_funds != null ? donated_funds : ""}
             </div>
@@ -167,7 +167,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
             />
           </div>
         ) : (
-          <div className="grid grid-flow-row col-auto grid-cols-1 items-center text-center mx-auto">
+          <div className="grid grid-flow-row col-auto grid-cols-1 items-center mx-auto">
             <div className="w-full overflow-auto whitespace-nowrap scroll-smooth">
               {following_funds != null ? following_funds : ""}
             </div>
