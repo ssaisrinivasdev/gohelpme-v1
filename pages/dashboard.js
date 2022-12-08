@@ -9,20 +9,20 @@ import Search from "../components/UI/CatSearch";
 import ProfileForm from "../components/UI/ProfileForm";
 import useLoginCheck from "../hooks/use-logincheck";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 function Dashboard() {
   const router = useRouter();
   const [buttonActive, setButtonActive] = useState("Dashboard");
 
-  const isLoggedIn = useLoginCheck();
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, []);
+  const { isLoggedIn } = useLoginCheck();
+  console.log(`isLoggenIn: ${isLoggedIn}`);
 
   if (!isLoggedIn) {
     router.push("/login");
+    return;
   }
+
+  console.log(buttonActive);
 
   return (
     <div className="overflow-hidden bg-slate-100">
