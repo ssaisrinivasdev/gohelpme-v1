@@ -2,6 +2,8 @@ import { data } from "autoprefixer";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeDetails } from "../../store/actions/user";
 import GlobalContext from "../../store/global-context";
 
 export default function Header() {
@@ -50,6 +52,7 @@ export default function Header() {
         console.log("Success:", data);
         globalData[1].setIsLoggedIn(false);
         router.push("/");
+        useDispatch(removeDetails());
       })
       .catch((error) => {
         console.error("Error:", error);

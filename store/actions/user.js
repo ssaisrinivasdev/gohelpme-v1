@@ -5,9 +5,9 @@ const addDetails = ({ name, lastname, email, id }) => ({
   payload: { name, lastname, email, id },
 });
 
-// const addLName = (lname) => ({
-//   type: C.ADD_LNAME,
-//   payload: {lname},
-// });
+const removeDetails = () => ({
+  type: C.REMOVE_DETAILS,
+  payload: {},
+});
 
-export { addDetails };
+export { addDetails, removeDetails };

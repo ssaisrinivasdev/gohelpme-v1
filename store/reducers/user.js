@@ -12,6 +12,15 @@ function userReducer(state = initialState, action) {
       email: (state.email = action.payload.email),
       id: (state.id = action.payload.id),
     };
+  } else if (action.type === "REMOVE_DETAILS") {
+    return {
+      ...state,
+      // and update the copy with the new value
+      name: "",
+      lastname: "",
+      email: "",
+      id: "",
+    };
   }
   // otherwise return the existing state unchanged
   return state;
