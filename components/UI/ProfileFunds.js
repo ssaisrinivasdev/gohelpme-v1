@@ -77,7 +77,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
               });
       }
 
-      await waitforme(1500);
+      await waitforme(5000);
 
       setCreated_FundsData(createdFunds);
       setFollowing_FundsData(followingFunds);
@@ -102,7 +102,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
     <div className="mx-auto">
       <div>
         <DefaultTitle title="Your Funds" />
-        {isLoading && created_funds != null ? (
+        {isLoading ? (
           <div>
             <Skeleton width="20%" />
             <Skeleton
@@ -128,7 +128,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
       )}
       <div>
         <DefaultTitle title="Donated Funds" />
-        {isLoading && donated_funds != null ? (
+        {isLoading ? (
           <div>
             <Skeleton width="20%" />
             <Skeleton
@@ -155,7 +155,7 @@ function ProfileFunds({ title, desc, categoryTitle }) {
 
       <div>
         <DefaultTitle title="Following Funds" />
-        {isLoading && following_funds != null ? (
+        {isLoading ? (
           <div>
             <Skeleton width="20%" />
             <Skeleton
