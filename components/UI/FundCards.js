@@ -3,42 +3,36 @@ import { useRouter } from "next/router";
 import ProgressBar from "./ProgressBar";
 
 export default function Cards(data) {
-
   let dateText = data.items?.createdAt;
 
+  let date = new Date(dateText);
 
-let date = new Date(dateText)
+  function timeSince(date) {
+    var seconds = Math.floor((new Date() - date) / 1000);
 
+    var interval = seconds / 31536000;
 
-function timeSince(date) {
-
-  var seconds = Math.floor((new Date() - date) / 1000);
-
-  var interval = seconds / 31536000;
-
-  if (interval > 1) {
-    return Math.floor(interval) + " years";
+    if (interval > 1) {
+      return Math.floor(interval) + " years";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + " months";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + " days";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + " hours";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
   }
-  interval = seconds / 2592000;
-  if (interval > 1) {
-    return Math.floor(interval) + " months";
-  }
-  interval = seconds / 86400;
-  if (interval > 1) {
-    return Math.floor(interval) + " days";
-  }
-  interval = seconds / 3600;
-  if (interval > 1) {
-    return Math.floor(interval) + " hours";
-  }
-  interval = seconds / 60;
-  if (interval > 1) {
-    return Math.floor(interval) + " minutes";
-  }
-  return Math.floor(seconds) + " seconds";
-}
-  
-  
 
   const router = useRouter();
   return (
@@ -46,7 +40,7 @@ function timeSince(date) {
       onClick={() => {
         router.push("/fundraisers/" + data.items?._id);
       }}
-      className="inline-block w-80 overflow-hidden bg-white rounded-lg shadow-lg my-5 mx-3 "
+      className="inline-block w-80 overflow-hidden bg-white rounded-lg shadow-lg my-5 mx-3 h-[500px] "
     >
       <Image
         className="object-cover object-center w-full h-56"
