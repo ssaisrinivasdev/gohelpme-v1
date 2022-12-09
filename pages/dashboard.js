@@ -7,17 +7,12 @@ import ProfileCards from "../components/UI/ProfileCards";
 import ProfileFunds from "../components/UI/ProfileFunds";
 import Search from "../components/UI/CatSearch";
 import ProfileForm from "../components/UI/ProfileForm";
-import useLoginCheck from "../hooks/use-logincheck";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import jwt from "jsonwebtoken";
 
 function Dashboard() {
   const [buttonActive, setButtonActive] = useState("Dashboard");
-
-  console.log(buttonActive);
-
-  useLoginCheck();
 
   return (
     <div className="overflow-hidden bg-slate-100">

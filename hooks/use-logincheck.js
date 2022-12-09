@@ -33,6 +33,8 @@ function useLoginCheck() {
   if (isLoading) {
     return "Loading";
   }
+
+  return isLoggedIn;
 }
 
 export default useLoginCheck;
