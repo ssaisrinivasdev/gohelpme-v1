@@ -15,9 +15,6 @@ import EditIcon from "../../public/icons/edit";
 function Fundraiser() {
   const router = useRouter();
   const [fundData, setFundData] = useState(null);
-  const idOfUser = useSelector((state) => state.id);
-
-  const { decodedId } = useLoginCheck();
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -45,21 +42,21 @@ function Fundraiser() {
     <div>
       <Header />
 
-      {decodedId == idOfUser ? (
-        <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
-          <button
-            type="button"
-            onClick={() => {
-              router.push(`/fundraisers/${fundData.fund._id}/updating=true`);
-            }}
-            class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
-          >
-            <span class="mx-1">Edit</span>
-          </button>
-        </div>
-      ) : (
+      {/* {decodedId == idOfUser ? ( */}
+      <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
+        <button
+          type="button"
+          onClick={() => {
+            router.push(`/fundraisers/${fundData.fund._id}/updating=true`);
+          }}
+          class="flex items-center px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform hover:bg-transparent border hover:border-color1 hover:text-color1  bg-color1 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+        >
+          <span class="mx-1">Edit</span>
+        </button>
+      </div>
+      {/* ) : (
         ""
-      )}
+      )} */}
 
       {fundData && (
         <FundData
