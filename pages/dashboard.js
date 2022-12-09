@@ -16,24 +16,12 @@ function Dashboard() {
   const router = useRouter();
   const [buttonActive, setButtonActive] = useState("Dashboard");
 
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
-
   const [isLoading, setIsLoading] = useState(true);
 
+  const isLoggedIn = useLoginCheck();
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
-        if (err) {
-          setIsLoggedIn(false);
-        } else {
-          setIsLoggedIn(true);
-        }
-      });
-    }
-
-    if (router.query !== "/login" && isLoggedIn) {
+    if (router.query !== "/login" && !isLoggedIn) {
       router.push("/login");
     } else {
       setIsLoading(false);
