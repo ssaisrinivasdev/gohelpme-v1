@@ -5,17 +5,18 @@ import jwt from "jsonwebtoken";
 import store, { Persistor } from "../store/index";
 import { Provider, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import NextNProgress from 'nextjs-progressbar'
+import NextNProgress from "nextjs-progressbar";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const [email, setEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [username, setUsername] = useState("");
 
-  // const token = useSelector((state) => state.token.input);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Perform localStorage action
     const token = localStorage.getItem("token");
 
     if (token) {
@@ -27,7 +28,17 @@ function MyApp({ Component, pageProps }) {
         }
       });
     }
+
+    if (router.query !== "/login" && !isLoggedIn) {
+      router.push("/login");
+    } else {
+      setIsLoading(false);
+    }
   }, []);
+
+  if (isLoading) {
+    return "Loading...";
+  }
 
   return (
     <Provider store={store}>
@@ -39,13 +50,27 @@ function MyApp({ Component, pageProps }) {
             { username, setUsername },
           ]}
         >
-        <NextNProgress color="#DB162F"
-/>
+          <NextNProgress color="#DB162F" />
           <Component {...pageProps} />
         </GlobalContext.Provider>
       </PersistGate>
     </Provider>
   );
 }
+
+// useEffect(() => {
+//   // Perform localStorage action
+//   const token = localStorage.getItem("token");
+
+//   if (token) {
+//     jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
+//       if (err) {
+//         setIsLoggedIn(false);
+//       } else {
+//         setIsLoggedIn(true);
+//       }
+//     });
+//   }
+// }, []);
 
 export default MyApp;
