@@ -14,15 +14,13 @@ function Dashboard() {
   const router = useRouter();
   const [buttonActive, setButtonActive] = useState("Dashboard");
 
-  const { isLoggedIn } = useLoginCheck();
-  console.log(`isLoggenIn: ${isLoggedIn}`);
-
-  if (!isLoggedIn) {
-    router.push("/login");
-    return;
-  }
+  const isLoading = useLoginCheck();
 
   console.log(buttonActive);
+
+  if (isLoading) {
+    return "Loading";
+  }
 
   return (
     <div className="overflow-hidden bg-slate-100">

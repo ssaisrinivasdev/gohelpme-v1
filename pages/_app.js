@@ -29,16 +29,16 @@ function MyApp({ Component, pageProps }) {
       });
     }
 
-    if (router.query !== "/login" && !isLoggedIn) {
-      router.push("/login");
-    } else {
-      setIsLoading(false);
-    }
+    // if (router.query !== "/login" && !isLoggedIn) {
+    //   router.push("/login");
+    // } else {
+    //   setIsLoading(false);
+    // }
   }, []);
 
-  if (isLoading) {
-    return "Loading...";
-  }
+  // if (isLoading) {
+  //   return "Loading...";
+  // }
 
   return (
     <Provider store={store}>

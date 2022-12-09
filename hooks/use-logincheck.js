@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import jwt from "jsonwebtoken";
+import { useRouter } from "next/router";
 
 function useLoginCheck() {
+  const router = useRouter();
+
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const [decodedId, setDecodedId] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Perform localStorage action
     const token = localStorage.getItem("token");
 
     if (token) {
@@ -16,16 +19,18 @@ function useLoginCheck() {
           setIsLoggedIn(false);
         } else {
           setIsLoggedIn(true);
-          setDecodedId(decoded.id);
         }
       });
     }
+
+    if (router.query !== "/login" && !isLoggedIn) {
+      router.push("/login");
+    } else {
+      setIsLoading(false);
+    }
   }, []);
 
-  return {
-    isLoggedIn,
-    decodedId,
-  };
+  return isLoading;
 }
 
 export default useLoginCheck;
