@@ -33,16 +33,14 @@ function Dashboard() {
       });
     }
 
-    if (router.query !== "/login" && !isLoggedIn) {
+    if (router.query !== "/login" && isLoggedIn) {
       router.push("/login");
     } else {
       setIsLoading(false);
     }
-  }, [isLoggedIn, isLoading]);
+  }, []);
 
-  console.log(isLoggedIn);
-
-  console.log(buttonActive);
+  // console.log(buttonActive);
 
   if (isLoading) {
     return "Loading";
