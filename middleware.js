@@ -1,26 +1,20 @@
 import { NextResponse } from "next/server";
-import { verify } from "jsonwebtoken";
-import { useRouter } from "next/router";
 
 const secret = "$tr0ngkEy123!@#";
 
-export default function middleware() {
-  const router = useRouter();
-  const token = localStorage.getItem("token");
+export default function middleware(req) {
+  let verify = req.cookies.get("token");
+  let url = req.url;
 
-  if (router.query.includes("/dashboard")) {
-    if (token === undefined) {
-      return NextResponse.redirect("/login");
-    }
-
-    try {
-      verify(token, secret);
-
-      return NextResponse.next();
-    } catch (error) {
-      return NextResponse.redirect("/login");
-    }
+  if (!verify && url.includes("/dashboard")) {
+    return NextResponse.redirect("http://localhost:3000/login");
   }
 
-  return NextResponse.next();
+  // try {
+  //   verify(jwt, secret);
+
+  //   return NextResponse.next();
+  // } catch (error) {
+  //   return NextResponse.redirect("/login");
+  // }
 }
