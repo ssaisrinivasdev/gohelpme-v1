@@ -8,7 +8,7 @@ export default function middleware(req) {
     return NextResponse.redirect("http://gohelpme.online/dashboard");
   }
 
-  if (!verify && url === "http://gohelpme.online/dashboard")) {
+  if (!verify && url === "http://gohelpme.online/dashboard") {
     return NextResponse.redirect("http://gohelpme.online/login");
   }
 }
