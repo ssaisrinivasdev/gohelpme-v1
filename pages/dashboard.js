@@ -38,7 +38,9 @@ function Dashboard() {
     } else {
       setIsLoading(false);
     }
-  }, []);
+  }, [isLoggedIn, isLoading]);
+
+  console.log(isLoggedIn);
 
   console.log(buttonActive);
 
