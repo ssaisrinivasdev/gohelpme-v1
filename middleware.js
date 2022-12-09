@@ -5,11 +5,11 @@ export default function middleware(req) {
 
   let url = req.url;
 
-  if (verify && url === "/login") {
-    return NextResponse.redirect("http://gohelpme.online/dashboard");
-  }
+  // if (verify && url === "/login") {
+  //   return NextResponse.redirect("http://gohelpme.online/dashboard");
+  // }
 
-  if (!verify && url === "/dashboard") {
+  if (!verify && url.includes("/dashboard")) {
     return NextResponse.redirect("http://gohelpme.online/login");
   }
 }
