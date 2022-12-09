@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export default function middleware(req) {
-  let verify = req.cookies.get("token");
+  let jwtToken = req.cookies.get("token");
 
   let url = req.url;
 
@@ -9,7 +9,11 @@ export default function middleware(req) {
   //   return NextResponse.redirect("http://gohelpme.online/dashboard");
   // }
 
-  if (!verify && url.includes("/dashboard")) {
+  if (
+    !jwtToken &&
+    url.includes("/dashboard") &&
+    !url.includes("/fundraisers")
+  ) {
     return NextResponse.redirect("http://gohelpme.online/login");
   }
 }
