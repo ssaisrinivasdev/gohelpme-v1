@@ -6,12 +6,12 @@ export default function middleware(req) {
   let verify = req.cookies.get("token");
   let url = req.url;
 
-  if (!verify && url.includes("/dashboard")) {
-    return NextResponse.redirect("/login");
+  if (verify && url.includes("/login")) {
+    return NextResponse.redirect("http://gohelpme.online/dashboard");
   }
 
-  if (verify && url.includes("/login")) {
-    return NextResponse.redirect("/dashboard");
+  if (!verify && url.includes("/dashboard")) {
+    return NextResponse.redirect("http://gohelpme.online/login");
   }
 
   // if (verify && url === "http://localhost:3000/login") {
