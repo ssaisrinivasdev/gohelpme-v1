@@ -13,26 +13,11 @@ import { useEffect } from "react";
 import jwt from "jsonwebtoken";
 
 function Dashboard() {
-  const router = useRouter();
   const [buttonActive, setButtonActive] = useState("Dashboard");
 
-  const [isLoading, setIsLoading] = useState(true);
+  console.log(buttonActive);
 
-  const isLoggedIn = useLoginCheck();
-
-  useEffect(() => {
-    if (router.query !== "/login" && !isLoggedIn) {
-      router.push("/login");
-    } else {
-      setIsLoading(false);
-    }
-  }, []);
-
-  // console.log(buttonActive);
-
-  if (isLoading) {
-    return "Loading";
-  }
+  useLoginCheck();
 
   return (
     <div className="overflow-hidden bg-slate-100">
