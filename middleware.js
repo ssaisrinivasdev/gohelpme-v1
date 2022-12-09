@@ -7,8 +7,16 @@ export default function middleware(req) {
   let url = req.url;
 
   if (!verify && url.includes("/dashboard")) {
-    return NextResponse.redirect("http://localhost:3000/login");
+    return NextResponse.redirect("/login");
   }
+
+  if (verify && url.includes("/login")) {
+    return NextResponse.redirect("/dashboard");
+  }
+
+  // if (verify && url === "http://localhost:3000/login") {
+  //   return NextResponse.redirect("http://localhost:3000/login/dashboard");
+  // }
 
   // try {
   //   verify(jwt, secret);
