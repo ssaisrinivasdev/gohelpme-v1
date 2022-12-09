@@ -5,10 +5,10 @@ export default function middleware(req) {
   let url = req.url;
 
   if (!verify && url.includes("/dashboard")) {
-    return NextResponse.redirect("http://localhost:3000/login");
+    return NextResponse.redirect("http://gohelpme.online/login");
   }
 
   if (verify && url.includes("/login")) {
-    return NextResponse.redirect("http://localhost:3000/dashboard");
+    return NextResponse.redirect("http://gohelpme.online/dashboard");
   }
 }
