@@ -9,12 +9,36 @@ import Search from "../components/UI/CatSearch";
 import ProfileForm from "../components/UI/ProfileForm";
 import useLoginCheck from "../hooks/use-logincheck";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import jwt from "jsonwebtoken";
 
 function Dashboard() {
   const router = useRouter();
   const [buttonActive, setButtonActive] = useState("Dashboard");
 
-  const isLoading = useLoginCheck();
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
+        if (err) {
+          setIsLoggedIn(false);
+        } else {
+          setIsLoggedIn(true);
+        }
+      });
+    }
+
+    if (router.query !== "/login" && !isLoggedIn) {
+      router.push("/login");
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
 
   console.log(buttonActive);
 

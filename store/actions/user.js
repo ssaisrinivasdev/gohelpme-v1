@@ -2,7 +2,7 @@ import * as C from "../types/user";
 
 const addDetails = ({ name, lastname, email }) => ({
   type: C.ADD_DETAILS,
-  payload: { name, lastname, email, id },
+  payload: { name, lastname, email },
 });
 
 // const addLName = (lname) => ({
