@@ -4,11 +4,11 @@ export default function middleware(req) {
   let verify = req.cookies.get("token");
   let url = req.url;
 
-  if (verify && url.includes("login")) {
+  if (verify && url.includes("http://gohelpme.online/login")) {
     return NextResponse.redirect("http://gohelpme.online/dashboard");
   }
 
-  if (!verify && url.includes("dashboard")) {
+  if (!verify && url.includes("http://gohelpme.online/dashboard")) {
     return NextResponse.redirect("http://gohelpme.online/login");
   }
 }
