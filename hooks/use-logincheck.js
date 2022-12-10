@@ -3,7 +3,15 @@ import { useState } from "react";
 import jwt from "jsonwebtoken";
 import { useRouter } from "next/router";
 
-function useLoginCheck() {
+function useLoginCheck(props) {
+  const loginStat = props.isLoggedIn;
+
+  return loginStat;
+}
+
+export default useLoginCheck;
+
+export function getStaticProps() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,6 +22,7 @@ function useLoginCheck() {
       jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
         if (err) {
           setIsLoggedIn(false);
+          setIsLoading(false);
         } else {
           setIsLoggedIn(true);
           setIsLoading(false);
@@ -23,8 +32,11 @@ function useLoginCheck() {
   }, []);
 
   if (!isLoading) {
-    return isLoggedIn;
+    return {
+      props: isLoggedIn,
+      // revalidate: 5,
+    };
   }
-}
 
-export default useLoginCheck;
+  // let fund = posts.find(fund => fund._id === fundraiserId)
+}

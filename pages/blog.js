@@ -6,10 +6,10 @@ import BlogCards from "../components/UI/BlogCards";
 import useLoginCheck from "../hooks/use-logincheck";
 
 function Blog() {
-  const isLoggedIn = useLoginCheck();
+  const loginStat = useLoginCheck();
 
   useEffect(() => {
-    console.log(isLoggedIn);
+    console.log(loginStat);
   }, []);
 
   return (

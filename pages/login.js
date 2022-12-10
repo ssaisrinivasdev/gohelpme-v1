@@ -10,7 +10,7 @@ import { addDetails } from "../store/actions/user";
 import useLoginCheck from "../hooks/use-logincheck";
 
 export default function Login() {
-  const isLoggedIn = useLoginCheck();
+  const loginStat = useLoginCheck();
   const dispatch = useDispatch();
 
   const {
@@ -42,7 +42,7 @@ export default function Login() {
 
       // Perform localStorage action
       localStorage.setItem("token", token);
-      localStorage.setItem("isLoggedIn", isLoggedIn);
+      localStorage.setItem("isLoggedIn", loginStat);
       // dispatch(addToken("token", token));
 
       const name = response.response.name;
