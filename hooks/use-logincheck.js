@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 function useLoginCheck(props) {
   const loginStat = props?.isLoggedIn;
-
   return loginStat;
 }
 
