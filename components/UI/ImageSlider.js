@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import React from 'react'
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 // import Button from "@material-ui/core/Button";
 // import MobileStepper from "@material-ui/core/MobileStepper";
@@ -11,16 +11,12 @@ import { useRouter } from 'next/router';
 // import { useTheme } from "@material-ui/core/styles";
 // import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 
-import Slider from '../../Slider/Slider';
+import Slider from "../../Slider/Slider";
 
-
-
-
- 
-
-function ImageSlider({image, id, status}) {
-
-
+function ImageSlider({ image, id, status }) {
+  useEffect(() => {
+    console.log(status);
+  }, []);
 
   // const MyCollection = [
   //   {
@@ -37,11 +33,9 @@ function ImageSlider({image, id, status}) {
   //   },
   // ];
 
-
- 
   // const theme = useTheme();
   // const [index, setActiveStep] = React.useState(0);
- 
+
   // const goToNextPicture = () => {
   //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
   // };
@@ -50,57 +44,64 @@ function ImageSlider({image, id, status}) {
   //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
   // };
 
+  const router = useRouter();
 
-  
-
-  const router = useRouter()
-
-
-const handler = async () => {
- 
-if(status == "not_loggedin") {
-  router.push("/login")
-} else {  
-  const res = await fetch("http://gohelpme.online/api/followfund/" + id, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  
-}
-   
-}
-
-
- 
+  const handler = async () => {
+    if (status == "not_loggedin") {
+      router.push("/login");
+    } else {
+      const res = await fetch("http://gohelpme.online/api/followfund/" + id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+  };
   return (
-    <div className='relative'>
+    <div className="relative">
+      {status === "not_loggedin" ? (
+        <div
+          className="absolute top-7 right-3 cursor-pointer z-10"
+          onClick={handler}
+        >
+          <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full bg-slate-100 hover:text-white hover:bg-color1 mx-auto font-medium transition-colors text-red-600 active:text-red-500">
+            Follow +
+          </span>
+        </div>
+      ) : (
+        ""
+      )}
 
-{ status === "not_loggedin" ?  <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
-            <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full bg-slate-100 hover:text-white hover:bg-color1 mx-auto font-medium transition-colors text-red-600 active:text-red-500">
-              Follow +
-            </span>
-          </div> : "" }
-    
-    { status === "not_following" ?  <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
-            <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full bg-slate-100 hover:text-white hover:bg-color1 mx-auto font-medium transition-colors text-red-600 active:text-red-500">
-              Follow +
-            </span>
-          </div> : "" }
+      {status === "not_following" ? (
+        <div
+          className="absolute top-7 right-3 cursor-pointer z-10"
+          onClick={handler}
+        >
+          <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full bg-slate-100 hover:text-white hover:bg-color1 mx-auto font-medium transition-colors text-red-600 active:text-red-500">
+            Follow +
+          </span>
+        </div>
+      ) : (
+        ""
+      )}
 
-     {status === "following" ? <div className='absolute top-7 right-3 cursor-pointer' onClick={handler}>
-            <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full text-white bg-color1 mx-auto font-medium transition-colors ">
-              Following
-            </span>
-          </div> : ""}
-    
+      {status === "following" ? (
+        <div
+          className="absolute top-7 right-3 cursor-pointer z-10"
+          onClick={handler}
+        >
+          <span className="text-sm  inline-block py-1 px-2 uppercase rounded-full text-white bg-color1 mx-auto font-medium transition-colors ">
+            Following
+          </span>
+        </div>
+      ) : (
+        ""
+      )}
 
-<Slider images={image} />
+      <Slider images={image} />
 
-
-    {/* <div class="flex overflow-scroll scrollbar-hide gap-4 md:grid-cols-1 lg:mt-4">
+      {/* <div class="flex overflow-scroll scrollbar-hide gap-4 md:grid-cols-1 lg:mt-4">
         <img
           alt="Image1"
           src={`${image[0]}`}
@@ -119,11 +120,6 @@ if(status == "not_loggedin") {
             class="aspect-square w-full rounded-xl object-cover"
           />
       </div> */}
-
-
-
-
-
 
       {/* <div >
       <div>
@@ -166,13 +162,8 @@ if(status == "not_loggedin") {
       </div>
     </div>
  */}
-
-
-
-
-      
-      </div>
-  )
+    </div>
+  );
 }
 
-export default ImageSlider
+export default ImageSlider;
