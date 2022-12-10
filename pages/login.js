@@ -7,9 +7,12 @@ import Footer from "../components/UI/Footer";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addDetails } from "../store/actions/user";
+import useLoginCheck from "../hooks/use-logincheck";
 
 export default function Login() {
   const dispatch = useDispatch();
+
+  const isLoggedIn = useLoginCheck();
 
   const {
     register,
@@ -40,7 +43,7 @@ export default function Login() {
 
       // Perform localStorage action
       localStorage.setItem("token", token);
-
+      localStorage.setItem("isLoggedIn", isLoggedIn);
       // dispatch(addToken("token", token));
 
       const name = response.response.name;
