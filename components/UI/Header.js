@@ -53,7 +53,7 @@ export default function Header() {
         cookies.remove("isLoggedIn");
         console.log("Success:", data);
         globalData[1].setIsLoggedIn(false);
-        router.push("/");
+        // router.push("/");
       })
       .catch((error) => {
         console.error("Error:", error);
