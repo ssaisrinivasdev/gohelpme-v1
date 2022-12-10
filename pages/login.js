@@ -8,10 +8,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addDetails } from "../store/actions/user";
 import useLoginCheck from "../hooks/use-logincheck";
+import Cookies from "universal-cookie";
 
 export default function Login() {
   const loginStat = useLoginCheck();
   const dispatch = useDispatch();
+  const cookies = new Cookies();
 
   const {
     register,
@@ -42,7 +44,8 @@ export default function Login() {
 
       // Perform localStorage action
       localStorage.setItem("token", token);
-      localStorage.setItem("isLoggedIn", loginStat);
+      cookies.set("token", token);
+      cookies.set("loginStatus", loginStat);
       // dispatch(addToken("token", token));
 
       const name = response.response.name;

@@ -4,18 +4,20 @@ import jwt from "jsonwebtoken";
 import { useRouter } from "next/router";
 
 function useLoginCheck(props) {
-  const loginStat = props.isLoggedIn;
+  const loginStat = props?.isLoggedIn;
 
   return loginStat;
 }
 
 export default useLoginCheck;
 
-export function getStaticProps() {
+export function getStaticProps(req) {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
+
+  let token = req.cookies.get("token");
 
   useEffect(() => {
     if (token) {
