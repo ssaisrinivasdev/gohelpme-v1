@@ -15,6 +15,6 @@ export default function middleware(req) {
   }
 
   if (verify && !isLoggedIn && url.includes("/blog")) {
-    return NextResponse.redirect("http://gohelpme.online/dashboard");
+    return NextResponse.redirect("http://gohelpme.online/fundraisers");
   }
 }
