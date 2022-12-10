@@ -5,20 +5,26 @@ import { useRouter } from "next/router";
 
 function useLoginCheck() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const token = localStorage.getItem("token");
 
-  if (token) {
-    jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
-      if (err) {
-        setIsLoggedIn(false);
-      } else {
-        setIsLoggedIn(true);
-      }
-    });
-  }
+  useEffect(() => {
+    if (token) {
+      jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
+        if (err) {
+          setIsLoggedIn(false);
+        } else {
+          setIsLoggedIn(true);
+          setIsLoading(false);
+        }
+      });
+    }
+  }, []);
 
-  return isLoggedIn;
+  if (!isLoading) {
+    return isLoggedIn;
+  }
 }
 
 export default useLoginCheck;

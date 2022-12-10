@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/UI/Header";
 import Footer from "../components/UI/Footer";
 import PageTitle from "../components/UI/PageTitle";
 import BlogCards from "../components/UI/BlogCards";
-
-
+import useLoginCheck from "../hooks/use-logincheck";
 
 function Blog() {
+  const isLoggedIn = useLoginCheck();
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, []);
+
   return (
     <div className=" bg-slate-100">
       <Header />

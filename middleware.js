@@ -10,7 +10,11 @@ export default function middleware(req) {
     return NextResponse.redirect("http://gohelpme.online/login");
   }
 
-  if (verify && isLoggedIn && url.includes("/login")) {
+  if (verify && url.includes("/login")) {
+    return NextResponse.redirect("http://gohelpme.online/dashboard");
+  }
+
+  if (verify && !isLoggedIn && url.includes("/blog")) {
     return NextResponse.redirect("http://gohelpme.online/dashboard");
   }
 }

@@ -10,9 +10,8 @@ import { addDetails } from "../store/actions/user";
 import useLoginCheck from "../hooks/use-logincheck";
 
 export default function Login() {
-  const dispatch = useDispatch();
-
   const isLoggedIn = useLoginCheck();
+  const dispatch = useDispatch();
 
   const {
     register,
