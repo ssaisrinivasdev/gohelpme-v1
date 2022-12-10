@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import jwt from "jsonwebtoken";
-import { useRouter } from "next/router";
 
 function useLoginCheck() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -23,9 +22,9 @@ function useLoginCheck() {
     }
   }, []);
 
-  if (!isLoading) {
-    return isLoggedIn;
-  }
+  // if (!isLoading) {
+  return isLoggedIn;
+  // }
 }
 
 export default useLoginCheck;
