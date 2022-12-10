@@ -14,7 +14,7 @@ export default function middleware(req) {
     return NextResponse.redirect("http://gohelpme.online/dashboard");
   }
 
-  if (!verify && loginStatus != true && url.includes("/blog")) {
-    return NextResponse.redirect("http://gohelpme.online/fundraisers");
-  }
+  // if (!verify && loginStatus != true && url.includes("/blog")) {
+  //   return NextResponse.redirect("http://gohelpme.online/fundraisers");
+  // }
 }
