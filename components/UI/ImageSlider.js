@@ -154,11 +154,6 @@ function ImageSlider({ image, id, status }) {
                 <KeyboardArrowLeft />
               )}
             </Button>
-          
-      
-
-
-
       </div>
     </div>
  */}

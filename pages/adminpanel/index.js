@@ -1,77 +1,87 @@
-import React from 'react'
-import AdminUi from '../../components/UI/admincomps/ModulesFolder/AdminUi'
-import Sidebar from '../../components/UI/admincomps/Sidebar'
-import { useState } from 'react'
+import React from "react";
+import AdminUi from "../../components/UI/admincomps/ModulesFolder/AdminUi";
+import Sidebar from "../../components/UI/admincomps/Sidebar";
+import { useState } from "react";
 
 function Admin() {
+  const [buttonActive, setButtonActive] = useState("profile");
 
+  const handler = (data) => {
+    console.log(data);
+    setButtonActive(data);
+  };
 
-    const [buttonActive, setButtonActive] = useState("profile")
+  return (
+    <div className="flex gap-5">
+      <Sidebar segmentActive={handler} />
 
-    console.log(buttonActive)
+      <AdminUi />
+    </div>
+  );
 
+  {
+    /* user info */
+  }
 
+  {
+    /* menu */
+  }
 
-  return (  
-    <div className='flex gap-10'>
-   
-  <Sidebar />
+  {
+    /* Dashboard */
+  }
 
-  <AdminUi />
+  {
+    /* info cards */
+  }
 
+  {
+    /* Fin stats */
+  }
 
-  {/* {buttonActive === "profile" ? <div><Profile /> */}
-{/* <div className=' md:flex'><ProfileCards title="Address" /> <ProfileCards title="Details" /> <ProfileCards title="Help" /> </div></div> : ""}
-{buttonActive === "info" ? <div><InfoButtons /></div> : ""} */}
+  {
+    /* info cards */
+  }
 
-  </div>
+  {
+    /* fund approval */
+  }
 
+  {
+    /* approval request feed */
+  }
 
+  {
+    /* withdraw reqs */
+  }
 
-  )
+  {
+    /* withdrawl request feed */
+  }
 
+  {
+    /* Blog */
+  }
 
-{/* user info */}
+  {
+    /* blog crud */
+  }
 
-{/* menu */}
- 
+  {
+    /* queries */
+  }
 
+  {
+    /* user query feeds */
+  }
 
+  {
+    /* Roles */
+  }
 
-
-
-
-
-{/* Dashboard */}
-
-   {/* info cards */}
-
-{/* Fin stats */}
-
-    {/* info cards */}
-
-{/* fund approval */}
-
-    {/* approval request feed */}
-
-{/* withdraw reqs */}
-
-    {/* withdrawl request feed */}
-
-{/* Blog */}
-
-    {/* blog crud */}
-
-{/* queries */}
-
-    {/* user query feeds */}
-
-{/* Roles */}
-
-    {/* all roles */}
-
-
-  
+  {
+    /* all roles */
+  }
 }
 
-export default Admin
+export default Admin;
