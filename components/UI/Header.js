@@ -47,6 +47,7 @@ export default function Header() {
       .then((response) => response.json())
       .then((data) => {
         localStorage.removeItem("token");
+        localStorage.removeItem("isLoggedIn");
         console.log("Success:", data);
         globalData[1].setIsLoggedIn(false);
         router.push("/");
