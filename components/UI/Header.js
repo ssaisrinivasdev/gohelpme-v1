@@ -3,12 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
 import GlobalContext from "../../store/global-context";
-
+import Cookies from "universal-cookie";
 export default function Header() {
   const [state, setState] = useState(false);
   const navRef = useRef();
   const globalData = useContext(GlobalContext);
   const router = useRouter();
+  const cookies = new Cookies();
 
   // Replace javascript:void(0) path with your path
   const navigation = [
@@ -48,6 +49,8 @@ export default function Header() {
       .then((data) => {
         localStorage.removeItem("token");
         localStorage.removeItem("loginStatus");
+        cookies.remove("token");
+        cookies.remove("isLoggedIn");
         console.log("Success:", data);
         globalData[1].setIsLoggedIn(false);
         router.push("/");

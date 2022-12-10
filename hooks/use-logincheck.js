@@ -3,20 +3,11 @@ import { useState } from "react";
 import jwt from "jsonwebtoken";
 import { useRouter } from "next/router";
 
-function useLoginCheck(props) {
-  const loginStat = props?.isLoggedIn;
-  return loginStat;
-}
-
-export default useLoginCheck;
-
-export function getStaticProps(req) {
+function useLoginCheck() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // const token = localStorage.getItem("token");
-
-  let token = req.cookies.get("token");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (token) {
@@ -33,11 +24,8 @@ export function getStaticProps(req) {
   }, []);
 
   if (!isLoading) {
-    return {
-      props: isLoggedIn,
-      // revalidate: 5,
-    };
+    return isLoggedIn;
   }
-
-  // let fund = posts.find(fund => fund._id === fundraiserId)
 }
+
+export default useLoginCheck;

@@ -11,7 +11,7 @@ import useLoginCheck from "../hooks/use-logincheck";
 import Cookies from "universal-cookie";
 
 export default function Login() {
-  const loginStat = useLoginCheck();
+  const isLoggedIn = useLoginCheck();
   const dispatch = useDispatch();
   const cookies = new Cookies();
 
@@ -45,7 +45,7 @@ export default function Login() {
       // Perform localStorage action
       localStorage.setItem("token", token);
       cookies.set("token", token);
-      cookies.set("loginStatus", loginStat);
+      cookies.set("isLoggedIn", isLoggedIn);
       // dispatch(addToken("token", token));
 
       const name = response.response.name;
