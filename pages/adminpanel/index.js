@@ -2,6 +2,7 @@ import React from "react";
 import AdminUi from "../../components/UI/admincomps/ModulesFolder/AdminUi";
 import Sidebar from "../../components/UI/admincomps/Sidebar";
 import { useState } from "react";
+import BlogEditorial from "../../components/UI/admincomps/ModulesFolder/BlogEditorial";
 
 function Admin() {
   const [buttonActive, setButtonActive] = useState("profile");
@@ -15,17 +16,12 @@ function Admin() {
     <div className="flex gap-5">
       <Sidebar segmentActive={handler} />
 
-      <AdminUi />
+      <div className="flex flex-col gap-5">
+        <AdminUi />
+        <BlogEditorial />
+      </div>
     </div>
   );
-
-  {
-    /* user info */
-  }
-
-  {
-    /* menu */
-  }
 
   {
     /* Dashboard */
