@@ -1,7 +1,7 @@
 import React from "react";
 import InfoCards from "../InfoCards";
 
-import Stats from "./FinStats";
+import Stats from "./FInStats";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
