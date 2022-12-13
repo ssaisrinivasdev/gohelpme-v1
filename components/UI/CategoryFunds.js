@@ -3,23 +3,24 @@ import Cards from "./FundCards";
 import { React, useEffect, useState } from "react";
 import Pagination from "./Pagination";
 
-function CategoryFunds({ category, categoryTitle }) {
+function CategoryFunds({ category }) {
   const [data, setData] = useState(null);
+  // const [api, setApi] = useState(
+  //   `http://gohelpme.online/api/funds/search?keyword=&category=${category}&page=1`
+  // );
 
   useEffect(() => {
     handler();
   }, []);
 
   async function handler() {
-  let api = "http://gohelpme.online/api/funds/search?keyword=&category=" + category + "&page=1";
+    let api = `http://gohelpme.online/api/funds/search?keyword=&category=${category}&page=1`;
 
-
-  if (category == "Top") {
-    api = "http://Gohelpme.online/api/trendingfunds"
-  }
-
+    // if (category === "Top") {
+    //   setApi("http://Gohelpme.online/api/trendingfunds");
+    // }
     let result = await fetch(
-      api,
+      category != "Top" ? api : "http://Gohelpme.online/api/trendingfunds",
       {
         method: "GET",
 
@@ -39,26 +40,21 @@ function CategoryFunds({ category, categoryTitle }) {
 
       if (jsonresultData) {
         if (category == "Top") {
-
           funds = jsonresultData.funds[0]?.donations?.map((items) => {
             return <Cards key={items._id} items={items?.funds[0]} />;
           });
         } else {
-        funds = jsonresultData.funds.map((items) => {
-          return <Cards key={items.title} items={items} />;
-        });
-      }
+          funds = jsonresultData.funds.map((items) => {
+            return <Cards key={items.title} items={items} />;
+          });
+        }
       }
 
       setData(funds);
     }
   }
 
-  return (
-    <div className="mt-5">
-          {data}
-    </div>
-  );
+  return <div className="mt-5">{data}</div>;
 }
 
 export default CategoryFunds;

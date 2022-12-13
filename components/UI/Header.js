@@ -79,7 +79,7 @@ export default function Header() {
               <img
                 src="/images/Logo/Logo.jpg"
                 width={220}
-                height={150}
+                height={50}
                 alt="Float UI logo"
               />
             </Link>

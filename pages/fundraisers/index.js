@@ -61,70 +61,59 @@ function Funds() {
         </div>
       </div>
       <div className="xl:w-[1500px] xl:mx-auto w-[350px] mx-3 my-4 ">
-
-<div>
-      <DefaultTitle title="Medical Funds" />
-      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
-        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
-        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+        <div>
+          <DefaultTitle title="Medical Funds" />
+          <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+            <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+              <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-
-
 
         <div>
-      <DefaultTitle title="Memorial Funds" />
-      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
-        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
-        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+          <DefaultTitle title="Memorial Funds" />
+          <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+            <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+              <CategoryFunds category="Medical" />
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-
-
 
         <div>
-      <DefaultTitle title="Emergency Funds" />
-      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
-        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
-        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+          <DefaultTitle title="Emergency Funds" />
+          <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+            <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+              <CategoryFunds category="Medical" />
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-
 
         <div>
-      <DefaultTitle title="Charity Funds" />
-      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
-        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
-        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+          <DefaultTitle title="Charity Funds" />
+          <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+            <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+              <CategoryFunds category="Medical" />
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-
 
         <div>
-      <DefaultTitle title="Education Funds" />
-      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
-        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
-        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+          <DefaultTitle title="Education Funds" />
+          <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+            <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+              <CategoryFunds category="Medical" />
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-
 
         <div>
-      <DefaultTitle title="Medical Funds" />
-      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
-        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
-        <CategoryFunds categoryTitle="Medical Funds" category="Medical" />
+          <DefaultTitle title="Medical Funds" />
+          <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+            <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+              <CategoryFunds category="Medical" />
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-
-
-       
       </div>
       <Footer />
     </div>
