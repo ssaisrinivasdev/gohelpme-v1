@@ -5,9 +5,10 @@ import Funds from "../../Table";
 function FInStats() {
   return (
     <div>
-      <div className="max-lg:overflow-x-scroll mx-11 max-lg:w-[330px]">
+      <h3 className="ml-3 my-10 text-3xl font-bold bg">Manage Users</h3>
+      <div className="max-lg:overflow-x-scroll max-lg:w-[330px]">
         {/* <Stats /> */}
-        <Funds/>
+        <Funds />
       </div>
     </div>
   );

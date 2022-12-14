@@ -42,8 +42,8 @@ function WithdrawalStats() {
 
   return (
     <div>
-      <h3 className="ml-10 mt-10 text-4xl font-bold bg">Withdrawals</h3>
-      <div className="py-10 xl:gap-7 xl:flex xl:flex-row flex flex-col gap-10 mx-11 bg-cya">
+      <h3 className="ml-3 mt-10 text-3xl font-bold bg">Withdrawals</h3>
+      <div className="py-10 xl:gap-7 xl:flex xl:flex-row flex flex-col gap-10 ml-3 bg-cya">
         <InfoCards
           key="4"
           category="Withdrawal Status"

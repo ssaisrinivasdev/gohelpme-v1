@@ -43,7 +43,7 @@ function AdminUi() {
   }, []);
 
   return (
-    <div>
+    <div className="">
       <FundsComp />
       <UserPaymentsComp />
       <WithdrawalStats />

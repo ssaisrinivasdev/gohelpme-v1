@@ -6,7 +6,7 @@ import Button from "@mui/material";
 import ApprovalButton from "./ButtonForTable";
 
 const Funds = () => {
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [rowId, setRowId] = useState(null);
   const [rows, setRows] = useState(null);
   const [isloaded, setisLoaded] = useState(false);
@@ -129,18 +129,12 @@ const Funds = () => {
 
   return (
     <Box
+      className="overflow-hidden scrollbar-hide"
       sx={{
-        height: 400,
-        width: "100%",
+        height: 700,
+        width: "400%",
       }}
     >
-      <Typography
-        variant="h3"
-        component="h3"
-        sx={{ textAlign: "center", mt: 3, mb: 3 }}
-      >
-        Manage Users
-      </Typography>
       {isloaded && (
         <DataGrid
           columns={columns}

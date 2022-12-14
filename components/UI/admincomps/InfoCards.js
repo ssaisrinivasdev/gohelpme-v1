@@ -18,7 +18,7 @@ function InfoCards(props) {
   // }
 
   return (
-    <div className="w-[330px]">
+    <div className="w-[280px]">
       <Link
         href=""
         className={`${
@@ -32,7 +32,7 @@ function InfoCards(props) {
         }`}
       >
         <div class="flex items-end">
-          <h3 class="mb-2 text-4xl font-bold">{props.category}</h3>
+          <h3 class="mb-2 text-3xl font-bold">{props.category}</h3>
         </div>
 
         <strong

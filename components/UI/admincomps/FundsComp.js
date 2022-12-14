@@ -41,10 +41,10 @@ function FundsComp() {
   }, [rendered]);
   return (
     <div>
-      <div className=" flex justify-between">
-        <h3 className="ml-10 mt-10 text-4xl font-bold">Funds:</h3>
+      <div className=" lg:flex lg:justify-between">
+        <h3 className="ml-3 mt-10 text-3xl font-bold">Funds:</h3>
         <form className="flex gap-5">
-          <h2 className="mt-10 py-1 text-xl text-gray-600">Category:</h2>
+          <h2 className="ml-3 mt-10 py-1 text-xl text-gray-600">Category:</h2>
           <div className="mt-10 mr-10">
             <select
               // {...register("category")}
@@ -79,7 +79,7 @@ function FundsComp() {
           </div>
         </form>
       </div>
-      <div className="py-10 xl:gap-7 xl:flex xl:flex-row flex flex-col gap-10 mx-11">
+      <div className="py-10 xl:gap-7 xl:flex xl:flex-row flex flex-col gap-10 ml-3">
         <InfoCards
           key="1"
           category={rendered}
