@@ -3,9 +3,10 @@ import AdminUi from "../../components/UI/admincomps/ModulesFolder/AdminUi";
 import Sidebar from "../../components/UI/admincomps/Sidebar";
 import { useState } from "react";
 import BlogEditorial from "../../components/UI/admincomps/ModulesFolder/BlogEditorial";
+import FInStats from "../../components/UI/admincomps/ModulesFolder/FInStats";
 
 function Admin() {
-  const [buttonActive, setButtonActive] = useState("profile");
+  const [buttonActive, setButtonActive] = useState("dashboard");
 
   const handler = (data) => {
     console.log(data);
@@ -17,8 +18,14 @@ function Admin() {
       <Sidebar segmentActive={handler} />
 
       <div className="flex flex-col gap-5">
-        <AdminUi />
-        <BlogEditorial />
+        {buttonActive === "dashboard" ? <AdminUi /> : ""}
+
+        {buttonActive === "blog" ? <BlogEditorial /> : ""}
+        {buttonActive === "finstats" ? <FInStats /> : ""}
+        {buttonActive === "fundApproval" ? <FInStats /> : ""}
+        {buttonActive === "withdrawalRequests" ? <BlogEditorial /> : ""}
+        {buttonActive === "queries" ? <BlogEditorial /> : ""}
+        {buttonActive === "roles" ? <BlogEditorial /> : ""}
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ function CreateBlog() {
     }
 
     for (var i = 0; i < data.images.length; i++)
-      formData.append("images", data.images[i]);
+      formData.append("image", data.images[i]);
 
     const res = await fetch("http://gohelpme.online/api/createfund", {
       method: "POST",
@@ -59,7 +59,7 @@ function CreateBlog() {
   };
 
   return (
-    <section class="bg-gray-100">
+    <section class="mt-10 bg-gray-100">
       <div class=" max-w-screen-xl sm:px-6 lg:px-8 max-md:w-[350px] mx-auto">
         <div class="max-md:w-[350px] mx-auto lg:w-[600px]">
           <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
@@ -106,19 +106,19 @@ function CreateBlog() {
               </div>
 
               <div>
-                <label class="sr-only" for="name">
+                <label className="sr-only" for="message">
                   Description
                 </label>
-                <input
+                <textarea
+                  {...register("long_description", {
+                    required: true,
+                  })}
+                  className="w-full rounded-lg border-gray-200 p-3 text-sm"
                   placeholder="Description"
-                  defaultValue={""}
-                  {...register("description")}
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                  type="text"
-                  id="desc"
-                />
+                  rows="8"
+                  id="description"
+                ></textarea>
               </div>
-
               <input
                 type="submit"
                 value="Update"

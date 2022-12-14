@@ -1,11 +1,9 @@
 import React from "react";
 
-import { useState } from "react";
-
 import Link from "next/link";
 
-function Sidebar({ data }) {
-  const [buttonActive, setButtonActive] = useState("dashboard");
+function Sidebar({ segmentActive }) {
+  // const [buttonActive, setButtonActive] = useState("dashboard");
 
   {
     /* Dashboard */
@@ -63,6 +61,10 @@ function Sidebar({ data }) {
     /* all roles */
   }
 
+  const handler = (data) => {
+    segmentActive(data.param);
+  };
+
   return (
     <div className="flex h-screen w-16 flex-col justify-between border-r bg-white sticky top-0">
       <div>
@@ -74,6 +76,9 @@ function Sidebar({ data }) {
           <nav aria-label="Main Nav" className="flex flex-col p-2">
             <div className="py-4">
               <Link
+                onClick={() => {
+                  handler({ param: "dashboard" });
+                }}
                 href=""
                 className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
               >
@@ -106,8 +111,7 @@ function Sidebar({ data }) {
             <ul className="space-y-1 border-t border-gray-100 pt-4">
               <li
                 onClick={() => {
-                  setButtonActive("finstats");
-                  data(buttonActive);
+                  handler({ param: "finstats" });
                 }}
               >
                 <Link
@@ -135,8 +139,12 @@ function Sidebar({ data }) {
                 </Link>
               </li>
 
-              <li>
-                <a
+              <li
+                onClick={() => {
+                  handler({ param: "fundApproval" });
+                }}
+              >
+                <Link
                   href=""
                   className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
@@ -158,11 +166,15 @@ function Sidebar({ data }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Fund Approval
                   </span>
-                </a>
+                </Link>
               </li>
 
-              <li>
-                <a
+              <li
+                onClick={() => {
+                  handler({ param: "withdrawalRequests" });
+                }}
+              >
+                <Link
                   href=""
                   className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
@@ -184,11 +196,15 @@ function Sidebar({ data }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     withdrawl Requests
                   </span>
-                </a>
+                </Link>
               </li>
 
-              <li>
-                <a
+              <li
+                onClick={() => {
+                  handler({ param: "blog" });
+                }}
+              >
+                <Link
                   href=""
                   className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
@@ -210,11 +226,15 @@ function Sidebar({ data }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Blog
                   </span>
-                </a>
+                </Link>
               </li>
 
-              <li>
-                <a
+              <li
+                onClick={() => {
+                  handler({ param: "queries" });
+                }}
+              >
+                <Link
                   href=""
                   className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
@@ -236,11 +256,15 @@ function Sidebar({ data }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Queries
                   </span>
-                </a>
+                </Link>
               </li>
 
-              <li>
-                <a
+              <li
+                onClick={() => {
+                  handler({ param: "roles" });
+                }}
+              >
+                <Link
                   href=""
                   className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
@@ -262,7 +286,7 @@ function Sidebar({ data }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Roles
                   </span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
