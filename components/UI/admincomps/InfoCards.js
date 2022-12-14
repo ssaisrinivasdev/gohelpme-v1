@@ -37,7 +37,7 @@ function InfoCards(props) {
 
         <strong
           className={
-            props.progress === "Accepted"
+            props.progress === "Approved"
               ? "rounded bg-green-100 px-3 py-1.5 text-xs font-medium text-green-500"
               : props.progress === "InProgress"
               ? "rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-500"
