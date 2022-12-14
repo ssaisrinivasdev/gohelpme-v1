@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import FundsComp from "../FundsComp";
 import UserPaymentsComp from "../UserPaymentsComp";
+import WithdrawalStats from "../WithdrawalStats";
 
 function AdminUi() {
   useEffect(() => {
@@ -45,7 +46,7 @@ function AdminUi() {
     <div>
       <FundsComp />
       <UserPaymentsComp />
-          
+      <WithdrawalStats />
     </div>
   );
 }

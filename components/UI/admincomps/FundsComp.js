@@ -84,7 +84,7 @@ function FundsComp() {
           key="1"
           category={rendered}
           value={Approved}
-          progress="Accepted"
+          progress="Approved"
         />
         <InfoCards
           key="2"

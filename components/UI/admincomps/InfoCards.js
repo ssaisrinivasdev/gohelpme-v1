@@ -22,7 +22,7 @@ function InfoCards(props) {
       <Link
         href=""
         className={`${
-          props.progress === "Accepted"
+          props.progress === "Approved"
             ? "relative block rounded-sm border-t-4 p-8 pb-24 shadow-xl border-green-500"
             : props.progress === "InProgress"
             ? "relative block rounded-sm border-t-4 p-8 pb-24 shadow-xl border-blue-500"

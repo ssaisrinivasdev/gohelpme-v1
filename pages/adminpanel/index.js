@@ -19,7 +19,6 @@ function Admin() {
 
       <div className="flex flex-col gap-5">
         {buttonActive === "dashboard" ? <AdminUi /> : ""}
-
         {buttonActive === "blog" ? <BlogEditorial /> : ""}
         {buttonActive === "finstats" ? <FInStats /> : ""}
         {buttonActive === "fundApproval" ? <FInStats /> : ""}
