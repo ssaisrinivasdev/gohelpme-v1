@@ -129,10 +129,10 @@ const Funds = () => {
 
   return (
     <Box
-      className="overflow-hidden scrollbar-hide"
+      className="overflow-hidden scrollbar-hidden"
       sx={{
         height: 700,
-        width: "400%",
+        width: "100%",
       }}
     >
       {isloaded && (

@@ -74,7 +74,7 @@ function Dashboard() {
             ""
           )}
           {buttonActive === "info" ? (
-            <div className="w-[400px] mx-auto">
+            <div className="w-[400px]">
               <InfoButtons />
             </div>
           ) : (
