@@ -10,6 +10,7 @@ import ProfileForm from "../components/UI/ProfileForm";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import jwt from "jsonwebtoken";
+import Sidebar from "../components/UI/admincomps/Sidebar";
 
 function Dashboard() {
   const [buttonActive, setButtonActive] = useState("Dashboard");
@@ -68,6 +69,7 @@ function Dashboard() {
 
           {buttonActive === "profile" ? (
             <div>
+              <Sidebar />
               <ProfileForm />
             </div>
           ) : (
