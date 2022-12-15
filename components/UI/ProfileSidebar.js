@@ -8,7 +8,7 @@ function ProfileSidebar({ segmentActive }) {
   };
 
   return (
-    <div className=" mx-5 flex h-48 w-16 flex-col justify-between border-r bg-white sticky top-0">
+    <div className=" ml-5 flex h-48 w-16 flex-col justify-between border-r bg-white sticky top-0">
       <div>
         <div className="border-t border-gray-100">
           <nav aria-label="Main Nav" className="flex flex-col p-2">

@@ -74,7 +74,7 @@ function Dashboard() {
           </div>
 
           {buttonActive === "profile" ? (
-            <div className="flex gap-4">
+            <div className="flex">
               <ProfileSidebar segmentActive={handler} />
               {profileButtonActive === "details" ? <ProfileForm /> : ""}
               {profileButtonActive === "payments" ? <ProfilePayments /> : ""}
