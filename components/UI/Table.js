@@ -16,7 +16,7 @@ const Funds = () => {
       const res = await fetch(
         `http://gohelpme.online/api/admin/fund-approvals-list`,
         {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -26,9 +26,7 @@ const Funds = () => {
       const response = await res.json();
       console.log(response);
       setRows(
-        response.funds[0].InProgress?.length < 1
-          ? 0
-          : response.funds[0].InProgress
+        response.funds[0].Result?.length < 1 ? 0 : response.funds[0].Result
       );
       if (res.status <= 299) {
         setisLoaded(true);

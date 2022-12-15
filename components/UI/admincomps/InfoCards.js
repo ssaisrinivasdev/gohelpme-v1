@@ -46,7 +46,7 @@ function InfoCards(props) {
               : ""
           }
         >
-          {props.progress}
+          {props.progressName}
         </strong>
         <p class="mt-4 text-5xl font-medium text-gray-600">{props.value}</p>
         <p class="mt-4 ml-2 text-xs font-medium text-gray-600">Last 24 Hours</p>

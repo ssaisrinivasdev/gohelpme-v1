@@ -49,18 +49,21 @@ function WithdrawalStats() {
           category="Withdrawal Status"
           value={Approved}
           progress="Approved"
+          progressName="Approved"
         />
         <InfoCards
           key="5"
           category="Withdrawal Status"
           value={InProgress}
           progress="InProgress"
+          progressName="InProgress"
         />
         <InfoCards
           key="6"
           category="Withdrawal Status"
           value={Rejected}
           progress="Rejected"
+          progressName="Rejected"
         />
       </div>
     </div>
