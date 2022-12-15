@@ -11,9 +11,15 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import jwt from "jsonwebtoken";
 import ProfileSidebar from "../components/UI/ProfileSidebar";
+import ProfilePayments from "../components/UI/ProfilePayments";
 
 function Dashboard() {
   const [buttonActive, setButtonActive] = useState("Dashboard");
+  const [profileButtonActive, setProfileButtonActive] = useState("details");
+
+  const handler = (data) => {
+    setProfileButtonActive(data);
+  };
 
   return (
     <div className="overflow-hidden bg-slate-100">
@@ -69,8 +75,10 @@ function Dashboard() {
 
           {buttonActive === "profile" ? (
             <div className="flex gap-4">
-              <ProfileSidebar />
-              <ProfileForm />
+              <ProfileSidebar segmentActive={handler} />
+              {profileButtonActive === "details" ? <ProfileForm /> : ""}
+              {profileButtonActive === "payments" ? <ProfilePayments /> : ""}
+              {profileButtonActive === "withdrawal" ? <ProfileForm /> : ""}
             </div>
           ) : (
             ""

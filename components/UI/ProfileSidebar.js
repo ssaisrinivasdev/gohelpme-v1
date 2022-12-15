@@ -2,7 +2,7 @@ import React from "react";
 
 import Link from "next/link";
 
-function Sidebar({ segmentActive }) {
+function ProfileSidebar({ segmentActive }) {
   const handler = (data) => {
     segmentActive(data.param);
   };
@@ -15,7 +15,7 @@ function Sidebar({ segmentActive }) {
             <ul className="space-y-1 border-t border-gray-100 pt-4">
               <li
                 onClick={() => {
-                  handler({ param: "finstats" });
+                  handler({ param: "details" });
                 }}
               >
                 <Link
@@ -38,14 +38,14 @@ function Sidebar({ segmentActive }) {
                   </svg>
 
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                    Financial Stats
+                    Details
                   </span>
                 </Link>
               </li>
 
               <li
                 onClick={() => {
-                  handler({ param: "fundApproval" });
+                  handler({ param: "payments" });
                 }}
               >
                 <Link
@@ -68,14 +68,14 @@ function Sidebar({ segmentActive }) {
                   </svg>
 
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                    Fund Approval
+                    Payments
                   </span>
                 </Link>
               </li>
 
               <li
                 onClick={() => {
-                  handler({ param: "fundApproval" });
+                  handler({ param: "withdrawal" });
                 }}
               >
                 <Link
@@ -98,7 +98,7 @@ function Sidebar({ segmentActive }) {
                   </svg>
 
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                    Fund Approval
+                    withdrawal
                   </span>
                 </Link>
               </li>
@@ -110,4 +110,4 @@ function Sidebar({ segmentActive }) {
   );
 }
 
-export default Sidebar;
+export default ProfileSidebar;
