@@ -10,7 +10,7 @@ import ProfileForm from "../components/UI/ProfileForm";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import jwt from "jsonwebtoken";
-import Sidebar from "../components/UI/admincomps/Sidebar";
+import ProfileSidebar from "../components/UI/ProfileSidebar";
 
 function Dashboard() {
   const [buttonActive, setButtonActive] = useState("Dashboard");
@@ -68,8 +68,8 @@ function Dashboard() {
           </div>
 
           {buttonActive === "profile" ? (
-            <div>
-              <Sidebar />
+            <div className="flex gap-4">
+              <ProfileSidebar />
               <ProfileForm />
             </div>
           ) : (
