@@ -10,9 +10,21 @@ import ProfileForm from "../components/UI/ProfileForm";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import jwt from "jsonwebtoken";
+import ProfileSidebar from "../components/UI/ProfileSidebar";
+import ProfilePayments from "../components/UI/ProfilePayments";
+import ProfileWithdrawReq from "../components/UI/ProfileWithdrawReq";
+import useUserFetch from "../hooks/use-userFetch";
 
 function Dashboard() {
   const [buttonActive, setButtonActive] = useState("Dashboard");
+  const [profileButtonActive, setProfileButtonActive] = useState("details");
+
+  const userIn = useUserFetch();
+  console.log(userIn);
+
+  const handler = (data) => {
+    setProfileButtonActive(data);
+  };
 
   return (
     <div className="overflow-hidden bg-slate-100">
@@ -66,32 +78,41 @@ function Dashboard() {
             </div>
           </div>
 
-          {buttonActive === "profile" ? (
-            <div>
-              <ProfileForm />
-            </div>
-          ) : (
-            ""
-          )}
-          {buttonActive === "info" ? (
-            <div className="w-[400px] mx-auto">
-              <InfoButtons />
-            </div>
-          ) : (
-            ""
-          )}
-          {buttonActive === "Dashboard" ? (
-            <div>
-              <div className="">
-                <Profile />
+          <div className="">
+            {buttonActive === "profile" ? (
+              <div className="flex">
+                <ProfileSidebar segmentActive={handler} />
+                {profileButtonActive === "details" ? <ProfileForm /> : ""}
+                {profileButtonActive === "payments" ? <ProfilePayments /> : ""}
+                {profileButtonActive === "withdrawal" ? (
+                  <ProfileWithdrawReq />
+                ) : (
+                  ""
+                )}
               </div>
-              <div className="mx-3 py-4">
-                <ProfileFunds />
+            ) : (
+              ""
+            )}
+            {buttonActive === "info" ? (
+              <div className="w-[400px]">
+                <InfoButtons />
               </div>
-            </div>
-          ) : (
-            ""
-          )}
+            ) : (
+              ""
+            )}
+            {buttonActive === "Dashboard" ? (
+              <div>
+                <div className="">
+                  <Profile />
+                </div>
+                <div className="mx-3 py-4">
+                  <ProfileFunds />
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
       <Footer />

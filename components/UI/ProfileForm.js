@@ -30,8 +30,8 @@ function ProfileForm() {
 
   return (
     <section class="bg-gray-100">
-      <div class=" max-w-screen-xl sm:px-6 lg:px-8 max-md:w-[350px] mx-auto">
-        <div class="max-md:w-[350px] mx-auto lg:w-[600px]">
+      <div class=" max-w-screen-xl">
+        <div class="max-md:w-[280px] lg:w-[600px]">
           <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
             <form action="" onSubmit={handleSubmit(handler)} class="space-y-4">
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">

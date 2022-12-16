@@ -18,11 +18,11 @@ function InfoCards(props) {
   // }
 
   return (
-    <div className="w-[330px]">
+    <div className="w-[280px]">
       <Link
         href=""
         className={`${
-          props.progress === "Accepted"
+          props.progress === "Approved"
             ? "relative block rounded-sm border-t-4 p-8 pb-24 shadow-xl border-green-500"
             : props.progress === "InProgress"
             ? "relative block rounded-sm border-t-4 p-8 pb-24 shadow-xl border-blue-500"
@@ -32,12 +32,12 @@ function InfoCards(props) {
         }`}
       >
         <div class="flex items-end">
-          <h3 class="mb-2 text-4xl font-bold">{props.category}</h3>
+          <h3 class="mb-2 text-3xl font-bold">{props.category}</h3>
         </div>
 
         <strong
           className={
-            props.progress === "Accepted"
+            props.progress === "Approved"
               ? "rounded bg-green-100 px-3 py-1.5 text-xs font-medium text-green-500"
               : props.progress === "InProgress"
               ? "rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-500"
@@ -46,7 +46,7 @@ function InfoCards(props) {
               : ""
           }
         >
-          {props.progress}
+          {props.progressName}
         </strong>
         <p class="mt-4 text-5xl font-medium text-gray-600">{props.value}</p>
         <p class="mt-4 ml-2 text-xs font-medium text-gray-600">Last 24 Hours</p>

@@ -4,6 +4,7 @@ import Sidebar from "../../components/UI/admincomps/Sidebar";
 import { useState } from "react";
 import BlogEditorial from "../../components/UI/admincomps/ModulesFolder/BlogEditorial";
 import FInStats from "../../components/UI/admincomps/ModulesFolder/FInStats";
+import FundApproval from "../../components/UI/admincomps/ModulesFolder/FundApproval";
 
 function Admin() {
   const [buttonActive, setButtonActive] = useState("dashboard");
@@ -14,15 +15,24 @@ function Admin() {
   };
 
   return (
-    <div className="flex gap-5">
-      <Sidebar segmentActive={handler} />
+    <div className="flex overflow-hidden gap-20 lg:gap-28">
+      <div className="relative">
+        <div className="fixed top-0 left-0 z-10">
+          <Sidebar segmentActive={handler} />
+        </div>
+      </div>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col">
         {buttonActive === "dashboard" ? <AdminUi /> : ""}
-
         {buttonActive === "blog" ? <BlogEditorial /> : ""}
         {buttonActive === "finstats" ? <FInStats /> : ""}
-        {buttonActive === "fundApproval" ? <FInStats /> : ""}
+        {buttonActive === "fundApproval" ? (
+          <div className="flex flex-col">
+            <FundApproval />
+          </div>
+        ) : (
+          ""
+        )}
         {buttonActive === "withdrawalRequests" ? <BlogEditorial /> : ""}
         {buttonActive === "queries" ? <BlogEditorial /> : ""}
         {buttonActive === "roles" ? <BlogEditorial /> : ""}
