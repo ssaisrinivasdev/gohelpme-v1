@@ -4,6 +4,7 @@ import Sidebar from "../../components/UI/admincomps/Sidebar";
 import { useState } from "react";
 import BlogEditorial from "../../components/UI/admincomps/ModulesFolder/BlogEditorial";
 import FInStats from "../../components/UI/admincomps/ModulesFolder/FInStats";
+import FundApproval from "../../components/UI/admincomps/ModulesFolder/FundApproval";
 
 function Admin() {
   const [buttonActive, setButtonActive] = useState("dashboard");
@@ -25,7 +26,14 @@ function Admin() {
         {buttonActive === "dashboard" ? <AdminUi /> : ""}
         {buttonActive === "blog" ? <BlogEditorial /> : ""}
         {buttonActive === "finstats" ? <FInStats /> : ""}
-        {buttonActive === "fundApproval" ? <FInStats /> : ""}
+        {buttonActive === "fundApproval" ? (
+          <div className="flex flex-col">
+            <FundApproval />
+            <FInStats />
+          </div>
+        ) : (
+          ""
+        )}
         {buttonActive === "withdrawalRequests" ? <BlogEditorial /> : ""}
         {buttonActive === "queries" ? <BlogEditorial /> : ""}
         {buttonActive === "roles" ? <BlogEditorial /> : ""}
