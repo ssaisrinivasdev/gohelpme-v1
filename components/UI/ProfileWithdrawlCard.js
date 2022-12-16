@@ -12,16 +12,17 @@ function ProfileWithdrawlCard(props) {
             <p class="text-md text-gray-600 leading-relaxed flex flex-col">
               <span>Goal: {props.goal}$</span>
               <span>Amount Received: {props.amt}$</span>
-              <span>Withdrawn: {props.withdrawn}$</span>
+              <span>Available Balance: {props.RemainingAmt}$</span>
             </p>
           </div>
 
           <div class="flex items-center mt-3">
-            {/* <button class="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md">
-              Cancel
-            </button> */}
+            {/* <input class="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md" /> */}
 
-            <button class="flex-1 px-4 py-2 ml-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
+            <button
+              type="button"
+              class="flex-1 px-4 py-2 ml-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md"
+            >
               Withdraw
             </button>
           </div>

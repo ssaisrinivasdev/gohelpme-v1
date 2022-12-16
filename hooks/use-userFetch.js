@@ -37,7 +37,7 @@ function useUserFetch() {
 
       console.log(jsonresultData.response.name);
 
-      return jsonresultData.response.name;
+      return jsonresultData;
     }
   }
 }

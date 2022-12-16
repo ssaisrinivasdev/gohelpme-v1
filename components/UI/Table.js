@@ -5,36 +5,50 @@ import { grey } from "@mui/material/colors";
 import Button from "@mui/material";
 import ApprovalButton from "./ButtonForTable";
 
-const Funds = () => {
+const Funds = (props) => {
+  const r = [
+    {
+      _id: "637b08960c069ec6c894495e",
+      title: "A family who's lost her sons",
+      fund_type: "Individual",
+      category: "Medical",
+      goal: 500000,
+      createdAt: "2022-11-21T05:11:50.993Z",
+      verification_status: "InProgress",
+    },
+  ];
+  console.log("hii");
+  console.log(props.rows);
+
   const [pageSize, setPageSize] = useState(10);
   const [rowId, setRowId] = useState(null);
   const [rows, setRows] = useState(null);
   const [isloaded, setisLoaded] = useState(false);
 
-  useEffect(() => {
-    const onLoad = async () => {
-      const res = await fetch(
-        `http://gohelpme.online/api/admin/fund-approvals-list`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  // useEffect(() => {
+  //   const onLoad = async () => {
+  //     const res = await fetch(
+  //       `http://gohelpme.online/api/admin/fund-approvals-list`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
 
-      const response = await res.json();
-      console.log(response);
-      setRows(
-        response.funds[0].Result?.length < 1 ? 0 : response.funds[0].Result
-      );
-      if (res.status <= 299) {
-        setisLoaded(true);
-      }
-    };
+  //     const response = await res.json();
+  //     console.log(response);
+  //     setRows(
+  //       response.funds[0].Result?.length < 1 ? 0 : response.funds[0].Result
+  //     );
+  //     if (res.status <= 299) {
+  //       setisLoaded(true);
+  //     }
+  //   };
 
-    onLoad();
-  }, []);
+  //   onLoad();
+  // }, []);
 
   const columns = [
     {
@@ -133,10 +147,10 @@ const Funds = () => {
         width: "100%",
       }}
     >
-      {isloaded && (
+      {true && (
         <DataGrid
           columns={columns}
-          rows={rows}
+          rows={props.rows === null ? [] : props.rows}
           getRowId={(row) => row._id}
           rowsPerPageOptions={[5, 10, 20]}
           pageSize={pageSize}

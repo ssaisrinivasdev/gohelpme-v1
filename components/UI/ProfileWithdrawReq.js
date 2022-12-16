@@ -4,10 +4,10 @@ import ProfileWithdrawlCard from "./ProfileWithdrawlCard";
 function ProfileWithdrawReq() {
   return (
     <ProfileWithdrawlCard
-      fundtitle="Fund for samuel and his boys"
+      fundtitle="Fund for samuel and his boys "
       goal="10000"
       amt="9000"
-      withdrawn="2000"
+      RemainingAmt="2000"
     />
   );
 }

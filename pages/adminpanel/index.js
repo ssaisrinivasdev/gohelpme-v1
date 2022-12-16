@@ -29,7 +29,6 @@ function Admin() {
         {buttonActive === "fundApproval" ? (
           <div className="flex flex-col">
             <FundApproval />
-            <FInStats />
           </div>
         ) : (
           ""
