@@ -6,13 +6,12 @@ import { useForm } from "react-hook-form";
 import Funds from "../../Table";
 import FormDialog from "../../TableButtonsPopup";
 import ApprovalButton from "../../ButtonForTable";
-import CreateBlog from "../CreateBlog";
-import ExpandFieldForTable from "../../ExpandFieldForTable";
 
-function BlogEditorial() {
+function WithdrawalRequestsTab() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [rows, setRows] = useState(null);
+  // const [tableData, setTableData] = useState(null);
 
   const {
     register,
@@ -30,45 +29,43 @@ function BlogEditorial() {
       maxWidth: 300,
     },
     {
-      field: "title",
-      headerName: "Title",
-      width: 220,
-      minWidth: 220,
-      maxWidth: 300,
-    },
-    {
-      field: "long_description",
-      headerName: "Description",
-      type: "string",
-      width: 200,
-      minWidth:200,
-      maxWidth: 200,
-      renderCell: (params) => (
-        <ExpandFieldForTable param={params.row.long_description}/>
-      )
-    },
-    {
-      field: "createdAt",
-      headerName: "Join Date",
-      width: 150,
-      type: "datetime",
-    },
-    {
-      field: "status",
+      field: "withdrawl_status",
       headerName: "Status",
-      type: "number",
-      width: 110,
+      width: 150,
       minWidth: 120,
       maxWidth: 200,
     },
     {
+      field: "withdrawl_amount",
+      headerName: "Amount Requested",
+      type: "number",
+      width: 160,
+      minWidth: 160,
+      maxWidth: 160,
+    },
+    {
+      field: "createdAt",
+      headerName: "Requested Date",
+      width: 200,
+      type: "datetime",
+    },
+    {
+      field: "approvals",
+      headerName: "Approvals",
+      type: "actions",
+      width: 200,
+      renderCell: (params) => (
+        <FormDialog/>
+      ),
+    },
+    {
       field: "link",
-      headerName: "Link",
+      headerName: "Fund Link",
       type: "actions",
       renderCell: (params) => (
         <ApprovalButton
           value="LinkCol"
-          link={"http://gohelpme.online/fundraisers/" + params.id}
+          link={"http://gohelpme.online/fundraisers/" + params.row.fund}
         />
       ),
     },
@@ -80,7 +77,7 @@ function BlogEditorial() {
 
   const onLoad = async (data) => {
     const res = await fetch(
-      `http://gohelpme.online/api/admin/blogs`,
+      `http://gohelpme.online/api/admin/withdrawl-approvals-list`,
       {
         method: "POST",
         headers: {
@@ -100,7 +97,7 @@ function BlogEditorial() {
 
     // console.log(response);
     setRows(
-      response.blogs[0].Result?.length < 1 ? 0 : response.blogs[0].Result
+      response.wdReq[0].Result?.length < 1 ? 0 : response.wdReq[0].Result
     );
     // if (res.status <= 299) {
     //   setisLoaded(true);
@@ -108,9 +105,7 @@ function BlogEditorial() {
   };
 
   return (
-    <div>
-      {/* <CreateBlog /> */}
-      <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5">
       <form
         onSubmit={handleSubmit(onLoad)}
         className="flex flex-col xl:flex-row pt-10 gap-5"
@@ -136,40 +131,33 @@ function BlogEditorial() {
           <div className="mr-10">
             <select
               {...register("status")}
+              // onChange={handleSubmit(handler)}
+              // onChange={(e) => {
+              //   // handler(e);
+              //   setRendered(e.target.value);
+              // }}
               className=" text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white"
             >
-              <option value="All">All</option>
-              <option value="Draft">Draft</option>
-              <option value="Published">Published</option>
+              <option value="Requested">Requested</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
             </select>
           </div>
 
-          <div className=" mr-10">
-          <input
-            {...register("keyword")}
-            type="text"
-            placeholder="Search Blogs.."
-          />
-          </div>
         </div>
 
         <div className="w-80 ">
           <input
             type="submit"
             value="Search"
-            className="group flex items-center justify-between border border-red-600 bg-red-600 px-2 py-2 transition-colors hover:bg-transparent hover:text-color1 focus:outline-none focus:ring text-white pointer"
+            className="group flex items-center justify-between border border-red-600 bg-red-600 px-2 py-2 transition-colors hover:bg-transparent hover:text-color1 focus:outline-none focus:ring text-white"
           />
         </div>
       </form>
-      
-      <strong className="rounded bg-blue-500 px-3 py-1.5 gap-5 font-medium text-white w-300px cursor-pointer">
-          +Create New Blog
-      </strong>
 
       <Funds rows={rows} columns={columns}/>
-    </div>
     </div>
   );
 }
 
-export default BlogEditorial;
+export default WithdrawalRequestsTab;
