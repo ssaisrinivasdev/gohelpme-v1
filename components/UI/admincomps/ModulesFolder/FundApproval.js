@@ -4,6 +4,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import Funds from "../../Table";
+import FormDialog from "../../TableButtonsPopup";
+import ApprovalButton from "../../ButtonForTable";
 
 function FundApproval() {
   const [startDate, setStartDate] = useState(new Date());
@@ -17,6 +19,80 @@ function FundApproval() {
     watch,
     formState: { errors },
   } = useForm();
+
+  const columns = [
+    {
+      field: "_id",
+      headerName: "ID",
+      width: 220,
+      minWidth: 220,
+      maxWidth: 300,
+    },
+    {
+      field: "title",
+      headerName: "Title",
+      width: 220,
+      minWidth: 220,
+      maxWidth: 300,
+    },
+    {
+      field: "fund_type",
+      headerName: "Fund Type",
+      width: 150,
+      minWidth: 120,
+      maxWidth: 200,
+    },
+    {
+      field: "category",
+      headerName: "Category",
+      type: "number",
+      width: 110,
+      minWidth: 120,
+      maxWidth: 200,
+    },
+    {
+      field: "goal",
+      headerName: "Goal",
+      type: "number",
+      width: 110,
+      minWidth: 120,
+      maxWidth: 200,
+    },
+    {
+      field: "verification_status",
+      headerName: "Status",
+      type: "number",
+      width: 110,
+      minWidth: 120,
+      maxWidth: 200,
+    },
+    {
+      field: "createdAt",
+      headerName: "Join Date",
+      width: 100,
+      type: "datetime",
+    },
+    {
+      field: "approvals",
+      headerName: "Approvals",
+      type: "actions",
+      width: 200,
+      renderCell: (params) => (
+        <FormDialog/>
+      ),
+    },
+    {
+      field: "link",
+      headerName: "Link",
+      type: "actions",
+      renderCell: (params) => (
+        <ApprovalButton
+          value="LinkCol"
+          link={"http://gohelpme.online/fundraisers/" + params.id}
+        />
+      ),
+    },
+  ];
 
   useEffect(() => {
     onLoad();
@@ -135,7 +211,7 @@ function FundApproval() {
         </div>
       </form>
 
-      <Funds rows={rows} />
+      <Funds rows={rows} columns={columns}/>
     </div>
   );
 }
