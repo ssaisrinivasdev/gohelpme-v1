@@ -5,39 +5,50 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 function ApprovalButton(props) {
   return (
-    <Box>
+    <div>
       <>
         {props.value == "ApprovalsCol" && (
           <>
-          <strong
-          
-                className={
-                  "rounded bg-green-500 px-3 py-1.5 text-xs font-medium text-white"
-                }
-              >
-                Approve
+          <strong className="rounded bg-green-500 px-3 py-1.5 text-xs font-medium text-white">
+              Approve
           </strong>
-          <strong
-          className={
-            "rounded bg-red-500 px-3 py-1.5 text-xs font-medium text-white"
-          }
-      >
-        Reject
-  </strong>
-  </>
+          <strong className= "rounded bg-red-500 px-3 py-1.5 text-xs font-medium text-white">
+              Reject
+          </strong>
+        </>
+        )}
+      </>
+      <>
+        {props.value == "OpenedQuery" && (
+          <strong className="rounded bg-blue-500 px-3 py-1.5 text-xs font-medium text-white">
+              Opened
+          </strong>
+        )}
+      </>
+      <>
+        {props.value == "InvestigatingQuery" && (
+          <strong className="rounded bg-amber-500 px-3 py-1.5 text-xs font-medium text-white">
+              Investigating
+          </strong>
+        )}
+      </>
+      <>
+        {props.value == "CompletedQuery" && (
+          <strong className="rounded bg-green-500 px-3 py-1.5 text-xs font-medium text-white">
+              Completed
+          </strong>
         )}
       </>
       <>
       {props.value == "LinkCol" && 
         (
-          <LaunchIcon
+          <LaunchIcon className="cursor-pointer"
           onClick={()=> window.open(props.link, "_blank")}
           ></LaunchIcon>
         )
       }
       </>
-    
-    </Box>
+    </div>
   );
 }
 

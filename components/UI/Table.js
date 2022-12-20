@@ -50,95 +50,6 @@ const Funds = (props) => {
   //   onLoad();
   // }, []);
 
-  const columns = [
-    {
-      field: "_id",
-      headerName: "ID",
-      width: 220,
-      minWidth: 220,
-      maxWidth: 300,
-    },
-    {
-      field: "title",
-      headerName: "Title",
-      width: 220,
-      minWidth: 220,
-      maxWidth: 300,
-    },
-    {
-      field: "fund_type",
-      headerName: "Fund Type",
-      width: 150,
-      minWidth: 120,
-      maxWidth: 200,
-    },
-    {
-      field: "category",
-      headerName: "Category",
-      type: "number",
-      width: 110,
-      minWidth: 120,
-      maxWidth: 200,
-    },
-    {
-      field: "goal",
-      headerName: "Goal",
-      type: "number",
-      width: 110,
-      minWidth: 120,
-      maxWidth: 200,
-    },
-    {
-      field: "verification_status",
-      headerName: "Status",
-      type: "number",
-      width: 110,
-      minWidth: 120,
-      maxWidth: 200,
-    },
-    // {
-    //   field: 'fullName',
-    //   headerName: 'Full name',
-    //   description: 'This column has a value getter and is not sortable.',
-    //   sortable: false,
-    //   width: 160,
-    //   valueGetter: (params) =>
-    //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    // },
-    {
-      field: "createdAt",
-      headerName: "Join Date",
-      width: 100,
-      type: "datetime",
-    },
-    {
-      field: "approvals",
-      headerName: "Approvals",
-      type: "actions",
-      width: 200,
-      renderCell: (params) => (
-        // <Box>
-        //   <Link href={"http://gohelpme.online/fundraisers/"+params.id}>Link</Link>
-        // </Box>
-        <ApprovalButton value="ApprovalsCol" />
-      ),
-    },
-    {
-      field: "link",
-      headerName: "Link",
-      type: "actions",
-      renderCell: (params) => (
-        // <Box>
-        //   <Link href={"http://gohelpme.online/fundraisers/"+params.id}>Link</Link>
-        // </Box>
-        <ApprovalButton
-          value="LinkCol"
-          link={"http://gohelpme.online/fundraisers/" + params.id}
-        />
-      ),
-    },
-  ];
-
   return (
     <Box
       className="overflow-hidden scrollbar-hidden"
@@ -149,7 +60,7 @@ const Funds = (props) => {
     >
       {true && (
         <DataGrid
-          columns={columns}
+          columns={props.columns === null ? [] : props.columns}
           rows={props.rows === null ? [] : props.rows}
           getRowId={(row) => row._id}
           rowsPerPageOptions={[5, 10, 20]}

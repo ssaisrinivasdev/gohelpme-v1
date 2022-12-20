@@ -9,7 +9,7 @@ import ApprovalButton from "../../ButtonForTable";
 import CreateBlog from "../CreateBlog";
 import ExpandFieldForTable from "../../ExpandFieldForTable";
 
-function BlogEditorial() {
+function QueriesTab() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [rows, setRows] = useState(null);
@@ -30,48 +30,39 @@ function BlogEditorial() {
       maxWidth: 300,
     },
     {
-      field: "title",
-      headerName: "Title",
-      width: 220,
-      minWidth: 220,
-      maxWidth: 300,
+      field: "email",
+      headerName: "Email",
+      width: 160,
+      minWidth: 160,
+      maxWidth: 200,
     },
     {
-      field: "long_description",
-      headerName: "Description",
+      field: "message",
+      headerName: "Message",
       type: "string",
       width: 200,
       minWidth:200,
       maxWidth: 200,
       renderCell: (params) => (
-        <ExpandFieldForTable param={params.row.long_description}/>
+        <ExpandFieldForTable param={params.row.message}/>
       )
     },
     {
       field: "createdAt",
-      headerName: "Join Date",
+      headerName: "Date",
       width: 150,
       type: "datetime",
     },
     {
-      field: "status",
-      headerName: "Status",
-      type: "number",
-      width: 110,
-      minWidth: 120,
-      maxWidth: 200,
-    },
-    {
-      field: "link",
-      headerName: "Link",
-      type: "actions",
-      renderCell: (params) => (
-        <ApprovalButton
-          value="LinkCol"
-          link={"http://gohelpme.online/fundraisers/" + params.id}
-        />
-      ),
-    },
+        field: "_status",
+        headerName: "Status",
+        type: "actions",
+        renderCell: (params) => (
+          <ApprovalButton
+            value={params.row.ticket_status+"Query"}
+          />
+        ),
+      }
   ];
 
   useEffect(() => {
@@ -80,7 +71,7 @@ function BlogEditorial() {
 
   const onLoad = async (data) => {
     const res = await fetch(
-      `http://gohelpme.online/api/admin/blogs`,
+      `http://gohelpme.online/api/admin/queries-list`,
       {
         method: "POST",
         headers: {
@@ -100,7 +91,7 @@ function BlogEditorial() {
 
     // console.log(response);
     setRows(
-      response.blogs[0].Result?.length < 1 ? 0 : response.blogs[0].Result
+      response.queryReq[0].Result?.length < 1 ? 0 : response.queryReq[0].Result
     );
     // if (res.status <= 299) {
     //   setisLoaded(true);
@@ -135,21 +126,13 @@ function BlogEditorial() {
           <h2 className="ml-3 py-1 text-xl text-gray-600">Status:</h2>
           <div className="mr-10">
             <select
-              {...register("status")}
+              {...register("ticket_status")}
               className=" text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white"
             >
-              <option value="All">All</option>
-              <option value="Draft">Draft</option>
-              <option value="Published">Published</option>
+              <option value="Opened">Opened</option>
+              <option value="Investigating">Investigating</option>
+              <option value="Completed">Completed</option>
             </select>
-          </div>
-
-          <div className=" mr-10">
-          <input
-            {...register("keyword")}
-            type="text"
-            placeholder="Search Blogs.."
-          />
           </div>
         </div>
 
@@ -161,15 +144,11 @@ function BlogEditorial() {
           />
         </div>
       </form>
-      
-      <strong className="rounded bg-blue-500 px-3 py-1.5 gap-5 font-medium text-white w-300px cursor-pointer">
-          +Create New Blog
-      </strong>
-
+    
       <Funds rows={rows} columns={columns}/>
     </div>
     </div>
   );
 }
 
-export default BlogEditorial;
+export default QueriesTab;
