@@ -78,6 +78,7 @@ function FundsComp() {
             </select>
           </div>
         </form>
+        <div></div>
       </div>
       <div className="py-10 xl:gap-7 xl:flex xl:flex-row flex flex-col gap-10 ml-3">
         <InfoCards

@@ -40,6 +40,20 @@ function ApprovalButton(props) {
         )}
       </>
       <>
+        {props.value == "createRole" && (
+          <strong className="rounded bg-green-500 px-3 py-1.5 text-m font-medium text-white">
+              Create
+          </strong>
+        )}
+      </>
+      <>
+        {props.value == "cancel" && (
+          <strong className="rounded bg-red-500 px-3 py-1.5 text-m font-medium text-white">
+              Cancel
+          </strong>
+        )}
+      </>
+      <>
       {props.value == "LinkCol" && 
         (
           <LaunchIcon className="cursor-pointer"

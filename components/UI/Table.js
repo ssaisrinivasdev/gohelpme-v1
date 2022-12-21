@@ -52,10 +52,9 @@ const Funds = (props) => {
 
   return (
     <Box
-      className="overflow-hidden scrollbar-hidden"
       sx={{
-        height: 700,
-        width: "100%",
+        height: 600,
+        width: "95%",
       }}
     >
       {true && (
@@ -67,8 +66,8 @@ const Funds = (props) => {
           pageSize={pageSize}
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           getRowSpacing={(params) => ({
-            top: params.isFirstVisible ? 0 : 5,
-            bottom: params.isLastVisible ? 0 : 5,
+            top: params.isFirstVisible ? 0 : 0,
+            bottom: params.isLastVisible ? 0 : 0,
           })}
           sx={{
             [`& .${gridClasses.row}`]: {

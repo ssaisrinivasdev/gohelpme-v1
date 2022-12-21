@@ -1,67 +1,15 @@
 import React from "react";
+import { useState } from "react";
 
 import Link from "next/link";
 
 function Sidebar({ segmentActive }) {
   // const [buttonActive, setButtonActive] = useState("dashboard");
 
-  {
-    /* Dashboard */
-  }
-
-  {
-    /* info cards */
-  }
-
-  {
-    /* Fin stats */
-  }
-
-  {
-    /* info cards */
-  }
-
-  {
-    /* fund approval */
-  }
-
-  {
-    /* approval request feed */
-  }
-
-  {
-    /* withdraw reqs */
-  }
-
-  {
-    /* withdrawl request feed */
-  }
-
-  {
-    /* Blog */
-  }
-
-  {
-    /* blog crud */
-  }
-
-  {
-    /* queries */
-  }
-
-  {
-    /* user query feeds */
-  }
-
-  {
-    /* Roles */
-  }
-
-  {
-    /* all roles */
-  }
+  const[activeOne, setActiveOne] = useState("dashboard");
 
   const handler = (data) => {
+    setActiveOne(data.param);
     segmentActive(data.param);
   };
 
@@ -75,20 +23,22 @@ function Sidebar({ segmentActive }) {
         <div className="border-t border-gray-100">
           <nav aria-label="Main Nav" className="flex flex-col p-2">
             <div className="py-4">
-              <Link
-                onClick={() => {
-                  handler({ param: "dashboard" });
-                }}
-                href=""
-                className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
+              <div
+                className={activeOne == "dashboard" ? 
+                "t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700 hover:text-gray-700"
+                :
+                "t group relative flex justify-center rounded px-2 py-1.5 text-blue-700 hover:bg-gray-50 hover:text-gray-700"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-10 w-10 opacity-75"
+                  className="h-10 w-10 opacity-75 cursor-pointer"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  stroke={activeOne == "dashboard" ? "blue":"gray"}
                   strokeWidth="2"
+                  onClick={() => {
+                    handler({ param: "dashboard" });
+                  }}
                 >
                   <path
                     strokeLinecap="round"
@@ -105,26 +55,28 @@ function Sidebar({ segmentActive }) {
                 <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                   Dashboard
                 </span>
-              </Link>
+              </div>
             </div>
 
             <ul className="space-y-1 border-t border-gray-100 pt-4">
               <li
-                onClick={() => {
-                  handler({ param: "finstats" });
-                }}
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={activeOne == "finstats" ? 
+                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-10 w-10 opacity-75"
+                    stroke={activeOne == "finstats" ? "blue":"gray"}
+                    className="h-10 w-10 opacity-75 cursor-pointer"
+                    onClick={() => {
+                      handler({ param: "finstats" });
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -136,25 +88,27 @@ function Sidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Financial Stats
                   </span>
-                </Link>
+                </div>
               </li>
 
               <li
-                onClick={() => {
-                  handler({ param: "fundApproval" });
-                }}
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={activeOne == "fundApproval" ? 
+                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  }                
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-10 h-10 opacity-75"
+                    stroke={activeOne == "fundApproval" ? "blue":"gray"}
+                    className="w-10 h-10 opacity-75 cursor-pointer"
+                    onClick={() => {
+                      handler({ param: "fundApproval" });
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -166,25 +120,27 @@ function Sidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Fund Approval
                   </span>
-                </Link>
+                </div>
               </li>
 
               <li
-                onClick={() => {
-                  handler({ param: "withdrawalRequests" });
-                }}
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={activeOne == "withdrawalRequests" ? 
+                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  } 
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-10 h-10 opacity-75"
+                    stroke={activeOne == "withdrawalRequests" ? "blue":"gray"}
+                    className="w-10 h-10 opacity-75 cursor-pointer"
+                    onClick={() => {
+                      handler({ param: "withdrawalRequests" });
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -196,25 +152,27 @@ function Sidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     withdrawl Requests
                   </span>
-                </Link>
+                </div>
               </li>
 
               <li
-                onClick={() => {
-                  handler({ param: "blog" });
-                }}
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={activeOne == "blog" ? 
+                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  } 
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-10 h-10 opacity-75"
+                    stroke={activeOne == "blog" ? "blue":"gray"}
+                    className="w-10 h-10 opacity-75 cursor-pointer"
+                    onClick={() => {
+                      handler({ param: "blog" });
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -226,25 +184,27 @@ function Sidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Blog
                   </span>
-                </Link>
+                </div>
               </li>
 
               <li
-                onClick={() => {
-                  handler({ param: "queries" });
-                }}
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={activeOne == "queries" ? 
+                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  } 
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-10 h-10 opacity-75"
+                    stroke={activeOne == "queries" ? "blue":"gray"}
+                    className="w-10 h-10 opacity-75 cursor-pointer"
+                    onClick={() => {
+                      handler({ param: "queries" });
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -256,25 +216,27 @@ function Sidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Queries
                   </span>
-                </Link>
+                </div>
               </li>
 
               <li
-                onClick={() => {
-                  handler({ param: "roles" });
-                }}
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={activeOne == "roles" ? 
+                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  } 
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-10 w-10 opacity-75"
+                    className="h-10 w-10 opacity-75 cursor-pointer"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor"
+                    stroke={activeOne == "roles" ? "blue":"gray"}
                     strokeWidth="2"
+                    onClick={() => {
+                      handler({ param: "roles" });
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -286,7 +248,7 @@ function Sidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Roles
                   </span>
-                </Link>
+                </div>
               </li>
             </ul>
           </nav>
@@ -294,7 +256,7 @@ function Sidebar({ segmentActive }) {
       </div>
 
       <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-        <form action="/logout">
+        <form>
           <button
             type="submit"
             className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"

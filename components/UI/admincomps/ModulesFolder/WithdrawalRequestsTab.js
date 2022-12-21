@@ -105,6 +105,7 @@ function WithdrawalRequestsTab() {
   };
 
   return (
+    <div><h3 className="ml-3 mt-2 text-3xl font-bold">Withdrawal Requests:</h3>
     <div className="flex flex-col gap-5">
       <form
         onSubmit={handleSubmit(onLoad)}
@@ -156,6 +157,7 @@ function WithdrawalRequestsTab() {
       </form>
 
       <Funds rows={rows} columns={columns}/>
+    </div>
     </div>
   );
 }
