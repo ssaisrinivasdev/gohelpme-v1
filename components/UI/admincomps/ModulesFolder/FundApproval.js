@@ -128,6 +128,8 @@ function FundApproval() {
   };
 
   return (
+    <div>
+    <h3 className="ml-3 mt-2 text-3xl font-bold">Fund Approvals:</h3>
     <div className="flex flex-col gap-5">
       <form
         onSubmit={handleSubmit(onLoad)}
@@ -212,6 +214,7 @@ function FundApproval() {
       </form>
 
       <Funds rows={rows} columns={columns}/>
+    </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import FormDialog from "../../TableButtonsPopup";
 import ApprovalButton from "../../ButtonForTable";
 import CreateBlog from "../CreateBlog";
 import ExpandFieldForTable from "../../ExpandFieldForTable";
+import CreateBlogDialog from "../../CreateBlogDialog";
 
 function BlogEditorial() {
   const [startDate, setStartDate] = useState(new Date());
@@ -110,6 +111,7 @@ function BlogEditorial() {
   return (
     <div>
       {/* <CreateBlog /> */}
+      <h3 className="ml-3 mt-2 text-3xl font-bold">Blog:</h3>
       <div className="flex flex-col gap-5">
       <form
         onSubmit={handleSubmit(onLoad)}
@@ -162,9 +164,10 @@ function BlogEditorial() {
         </div>
       </form>
       
-      <strong className="rounded bg-blue-500 px-3 py-1.5 gap-5 font-medium text-white w-300px cursor-pointer">
-          +Create New Blog
-      </strong>
+      <div className="flex justify-end pr-20">
+        <CreateBlogDialog/>
+      </div>
+      
 
       <Funds rows={rows} columns={columns}/>
     </div>
