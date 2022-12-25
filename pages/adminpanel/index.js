@@ -5,8 +5,9 @@ import { useState } from "react";
 import BlogEditorial from "../../components/UI/admincomps/ModulesFolder/BlogEditorial";
 import FInStats from "../../components/UI/admincomps/ModulesFolder/FInStats";
 import FundApproval from "../../components/UI/admincomps/ModulesFolder/FundApproval";
-import WithdrawalRequestsTab from "../../components/UI/admincomps/ModulesFolder/WithdrawalRequestsTab"
+import WithdrawalRequestsTab from "../../components/UI/admincomps/ModulesFolder/WithdrawalRequestsTab";
 import QueriesTab from "../../components/UI/admincomps/ModulesFolder/QueriesTab";
+import RolesTab from "../../components/UI/admincomps/ModulesFolder/RolesTab";
 
 function Admin() {
   const [buttonActive, setButtonActive] = useState("dashboard");
@@ -37,7 +38,7 @@ function Admin() {
         )}
         {buttonActive === "withdrawalRequests" ? <WithdrawalRequestsTab /> : ""}
         {buttonActive === "queries" ? <QueriesTab /> : ""}
-        {buttonActive === "roles" ? <BlogEditorial /> : ""}
+        {buttonActive === "roles" ? <RolesTab /> : ""}
       </div>
     </div>
   );

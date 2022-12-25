@@ -100,7 +100,7 @@ function QueriesTab() {
 
   return (
     <div>
-      {/* <CreateBlog /> */}
+      <h3 className="ml-3 mt-2 text-3xl font-bold">Queries:</h3>
       <div className="flex flex-col gap-5">
       <form
         onSubmit={handleSubmit(onLoad)}

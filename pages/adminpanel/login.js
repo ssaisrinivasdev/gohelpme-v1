@@ -1,6 +1,42 @@
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 import React from "react";
+import { useForm } from "react-hook-form";
 
 function login() {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const handler = async (data) => {
+    console.log(data);
+    const res = await fetch(`http://gohelpme.online/api/admin/login`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const response = await res.json();
+    console.log(response);
+
+    if (res.status >= 200 && res.status <= 205) {
+      const { admintoken } = response;
+      console.log("Success:", response);
+
+      // Perform localStorage action
+      localStorage.setItem("admintoken", admintoken);
+      Cookies.set("admintoken", admintoken);
+      router.push("/adminpanel");
+    }
+  };
+
   return (
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-lg">
@@ -8,7 +44,10 @@ function login() {
           Admin Panel Login
         </h1>
 
-        <form action="" class="mt-6 mb-0 space-y-4 rounded-lg p-8 shadow-2xl">
+        <form
+          onSubmit={handleSubmit(handler)}
+          class="mt-6 mb-0 space-y-4 rounded-lg p-8 shadow-2xl"
+        >
           <p class="text-lg font-medium">Sign in to your account</p>
 
           <div>
@@ -18,6 +57,7 @@ function login() {
 
             <div class="relative mt-1">
               <input
+                {...register("email")}
                 type="email"
                 id="email"
                 class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
@@ -50,6 +90,7 @@ function login() {
 
             <div class="relative mt-1">
               <input
+                {...register("password")}
                 type="password"
                 id="password"
                 class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
@@ -81,12 +122,11 @@ function login() {
             </div>
           </div>
 
-          <button
+          <input
             type="submit"
+            value="Sign In"
             class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
-          >
-            Sign in
-          </button>
+          />
 
           {/* <p class="text-center text-sm text-gray-500">
             No account?
