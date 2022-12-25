@@ -55,7 +55,7 @@ function RolesTab() {
       headerName: "Date",
       width: 150,
       type: "datetime",
-    }
+    },
   ];
 
   useEffect(() => {
@@ -63,15 +63,12 @@ function RolesTab() {
   }, []);
 
   const onLoad = async (data) => {
-    const res = await fetch(
-      `http://gohelpme.online/api/admin/roles-list`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        }
-      }
-    );
+    const res = await fetch(`http://gohelpme.online/api/admin/roles-list`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const response = await res.json();
 
@@ -79,7 +76,9 @@ function RolesTab() {
 
     // console.log(response);
     setRows(
-      response.rolesList[0].Result?.length < 1 ? 0 : response.rolesList[0].Result
+      response.rolesList[0].Result?.length < 1
+        ? 0
+        : response.rolesList[0].Result
     );
     // if (res.status <= 299) {
     //   setisLoaded(true);
@@ -87,10 +86,11 @@ function RolesTab() {
   };
 
   return (
-    <div>
-      <h3 className="ml-3 mt-2 text-3xl font-bold">Roles:</h3>
-      <Funds rows={rows} columns={columns}/>
-      <CreateRoleDialog/>
+    <div className="lg:w-[1000px] w-[300px]">
+      <h3 className="ml-3 my-4 text-3xl font-bold">Roles:</h3>
+
+      <Funds rows={rows} columns={columns} />
+      <CreateRoleDialog />
     </div>
   );
 }

@@ -11,9 +11,8 @@ function FInStats() {
       <div className="overflow-scroll scrollbar-hide w-[330px] sm:w-[530px] md:w-[730px] lg:w-[930px] xl:w-[1400px] ">
         {/* <Stats /> */}
         <FinStatsBoxes />
-        <CreateRoleDialog/>
+        {/* <CreateRoleDialog/> */}
         <FinStatsDonationBoxes />
-        
       </div>
     </div>
   );
