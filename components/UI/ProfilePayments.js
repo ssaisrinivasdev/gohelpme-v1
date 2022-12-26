@@ -50,19 +50,13 @@ function ProfilePayments() {
                       id="paypal"
                       disabled
                     />
-
-                    <input
-                      type="submit"
-                      value="Update"
-                      class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
-                    />
                   </div>
                 )}
                 {userData?.payment_request == "Approved" && (
                   <div>
                     <p>✅Approved</p>
                     <input
-                      placeholder="Paypal Address"
+                      placeholder={userData?.paypal_address}
                       defaultValue={userData?.paypal_address}
                       {...register("paypal")}
                       class="w-full rounded-lg border-gray-200 p-3 text-sm"
@@ -80,10 +74,10 @@ function ProfilePayments() {
                 )}
                 {userData?.payment_request == "Rejected" && (
                   <div>
-                    <p>❌Reported</p>
-                    <p>Reported as Spam</p>
+                    <p>❌Rejected</p>
+                    <p>Reason: Reported as Spam</p>
                     <input
-                      placeholder="Paypal Address"
+                      placeholder={userData?.paypal_address}
                       defaultValue={userData?.paypal_address}
                       {...register("paypal")}
                       class="w-full rounded-lg border-gray-200 p-3 text-sm"
