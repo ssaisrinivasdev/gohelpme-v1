@@ -39,7 +39,7 @@ function ProfilePayments() {
                 </label>
                 <input
                   placeholder="Paypal Address"
-                  defaultValue={userIn.response.email}
+                  defaultValue={userIn?.response?.email}
                   {...register("paypal")}
                   class="w-full rounded-lg border-gray-200 p-3 text-sm"
                   type="text"
