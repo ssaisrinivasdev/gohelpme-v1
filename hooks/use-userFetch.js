@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 
 function useUserFetch() {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     handler();
   }, []);
@@ -35,10 +36,13 @@ function useUserFetch() {
       const jsonresultData = await result.json();
 
       setData(jsonresultData);
+      setLoading(false);
     }
   }
 
-  return data;
+  if (!loading) {
+    return data;
+  }
 }
 
 export default useUserFetch;
