@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 import Link from "next/link";
 
-function Sidebar({ segmentActive }) {
+function Sidebar({ segmentActive, adminType, roles, email }) {
   // const [buttonActive, setButtonActive] = useState("dashboard");
 
   const[activeOne, setActiveOne] = useState("dashboard");
@@ -17,7 +18,18 @@ function Sidebar({ segmentActive }) {
     <div className="flex h-screen w-16 flex-col justify-between border-r bg-white sticky top-0">
       <div>
         <div className="inline-flex h-16 w-16 items-center justify-center">
-          <span className="block h-10 w-10 rounded-lg bg-gray-200"></span>
+          <div className="group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500">
+            <ManageAccountsIcon/>
+
+            <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
+              Email: {email}<br></br>
+              Admin Type: {adminType}<br></br>
+              {roles?.map((role) => {
+                  return (<>{role}<br></br>
+                  </>);
+              })}
+            </span>
+          </div>
         </div>
 
         <div className="border-t border-gray-100">
@@ -59,7 +71,8 @@ function Sidebar({ segmentActive }) {
             </div>
 
             <ul className="space-y-1 border-t border-gray-100 pt-4">
-              <li
+              {(roles.includes("financial_stats") || ( adminType=="co-admin" || adminType=="admin"))?(
+                <li
               >
                 <div
                   className={activeOne == "finstats" ? 
@@ -90,7 +103,9 @@ function Sidebar({ segmentActive }) {
                   </span>
                 </div>
               </li>
-
+              ):("")}
+              
+              {(roles.includes("fund_approval") || ( adminType=="co-admin" || adminType=="admin"))?(
               <li
               >
                 <div
@@ -122,7 +137,9 @@ function Sidebar({ segmentActive }) {
                   </span>
                 </div>
               </li>
+              ):("")}
 
+              {(roles.includes("withdrawal_requests") || ( adminType=="co-admin" || adminType=="admin"))?(
               <li
               >
                 <div
@@ -154,7 +171,9 @@ function Sidebar({ segmentActive }) {
                   </span>
                 </div>
               </li>
+              ):("")}
 
+              {(roles.includes("blog") || ( adminType=="co-admin" || adminType=="admin"))?(
               <li
               >
                 <div
@@ -186,7 +205,9 @@ function Sidebar({ segmentActive }) {
                   </span>
                 </div>
               </li>
+              ):("")}
 
+              {(roles.includes("queries") || ( adminType=="co-admin" || adminType=="admin"))?(
               <li
               >
                 <div
@@ -218,7 +239,9 @@ function Sidebar({ segmentActive }) {
                   </span>
                 </div>
               </li>
+              ):("")}
 
+              {(roles.includes("roles") || ( adminType=="co-admin" || adminType=="admin"))?( 
               <li
               >
                 <div
@@ -250,6 +273,7 @@ function Sidebar({ segmentActive }) {
                   </span>
                 </div>
               </li>
+              ):("")}
             </ul>
           </nav>
         </div>

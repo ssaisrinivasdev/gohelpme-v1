@@ -78,7 +78,9 @@ function FundApproval() {
       type: "actions",
       width: 200,
       renderCell: (params) => (
-        <FormDialog/>
+        // console.log(params)
+        <FormDialog status="fundApprovalStatus" statusValue={params.row.verification_status}
+        id = {params.id}/>
       ),
     },
     {

@@ -55,7 +55,8 @@ function WithdrawalRequestsTab() {
       type: "actions",
       width: 200,
       renderCell: (params) => (
-        <FormDialog/>
+        // console.log(params)
+        <FormDialog id={params.id} status="withdrawalVerificationStatus" statusValue={params.row.withdrawl_status}/>
       ),
     },
     {
