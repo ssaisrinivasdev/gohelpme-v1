@@ -34,7 +34,7 @@ function Pagination(props) {
   console.log("hii");
 
   return (
-    <ol class="flex justify-center gap-1 text-xs font-medium">
+    <ol class="flex justify-center gap-1 text-xs font-medium my-5">
       <li
         onClick={(event) => {
           props.handler(currentPage > 1 ? currentPage - 1 : 1);

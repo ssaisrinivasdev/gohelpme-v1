@@ -3,13 +3,9 @@ import Footer from "../components/UI/Footer";
 import Header from "../components/UI/Header";
 import InfoButtons from "../components/UI/InfoButtons";
 import Profile from "../components/UI/Profile";
-import ProfileCards from "../components/UI/ProfileCards";
 import ProfileFunds from "../components/UI/ProfileFunds";
 import Search from "../components/UI/CatSearch";
 import ProfileForm from "../components/UI/ProfileForm";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import jwt from "jsonwebtoken";
 import ProfileSidebar from "../components/UI/ProfileSidebar";
 import ProfilePayments from "../components/UI/ProfilePayments";
 import ProfileWithdrawReq from "../components/UI/ProfileWithdrawReq";
@@ -80,7 +76,7 @@ function Dashboard() {
 
           <div className="">
             {buttonActive === "profile" ? (
-              <div className="flex">
+              <div className="flex gap-3">
                 <ProfileSidebar segmentActive={handler} />
                 {profileButtonActive === "details" ? <ProfileForm /> : ""}
                 {profileButtonActive === "payments" ? <ProfilePayments /> : ""}
