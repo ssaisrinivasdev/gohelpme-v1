@@ -10,16 +10,15 @@ function useUserFetch() {
   }, []);
 
   async function handler() {
-    const [id, setId] = useState(null);
     const token = localStorage.getItem("token");
-    // let id = null;
+    let id = null;
 
     if (token) {
       jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
         if (err) {
           console.log("no err");
         } else {
-          setId(decoded.id);
+          id = decoded.id;
         }
       });
     }
@@ -34,7 +33,6 @@ function useUserFetch() {
 
     if (result.status >= 200 && result.status <= 300) {
       const jsonresultData = await result.json();
-
       setData(jsonresultData);
       setLoading(false);
     }
