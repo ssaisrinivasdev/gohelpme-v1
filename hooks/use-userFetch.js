@@ -9,13 +9,12 @@ function useUserFetch() {
 
   async function handler() {
     const token = localStorage.getItem("token");
-
     let id = null;
 
     if (token) {
       jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
         if (err) {
-          setIsLoggedIn(false);
+          console.log("no err");
         } else {
           id = decoded.id;
         }
@@ -35,7 +34,7 @@ function useUserFetch() {
     if (result.status >= 200 && result.status <= 300) {
       const jsonresultData = await result.json();
 
-      console.log(jsonresultData.response.name);
+      console.log(jsonresultData);
 
       return jsonresultData;
     }
