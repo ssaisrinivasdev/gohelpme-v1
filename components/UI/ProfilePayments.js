@@ -4,7 +4,7 @@ import useUserFetch from "../../hooks/use-userFetch";
 
 function ProfilePayments() {
   const userIn = useUserFetch();
-  console.log(userIn.response);
+  // console.log(userIn.response);
 
   const {
     register,
