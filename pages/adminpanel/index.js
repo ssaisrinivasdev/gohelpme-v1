@@ -20,6 +20,7 @@ function Admin() {
   const [adminType, setAdminType] = useState("");
   const [email, setEmail] = useState("");
   const router = useRouter();
+  const [canRoute, setCanRoute] = useState(true);
 
 
   useEffect(() => {
@@ -36,15 +37,15 @@ function Admin() {
         }else{
           console.error("The below one is the error")
           console.error(err);          
-          router.push("/adminpanel/login");
+          setCanRoute(false);
         }
       });
     }else{
-      console.error("Token not found")
-      router.push("/adminpanel/login");
+      console.error("Token not found");
+      setCanRoute(false);
     }
     if(id != null){
-      let result = await fetch("http://localhost:8000/api/admin/details/" + id, {
+      let result = await fetch("http://gohelpme.online/api/admin/details/" + id, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -68,12 +69,16 @@ function Admin() {
           response.toString().includes("User Not Found") ||
           response.toString().includes("Please Login to Access")
         ) {
-          router.push("/adminpanel/login");
+          setCanRoute(false);
         }
       }
     }else{
+      setCanRoute(false);
+    }
+    if(!canRoute){
       router.push("/adminpanel/login");
     }
+
   }
 
   const handler = (data) => {
