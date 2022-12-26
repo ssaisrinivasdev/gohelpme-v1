@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import jwt from "jsonwebtoken";
 
 function useUserFetch() {
+  const [data, setData] = useState(null);
   useEffect(() => {
     handler();
   }, []);
@@ -33,9 +34,11 @@ function useUserFetch() {
     if (result.status >= 200 && result.status <= 300) {
       const jsonresultData = await result.json();
 
-      return jsonresultData;
+      setData(jsonresultData);
     }
   }
+
+  return data;
 }
 
 export default useUserFetch;
