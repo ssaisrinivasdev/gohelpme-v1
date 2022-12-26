@@ -16,7 +16,7 @@ function Dashboard() {
   const [profileButtonActive, setProfileButtonActive] = useState("details");
 
   const userIn = useUserFetch();
-  console.log("hook fetch:" + userIn);
+  console.log(userIn);
 
   const handler = (data) => {
     setProfileButtonActive(data);
