@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Footer from "../components/UI/Footer";
 import Header from "../components/UI/Header";
 
-function contact() {
+function Contact() {
   const {
     register,
     handleSubmit,
@@ -276,4 +276,4 @@ function contact() {
   );
 }
 
-export default contact;
+export default Contact;

@@ -67,7 +67,7 @@ function BlogCards() {
               </div>
             ) : (
               posts.posts.map((data) => {
-                return <BlogSingleCard data={data} />;
+                return <BlogSingleCard data={data} key={data._id} />;
               })
             )}
           </div>
