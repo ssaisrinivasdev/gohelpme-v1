@@ -5,6 +5,7 @@ import useUserFetch from "../../hooks/use-userFetch";
 function ProfilePayments() {
   const userIn = useUserFetch();
   // console.log(userIn.response);
+  const data = userIn?.response;
 
   const {
     register,
@@ -37,22 +38,86 @@ function ProfilePayments() {
                 <label class="sr-only" for="name">
                   Your Paypal
                 </label>
-                <input
-                  placeholder="Paypal Address"
-                  defaultValue={userIn?.response?.email}
-                  {...register("paypal")}
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                  type="text"
-                  id="paypal"
-                  disabled
-                />
-              </div>
+                {data.payment_request == "Requested" && (
+                  <div>
+                    <p>Your Request is still under Review</p>
+                    <input
+                      placeholder="Paypal Address"
+                      defaultValue={data.paypal_address}
+                      {...register("paypal")}
+                      class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                      type="text"
+                      id="paypal"
+                      disabled
+                    />
 
-              <input
-                type="submit"
-                value="Update"
-                class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
-              />
+                    <input
+                      type="submit"
+                      value="Update"
+                      class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                    />
+                  </div>
+                )}
+                {data.payment_request == "Approved" && (
+                  <div>
+                    <p>✅Approved</p>
+                    <input
+                      placeholder="Paypal Address"
+                      defaultValue={data.paypal_address}
+                      {...register("paypal")}
+                      class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                      type="text"
+                      id="paypal"
+                      disabled
+                    />
+
+                    <input
+                      type="submit"
+                      value="Change Mail"
+                      class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                    />
+                  </div>
+                )}
+                {data.payment_request == "Rejected" && (
+                  <div>
+                    <p>❌Reported</p>
+                    <p>Reported as Spam</p>
+                    <input
+                      placeholder="Paypal Address"
+                      defaultValue={data.paypal_address}
+                      {...register("paypal")}
+                      class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                      type="text"
+                      id="paypal"
+                      disabled
+                    />
+
+                    <input
+                      type="submit"
+                      value="Update"
+                      class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                    />
+                  </div>
+                )}
+                {data.payment_request == "NotRequested" && (
+                  <div>
+                    <input
+                      placeholder="Paypal Address"
+                      defaultValue={data.paypal_address}
+                      {...register("paypal")}
+                      class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                      type="text"
+                      id="paypal"
+                    />
+
+                    <input
+                      type="submit"
+                      value="Update"
+                      class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                    />
+                  </div>
+                )}
+              </div>
             </form>
           </div>
         </div>
