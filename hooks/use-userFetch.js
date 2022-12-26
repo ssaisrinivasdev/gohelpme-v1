@@ -26,15 +26,12 @@ function useUserFetch() {
 
       headers: {
         "Content-Type": "application/json",
-
         Accept: "application/json",
       },
     });
 
     if (result.status >= 200 && result.status <= 300) {
       const jsonresultData = await result.json();
-
-      console.log(jsonresultData);
 
       return jsonresultData;
     }
