@@ -9,14 +9,13 @@ import { useDispatch } from "react-redux";
 import { addDetails } from "../store/actions/user";
 import useLoginCheck from "../hooks/use-logincheck";
 import Cookies from "universal-cookie";
-import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Login() {
   const isLoggedIn = useLoginCheck();
   const dispatch = useDispatch();
   const cookies = new Cookies();
 
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   const {
     register,
@@ -30,12 +29,6 @@ export default function Login() {
 
   const LoginPost = async (data) => {
     const { email, password } = data;
-
-    signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
 
     const res = await fetch("http://gohelpme.online/api/login", {
       method: "POST",
