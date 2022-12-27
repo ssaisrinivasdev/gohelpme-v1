@@ -8,16 +8,16 @@ import FundApproval from "../../components/UI/admincomps/ModulesFolder/FundAppro
 import WithdrawalRequestsTab from "../../components/UI/admincomps/ModulesFolder/WithdrawalRequestsTab";
 import QueriesTab from "../../components/UI/admincomps/ModulesFolder/QueriesTab";
 import RolesTab from "../../components/UI/admincomps/ModulesFolder/RolesTab";
+import { useRouter } from "next/router";
 
 function Admin() {
   const [buttonActive, setButtonActive] = useState("dashboard");
-  const [isLoading,setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [roles, setRoles] = useState("");
   const [adminType, setAdminType] = useState("admin");
   const [email, setEmail] = useState("admin@admin.com");
   const router = useRouter();
   const [canRoute, setCanRoute] = useState(true);
-
 
   // useEffect(() => {
   //   getAdminDetails();
@@ -32,7 +32,7 @@ function Admin() {
   //         id = decoded.id;
   //       }else{
   //         console.error("The below one is the error")
-  //         console.error(err);          
+  //         console.error(err);
   //         setCanRoute(false);
   //       }
   //     });
