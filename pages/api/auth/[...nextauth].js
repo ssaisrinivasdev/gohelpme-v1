@@ -41,7 +41,7 @@ export default NextAuth({
           }
         };
 
-        const res = await fetch("http://gohelpme.online/api/user/" + token(), {
+        const res = await fetch("http://gohelpme.online/api/user/" + token, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
@@ -59,6 +59,7 @@ export default NextAuth({
   ],
   pages: {
     signIn: "/login",
+    error: "/api/auth/error",
   },
   // callbacks: {
   //   jwt: ({ token, user }) => {
