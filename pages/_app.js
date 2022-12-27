@@ -9,7 +9,7 @@ import NextNProgress from "nextjs-progressbar";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [email, setEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [username, setUsername] = useState("");
