@@ -2,6 +2,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth/next";
 import useLoginCheck from "../../../hooks/use-logincheck";
 
+const { isLoggedIn, id } = useLoginCheck();
+
 export default NextAuth({
   providers: [
     CredentialsProvider({
@@ -16,8 +18,6 @@ export default NextAuth({
         // password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const { isLoggedIn, id } = useLoginCheck();
-
         const { username, password } = credentials;
 
         // You need to provide your own logic here that takes the credentials
