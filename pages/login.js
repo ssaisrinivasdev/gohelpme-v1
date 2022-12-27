@@ -33,7 +33,7 @@ export default function Login() {
   const LoginPost = async (data) => {
     const { email, password } = data;
 
-    const signDetails = await signIn("credentials", {
+    signIn("credentials", {
       email,
       password,
       redirect: false,

@@ -1,25 +1,23 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth/next";
-import useLoginCheck from "../../../hooks/use-logincheck";
+import { getToken } from "next-auth/jwt";
 
 export default NextAuth({
-  session: {
-    strategy: "jwt",
-  },
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      type: "credentials",
+      name: "Credentials",
       // The credentials is used to generate a suitable form on the sign in page.
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
-      credentials: {
-        // username: { label: "Email", type: "email", placeholder: "jsmith" },
-        // password: { label: "Password", type: "password" },
-      },
+
+      // username: { label: "Email", type: "email", placeholder: "jsmith" },
+      // password: { label: "Password", type: "password" },
+      // credentials: {},
       async authorize(credentials, req) {
-        const { username, password } = credentials;
+        const { email, password } = credentials;
+        console.log({ email, password });
 
         // You need to provide your own logic here that takes the credentials
         // submitted and returns either a object representing a user or value
@@ -27,6 +25,8 @@ export default NextAuth({
         // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
+
+        // localStorage.getItem("token");
 
         const token = () => {
           localStorage.getItem("token");
@@ -48,7 +48,7 @@ export default NextAuth({
         const user = await res.json();
 
         // If no error and we have user data, return it
-        if (res.ok && username == user.response.email) {
+        if (user.response.email == email) {
           return user;
         }
         // Return null if user data could not be retrieved
