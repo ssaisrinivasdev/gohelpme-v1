@@ -1,6 +1,5 @@
 import DefaultTitle from "./DefaultTitle";
 import Cards from "./FundCards";
-import PageTitle from "./PageTitle";
 import { React, useEffect, useState } from "react";
 import jwt from "jsonwebtoken";
 import Skeleton from "@mui/material/Skeleton";

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-function login() {
+function Login() {
   const router = useRouter();
   const {
     register,
@@ -140,4 +140,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

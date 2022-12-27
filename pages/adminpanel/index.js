@@ -1,17 +1,13 @@
 import React from "react";
 import AdminUi from "../../components/UI/admincomps/ModulesFolder/AdminUi";
 import Sidebar from "../../components/UI/admincomps/Sidebar";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 import BlogEditorial from "../../components/UI/admincomps/ModulesFolder/BlogEditorial";
 import FInStats from "../../components/UI/admincomps/ModulesFolder/FInStats";
 import FundApproval from "../../components/UI/admincomps/ModulesFolder/FundApproval";
 import WithdrawalRequestsTab from "../../components/UI/admincomps/ModulesFolder/WithdrawalRequestsTab";
 import QueriesTab from "../../components/UI/admincomps/ModulesFolder/QueriesTab";
 import RolesTab from "../../components/UI/admincomps/ModulesFolder/RolesTab";
-import jwt from "jsonwebtoken";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 
 function Admin() {
   const [buttonActive, setButtonActive] = useState("dashboard");
@@ -87,57 +83,29 @@ function Admin() {
   };
 
   return (
-      <>{isLoading ?(
-        <Box sx={{ display: 'flex' }}>
-          <CircularProgress />
-        </Box>
-      ):(
-        <div className="flex">
-        <div className="flex-none w-min z-50">
-          <Sidebar segmentActive={handler} roles={roles} adminType={adminType} email={email}/>
-        </div>
-        <div className="flex-1 w-fit flex flex-col overflow-hidden ml-4">
-          {buttonActive === "dashboard" ? <AdminUi /> : ""}
-          {buttonActive === "blog" ? <BlogEditorial /> : ""}
-          {roles.includes("financial_stats")?(
-            <>
-              {buttonActive === "finstats" ? <FInStats /> : ""}
-            </>
-          ):("")}
-
-          {/* -----------------FUND APPROVALS------------------ */}
-          {(roles.includes("fund_approval") || ( adminType=="co-admin" || adminType=="admin"))?(
-            <>
-              {buttonActive === "fundApproval" ? (<div className="flex flex-col"><FundApproval /></div>) : ("")}
-            </>
-          ):("")}
-
-          {/* --------------WITHDRAWAL REQUESTS--------------- */}
-          {(roles.includes("withdrawal_requests") || ( adminType=="co-admin" || adminType=="admin"))?(
-            <>
-              {buttonActive === "withdrawalRequests" ? <WithdrawalRequestsTab /> : ""}
-            </>
-          ):("")}
-
-
-          {(roles.includes("queries") || ( adminType=="co-admin" || adminType=="admin"))?(
-            <>
-              {buttonActive === "queries" ? <QueriesTab /> : ""}
-            </>
-          ):("")}
-
-
-          {(roles.includes("roles") || ( adminType=="co-admin" || adminType=="admin"))?(
-            <>
-              {buttonActive === "roles" ? <RolesTab /> : ""}
-            </>
-          ):("")}  
-
-
+    <div className="flex overflow-hidden gap-20 lg:gap-28">
+      <div className="relative">
+        <div className="fixed top-0 left-0 z-10">
+          <Sidebar segmentActive={handler} />
         </div>
       </div>
-      )}
-      </>
+
+      <div className="flex flex-col">
+        {buttonActive === "dashboard" ? <AdminUi /> : ""}
+        {buttonActive === "blog" ? <BlogEditorial /> : ""}
+        {buttonActive === "finstats" ? <FInStats /> : ""}
+        {buttonActive === "fundApproval" ? (
+          <div className="flex flex-col">
+            <FundApproval />
+          </div>
+        ) : (
+          ""
+        )}
+        {buttonActive === "withdrawalRequests" ? <WithdrawalRequestsTab /> : ""}
+        {buttonActive === "queries" ? <QueriesTab /> : ""}
+        {buttonActive === "roles" ? <RolesTab /> : ""}
+      </div>
+    </div>
   );
 
   {

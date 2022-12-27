@@ -8,7 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import NextNProgress from "nextjs-progressbar";
 import { useRouter } from "next/router";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [email, setEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [username, setUsername] = useState("");
@@ -51,6 +51,7 @@ function MyApp({ Component, pageProps }) {
           ]}
         >
           <NextNProgress color="#DB162F" />
+
           <Component {...pageProps} />
         </GlobalContext.Provider>
       </PersistGate>

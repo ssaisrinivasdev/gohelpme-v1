@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 function useLoginCheck() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [id, setId] = useState(null);
 
   const token = localStorage.getItem("token");
 
@@ -16,15 +17,20 @@ function useLoginCheck() {
           setIsLoading(false);
         } else {
           setIsLoggedIn(true);
+
+          setId(decoded.id);
           setIsLoading(false);
         }
       });
     }
   }, []);
 
-  // if (!isLoading) {
-  return isLoggedIn;
-  // }
+  if (!isLoading) {
+    return {
+      isLoggedIn,
+      id,
+    };
+  }
 }
 
 export default useLoginCheck;

@@ -15,6 +15,8 @@ export default function Login() {
   const dispatch = useDispatch();
   const cookies = new Cookies();
 
+  // const { data: session } = useSession();
+
   const {
     register,
     handleSubmit,
@@ -40,7 +42,7 @@ export default function Login() {
 
     if (res.status >= 200 && res.status <= 205) {
       const { token } = response;
-      console.log("Success:", response);
+      // console.log("Success:", response);
 
       // Perform localStorage action
       localStorage.setItem("token", token);
@@ -52,7 +54,6 @@ export default function Login() {
       const lastname = response.response.lastname;
       const email = response.response.email;
 
-      console.log("Success:", response.response.message);
       globalData[1].setIsLoggedIn(true);
 
       dispatch(
@@ -69,7 +70,7 @@ export default function Login() {
     } else if (res.status >= 400 && res.status <= 405) {
       const { error } = response;
       const { message } = response;
-      console.log(`${error} : ${message}`);
+
       alert(`${error} : ${message}`);
 
       if (
@@ -82,16 +83,6 @@ export default function Login() {
         router.push("/login");
         globalData[1].setIsLoggedIn(false);
       }
-      // else
-      // {
-      //   if((error).toString() != "Something went wrong")
-      //   {
-      //     alert((message).toString());
-      //   }
-      //   else{
-      //     alert((error).toString());
-      //   }
-      // }
     }
   };
 
