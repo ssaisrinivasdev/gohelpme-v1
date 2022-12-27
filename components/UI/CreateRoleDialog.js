@@ -20,10 +20,7 @@ export default function CreateRoleDialog() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: { roles: ["financial_stats"] },
-    //               only January ^ is checked by default
-  });
+  } = useForm({});
   const [editing, setEditing] = useState(false);
 
   const [state, setState] = React.useState({
@@ -33,18 +30,44 @@ export default function CreateRoleDialog() {
     right: false,
   });
 
-  const handler = async (data) => {
+  async function handler(data) {
     const res = await fetch(`http://gohelpme.online/api/admin/add-subadmin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, authorization",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"
       },
-      body: { ...data, email: data.email + "@admin.com" },
+      body: JSON.stringify({
+        ...data,
+        email: data.email + "@admin.com"
+      })
     });
 
     const response = await res.json();
-  };
+    console.log(response);
+
+    if (res.status >= 200 && res.status <= 205) {
+      toggleDrawer("right", false);
+    }else if(res.status >= 400 && res.status <=499){
+      if (
+        response.toString().includes("Invalid User") ||
+        response.toString().includes("User not logged in ") ||
+        response.toString().includes("User Not Found") ||
+        response.toString().includes("Please Login to Access")
+      ) {
+        router.push("/adminpanel/login");
+      }else if (
+        response.toString().includes("You don't have permissions to make this request")
+      ){
+        alert("You don't have permissions to make this request")
+      }else{
+        alert(response.error.toString())
+      }
+    }
+  }
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -148,16 +171,16 @@ export default function CreateRoleDialog() {
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     onChange={(e) => {
                       console.log(e.target.value);
-                      if (e.target.value === "Sub-admin") {
+                      if (e.target.value === "sub-admin") {
                         setEditing(true);
                       }
-                      if (e.target.value === "Co-admin") {
+                      if (e.target.value === "co-admin") {
                         setEditing(false);
                       }
                     }}
                   >
-                    <option>Co-admin</option>
-                    <option>Sub-admin</option>
+                    <option>co-admin</option>
+                    <option>sub-admin</option>
                   </select>
                 </div>
               </div>

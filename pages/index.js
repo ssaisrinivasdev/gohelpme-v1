@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Header from "../components/UI/Header";
-import Cards from "../components/UI/FundCards";
 import Footer from "../components/UI/Footer";
 import Hero from "../components/UI/Hero";
 import Hero2 from "../components/UI/Hero2";
 import CategoryFunds from "../components/UI/CategoryFunds";
 import DefaultTitle from "../components/UI/DefaultTitle";
+import BlogCards from "../components/UI/BlogCards";
 
 export default function Home() {
   return (
@@ -20,19 +20,20 @@ export default function Home() {
       <Hero />
       {/* <div className="relative grid grid-flow-row grid-cols-1 items-center">
         <div className="w-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide"> */}
-        <div className="mx-5 my-4">
+      <div className="mx-5 my-4">
         <div>
-      <DefaultTitle title="Top Performing Funds" />
-      <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
-        <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
-        <CategoryFunds category="Top" />
-        </div>
-        </div>
+          <DefaultTitle title="Top Performing Funds" />
+          <div className="grid grid-flow-row col-auto grid-cols-1 mx-auto">
+            <div className="w-full overflow-auto whitespace-nowrap scroll-smooth scrollbar-hide">
+              <CategoryFunds category="Top" />
+            </div>
+          </div>
         </div>
       </div>
       {/* </div>
       </div> */}
       <Hero2 />
+      <BlogCards />
       <Footer />
     </div>
   );

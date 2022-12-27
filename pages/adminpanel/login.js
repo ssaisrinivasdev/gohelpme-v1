@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-function login() {
+function Login() {
   const router = useRouter();
   const {
     register,
@@ -27,12 +27,12 @@ function login() {
     console.log(response);
 
     if (res.status >= 200 && res.status <= 205) {
-      const { admintoken } = response;
+      const { admin_token } = response;
       console.log("Success:", response);
 
       // Perform localStorage action
-      localStorage.setItem("admintoken", admintoken);
-      Cookies.set("admintoken", admintoken);
+      localStorage.setItem("admin_token", admin_token);
+      //Cookies.set("admin_token", admintoken);
       router.push("/adminpanel");
     }
   };
@@ -140,4 +140,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
