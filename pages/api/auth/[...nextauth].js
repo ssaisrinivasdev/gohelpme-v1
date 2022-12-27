@@ -28,28 +28,34 @@ export default NextAuth({
 
         // localStorage.getItem("token");
 
-        const token = () => {
-          localStorage.getItem("token");
-          if (token) {
-            jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
-              if (err) {
-                return null;
-              } else {
-                return decoded.id;
-              }
-            });
-          }
-        };
+        // const token = () => {
+        //   localStorage.getItem("token");
+        //   if (token) {
+        //     jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
+        //       if (err) {
+        //         return null;
+        //       } else {
+        //         return decoded.id;
+        //       }
+        //     });
+        //   }
+        // };
 
-        const res = await fetch("http://gohelpme.online/api/user/" + token, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-        const user = await res.json();
+        // const res = await fetch("http://gohelpme.online/api/user/" + token, {
+        //   method: "GET",
+        //   headers: { "Content-Type": "application/json" },
+        // });
+        // const user = await res.json();
+
+        const secret = "$tr0ngkEy123!@#";
+
+        const token = await getToken({ req, secret });
+        console.log("JSON Web Token", token);
+        res.end();
 
         // If no error and we have user data, return it
-        if (user.response.email == email) {
-          return user;
+        if (token) {
+          return token;
         }
         // Return null if user data could not be retrieved
         // console.log("Error Occured");
@@ -59,7 +65,7 @@ export default NextAuth({
   ],
   pages: {
     signIn: "/login",
-    error: "/api/auth/error",
+    error: "/auth/error", // Error code passed in query string as ?error=
   },
   // callbacks: {
   //   jwt: ({ token, user }) => {
