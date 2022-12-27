@@ -7,7 +7,6 @@ import { Provider, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import NextNProgress from "nextjs-progressbar";
 import { useRouter } from "next/router";
-import { SessionProvider } from "next-auth/react";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [email, setEmail] = useState("");
@@ -52,9 +51,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           ]}
         >
           <NextNProgress color="#DB162F" />
-          <SessionProvider session={session}>
-            <Component {...pageProps} />
-          </SessionProvider>
+
+          <Component {...pageProps} />
         </GlobalContext.Provider>
       </PersistGate>
     </Provider>
