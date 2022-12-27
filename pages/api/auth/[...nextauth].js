@@ -1,89 +1,46 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import NextAuth from "next-auth/next";
-import { getToken } from "next-auth/jwt";
+import NextAuth from "next-auth";
 
-export default NextAuth({
+export const authOptions = {
+  // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. 'Sign in with...')
+      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
-      // The credentials is used to generate a suitable form on the sign in page.
-      // You can specify whatever fields you are expecting to be submitted.
+      // `credentials` is used to generate a form on the sign in page.
+      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
-
-      // username: { label: "Email", type: "email", placeholder: "jsmith" },
-      // password: { label: "Password", type: "password" },
-      // credentials: {},
+      credentials: {},
       async authorize(credentials, req) {
-        const { email, password } = credentials;
-        console.log({ email, password });
+        // Add logic here to look up the user from the credentials supplied
+        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
 
-        // You need to provide your own logic here that takes the credentials
-        // submitted and returns either a object representing a user or value
-        // that is false/null if the credentials are invalid.
-        // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-        // You can also use the `req` object to obtain additional parameters
-        // (i.e., the request IP address)
+        if (user.email != "sammyvasutalks@gmail.com") {
+          // Any object returned will be saved in `user` property of the JWT
+          return user;
+        } else {
+          // If you return null then an error will be displayed advising the user to check their details.
+          return null;
 
-        // localStorage.getItem("token");
-
-        // const token = () => {
-        //   localStorage.getItem("token");
-        //   if (token) {
-        //     jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
-        //       if (err) {
-        //         return null;
-        //       } else {
-        //         return decoded.id;
-        //       }
-        //     });
-        //   }
-        // };
-
-        // const res = await fetch("http://gohelpme.online/api/user/" + token, {
-        //   method: "GET",
-        //   headers: { "Content-Type": "application/json" },
-        // });
-        // const user = await res.json();
-
-        const secret = "$tr0ngkEy123!@#";
-
-        const token = await getToken({ req, secret });
-        console.log("JSON Web Token", token);
-        res.end();
-
-        // If no error and we have user data, return it
-        if (token) {
-          return token;
+          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
-        // Return null if user data could not be retrieved
-        // console.log("Error Occured");
-        return null;
       },
     }),
   ],
-  pages: {
-    signIn: "/login",
-    error: "/auth/error", // Error code passed in query string as ?error=
+  callbacks: {
+    async jwt({ token, account }) {
+      // Persist the OAuth access_token to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.accessToken = token.accessToken;
+      return session;
+    },
   },
-  // callbacks: {
-  //   jwt: ({ token, user }) => {
-  //     if (user) {
-  //       token.id = user.id;
-  //     }
-
-  //     return token;
-  //   },
-  //   session: ({ session, token }) => {
-  //     session.id = token.id;
-
-  //     return session;
-  //   },
-  // },
-  // secret: "$tr0ngkEy123!@#",
-  // jwt: {
-  //   secret: "$tr0ngkEy123!@#",
-  //   encryption: true,
-  // },
-});
+};
+export default NextAuth(authOptions);

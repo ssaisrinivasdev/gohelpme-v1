@@ -10,8 +10,12 @@ import ProfileSidebar from "../components/UI/ProfileSidebar";
 import ProfilePayments from "../components/UI/ProfilePayments";
 import ProfileWithdrawReq from "../components/UI/ProfileWithdrawReq";
 import useUserFetch from "../hooks/use-userFetch";
+import { useSession } from "next-auth/react";
 
 function Dashboard() {
+  const data = useSession();
+  console.log(data);
+
   const [buttonActive, setButtonActive] = useState("Dashboard");
   const [profileButtonActive, setProfileButtonActive] = useState("details");
 
