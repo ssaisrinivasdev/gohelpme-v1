@@ -2,8 +2,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth/next";
 import useLoginCheck from "../../../hooks/use-logincheck";
 
-const { isLoggedIn, id } = useLoginCheck();
-
 export default NextAuth({
   providers: [
     CredentialsProvider({
@@ -26,19 +24,33 @@ export default NextAuth({
         // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
-        const res = await fetch("http://gohelpme.online/api/user/" + id, {
+
+        const token = () => {
+          localStorage.getItem("token");
+
+          if (token) {
+            jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
+              if (err) {
+                return null;
+              } else {
+                return decoded.id;
+              }
+            });
+          }
+        };
+
+        const res = await fetch("http://gohelpme.online/api/user/" + token, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
         const user = await res.json();
 
         // If no error and we have user data, return it
-        if (res.ok && user) {
-          console.log(user);
+        if (res.ok && username == user.response.email) {
           return user;
         }
         // Return null if user data could not be retrieved
-        console.log("Error Occured");
+        // console.log("Error Occured");
         return null;
       },
     }),
