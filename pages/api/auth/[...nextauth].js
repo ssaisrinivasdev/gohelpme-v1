@@ -3,10 +3,13 @@ import NextAuth from "next-auth/next";
 import useLoginCheck from "../../../hooks/use-logincheck";
 
 export default NextAuth({
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: "Credentials",
+      type: "credentials",
       // The credentials is used to generate a suitable form on the sign in page.
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
@@ -27,7 +30,6 @@ export default NextAuth({
 
         const token = () => {
           localStorage.getItem("token");
-
           if (token) {
             jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
               if (err) {
@@ -58,23 +60,23 @@ export default NextAuth({
   pages: {
     signIn: "/login",
   },
-  callbacks: {
-    jwt: ({ token, user }) => {
-      if (user) {
-        token.id = user.id;
-      }
+  // callbacks: {
+  //   jwt: ({ token, user }) => {
+  //     if (user) {
+  //       token.id = user.id;
+  //     }
 
-      return token;
-    },
-    session: ({ session, token }) => {
-      session.id = token.id;
+  //     return token;
+  //   },
+  //   session: ({ session, token }) => {
+  //     session.id = token.id;
 
-      return session;
-    },
-  },
-  secret: "$tr0ngkEy123!@#",
-  jwt: {
-    secret: "$tr0ngkEy123!@#",
-    encryption: true,
-  },
+  //     return session;
+  //   },
+  // },
+  // secret: "$tr0ngkEy123!@#",
+  // jwt: {
+  //   secret: "$tr0ngkEy123!@#",
+  //   encryption: true,
+  // },
 });
