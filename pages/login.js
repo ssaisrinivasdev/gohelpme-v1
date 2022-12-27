@@ -10,11 +10,15 @@ import { addDetails } from "../store/actions/user";
 import useLoginCheck from "../hooks/use-logincheck";
 import Cookies from "universal-cookie";
 import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function Login() {
   const isLoggedIn = useLoginCheck();
   const dispatch = useDispatch();
   const cookies = new Cookies();
+
+  const { data: session } = useSession();
+  console.log(session);
 
   const {
     register,
