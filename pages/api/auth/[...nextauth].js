@@ -41,14 +41,14 @@ export default NextAuth({
           }
         };
 
-        const res = await fetch("http://gohelpme.online/api/user/" + token, {
+        const res = await fetch("http://gohelpme.online/api/user/" + token(), {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
         const user = await res.json();
 
         // If no error and we have user data, return it
-        if (res.ok && user) {
+        if (res.ok && username == user.response.email) {
           return user;
         }
         // Return null if user data could not be retrieved
