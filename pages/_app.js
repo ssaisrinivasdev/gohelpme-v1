@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }) {
           ]}
         >
           <NextNProgress color="#DB162F" />
-          <SessionProvider>
+          <SessionProvider session={session}>
             <Component {...pageProps} />
           </SessionProvider>
         </GlobalContext.Provider>
