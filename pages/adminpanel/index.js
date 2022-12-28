@@ -1,7 +1,7 @@
 import React from "react";
 import AdminUi from "../../components/UI/admincomps/ModulesFolder/AdminUi";
 import Sidebar from "../../components/UI/admincomps/Sidebar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BlogEditorial from "../../components/UI/admincomps/ModulesFolder/BlogEditorial";
 import FInStats from "../../components/UI/admincomps/ModulesFolder/FInStats";
 import FundApproval from "../../components/UI/admincomps/ModulesFolder/FundApproval";
@@ -9,6 +9,7 @@ import WithdrawalRequestsTab from "../../components/UI/admincomps/ModulesFolder/
 import QueriesTab from "../../components/UI/admincomps/ModulesFolder/QueriesTab";
 import RolesTab from "../../components/UI/admincomps/ModulesFolder/RolesTab";
 import { useRouter } from "next/router";
+import jwt from "jsonwebtoken";
 
 function Admin() {
   const [buttonActive, setButtonActive] = useState("dashboard");
@@ -33,7 +34,8 @@ function Admin() {
           id = decoded.id;
         }else{
           console.error("The below one is the error")
-          console.error(err);          
+          console.error(err);
+          localStorage.removeItem("admin_token");          
           router.push("/admin-login");
         }
       });
@@ -61,48 +63,60 @@ function Admin() {
         setIsLoading(false);
       }else if(result.status == 401){
         if (
-          response.toString().includes("Invalid User") ||
-          response.toString().includes("User not logged in ") ||
-          response.toString().includes("User Not Found") ||
-          response.toString().includes("Please Login to Access")
+          response.error == "Invalid User" ||
+          response.error == "User not logged in " ||
+          response.error == "User Not Found" ||
+          response.error == "Please Login to Access"
         ) {
+          console.log("Not logged in")
+          localStorage.removeItem("admin_token");
           router.push("/admin-login");
         }
       }
     }else{
+      localStorage.removeItem("admin_token");
       router.push("/admin-login");
     }
   }
 
   const handler = (data) => {
     console.log(data);
-    setButtonActive(data);
+    if(data != "logout"){
+      setButtonActive(data);
+    }else{
+      console.log("Logging out")
+      localStorage.removeItem("admin_token");
+      router.push("/admin-login");
+    }
   };
 
   return (
-    <div className="flex overflow-hidden gap-20 lg:gap-28">
-      <div className="relative">
-        <div className="fixed top-0 left-0 z-10">
-          <Sidebar segmentActive={handler} />
+    <>
+    {isLoading && (
+      <div className="flex overflow-hidden gap-20 lg:gap-28">
+        <div className="relative">
+          <div className="fixed top-0 left-0 z-10">
+            <Sidebar segmentActive={handler} />
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          {buttonActive === "dashboard" ? <AdminUi /> : ""}
+          {buttonActive === "blog" ? <BlogEditorial /> : ""}
+          {buttonActive === "finstats" ? <FInStats /> : ""}
+          {buttonActive === "fundApproval" ? (
+            <div className="flex flex-col">
+              <FundApproval />
+            </div>
+          ) : (
+            ""
+          )}
+          {buttonActive === "withdrawalRequests" ? <WithdrawalRequestsTab /> : ""}
+          {buttonActive === "queries" ? <QueriesTab /> : ""}
         </div>
       </div>
-
-      <div className="flex flex-col">
-        {buttonActive === "dashboard" ? <AdminUi /> : ""}
-        {buttonActive === "blog" ? <BlogEditorial /> : ""}
-        {buttonActive === "finstats" ? <FInStats /> : ""}
-        {buttonActive === "fundApproval" ? (
-          <div className="flex flex-col">
-            <FundApproval />
-          </div>
-        ) : (
-          ""
-        )}
-        {buttonActive === "withdrawalRequests" ? <WithdrawalRequestsTab /> : ""}
-        {buttonActive === "queries" ? <QueriesTab /> : ""}
-        {buttonActive === "roles" ? <RolesTab /> : ""}
-      </div>
-    </div>
+    )}
+    </>
   );
 
   {

@@ -218,38 +218,6 @@ function Sidebar({ segmentActive }) {
                   </span>
                 </div>
               </li>
-
-              <li
-              >
-                <div
-                  className={activeOne == "roles" ? 
-                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
-                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  } 
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-10 w-10 opacity-75 cursor-pointer"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke={activeOne == "roles" ? "blue":"gray"}
-                    strokeWidth="2"
-                    onClick={() => {
-                      handler({ param: "roles" });
-                    }}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-
-                  <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                    Roles
-                  </span>
-                </div>
-              </li>
             </ul>
           </nav>
         </div>
@@ -268,6 +236,9 @@ function Sidebar({ segmentActive }) {
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth="2"
+              onClick={() => {
+                handler({ param: "logout" });
+              }}
             >
               <path
                 strokeLinecap="round"
