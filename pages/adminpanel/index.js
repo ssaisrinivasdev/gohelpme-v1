@@ -8,13 +8,14 @@ import FundApproval from "../../components/UI/admincomps/ModulesFolder/FundAppro
 import WithdrawalRequestsTab from "../../components/UI/admincomps/ModulesFolder/WithdrawalRequestsTab";
 import QueriesTab from "../../components/UI/admincomps/ModulesFolder/QueriesTab";
 import RolesTab from "../../components/UI/admincomps/ModulesFolder/RolesTab";
+import { useRouter } from "next/router";
 
 function Admin() {
   const [buttonActive, setButtonActive] = useState("dashboard");
-  const [isLoading,setIsLoading] = useState(false);
+  const [isLoading,setIsLoading] = useState(true);
   const [roles, setRoles] = useState("");
-  const [adminType, setAdminType] = useState("admin");
-  const [email, setEmail] = useState("admin@admin.com");
+  const [adminType, setAdminType] = useState("");
+  const [email, setEmail] = useState("");
   const router = useRouter();
   const [canRoute, setCanRoute] = useState(true);
 
