@@ -15,9 +15,27 @@ import EditIcon from "../../public/icons/edit";
 function Fundraiser() {
   const router = useRouter();
   const [fundData, setFundData] = useState(null);
+  const [isOwner, setIsOwner] = useState(false);
 
   useEffect(() => {
     if (!router.isReady) return;
+
+    const token = localStorage.getItem("token");
+    let id = null;
+
+    if (token) {
+      jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
+        if (err) {
+          console.log("err");
+        } else {
+          id = decoded.id;
+        }
+      });
+    }else{
+      console.err("Not logged in")
+    }
+
+
     const { fundraiser } = router.query;
     const sync = async () => {
       let result = await fetch(
@@ -32,7 +50,12 @@ function Fundraiser() {
       );
 
       const data = await result.json();
-      setFundData(data);
+      if(result.status >=200 && result.status <=205){
+        if(data?.fund?.owner == id){
+          setIsOwner(true);
+        }
+        setFundData(data);
+      }
     };
 
     sync();
@@ -42,7 +65,7 @@ function Fundraiser() {
     <div>
       <Header />
 
-      {/* {decodedId == idOfUser ? ( */}
+      {isOwner && (
       <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
         <button
           type="button"
@@ -54,9 +77,7 @@ function Fundraiser() {
           <span class="mx-1">Edit</span>
         </button>
       </div>
-      {/* ) : (
-        ""
-      )} */}
+      )} 
 
       {fundData && (
         <FundData

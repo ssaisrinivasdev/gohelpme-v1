@@ -24,7 +24,9 @@ function ProfilePayments() {
     });
 
     if (res.status >= 200 && res.status <= 205) {
-      return alert("Paypal Verification under Process");
+      return alert("Updated Paypal address Successfully");
+    }else{
+      return alert("Something went wrong try again");
     }
   };
 
@@ -40,15 +42,28 @@ function ProfilePayments() {
                 </label>
                 {userData?.payment_request == "Requested" && (
                   <div>
-                    <p>Your Request is still under Review</p>
+                    <p>✅Updated</p>
                     <input
-                      placeholder="Paypal Address"
+                      placeholder="paypal.me/your_paypal_id"
                       defaultValue={userData?.paypal_address}
-                      {...register("paypal")}
+                      {...register("paypal_address")}
                       class="w-full rounded-lg border-gray-200 p-3 text-sm"
                       type="text"
                       id="paypal"
-                      disabled
+                    />
+                    <input
+                      defaultValue={userData?.paypal_address}
+                      {...register("payment_request")}
+                      class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                      type="text"
+                      id="paypal"
+                      value="NotRequested"
+                      hidden
+                    />
+                    <input
+                      type="submit"
+                      value="Change Mail"
+                      class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-color1 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
                     />
                   </div>
                 )}
@@ -95,13 +110,23 @@ function ProfilePayments() {
                 )}
                 {userData?.payment_request == "NotRequested" && (
                   <div>
+                    <p>Paypal Address</p>
                     <input
-                      placeholder="Paypal Address"
+                      placeholder="paypal.me/your_paypal_id"
                       defaultValue={userData?.paypal_address}
-                      {...register("paypal")}
+                      {...register("paypal_address")}
                       class="w-full rounded-lg border-gray-200 p-3 text-sm"
                       type="text"
                       id="paypal"
+                    />
+                    <input
+                      defaultValue={userData?.paypal_address}
+                      {...register("payment_request")}
+                      class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                      type="text"
+                      id="paypal"
+                      value="Requested"
+                      hidden
                     />
 
                     <input
