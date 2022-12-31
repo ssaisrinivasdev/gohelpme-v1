@@ -6,7 +6,7 @@ import Link from "next/link";
 function Sidebar({ segmentActive }) {
   // const [buttonActive, setButtonActive] = useState("dashboard");
 
-  const[activeOne, setActiveOne] = useState("dashboard");
+  const [activeOne, setActiveOne] = useState("dashboard");
 
   const handler = (data) => {
     setActiveOne(data.param);
@@ -24,17 +24,18 @@ function Sidebar({ segmentActive }) {
           <nav aria-label="Main Nav" className="flex flex-col p-2">
             <div className="py-4">
               <div
-                className={activeOne == "dashboard" ? 
-                "t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700 hover:text-gray-700"
-                :
-                "t group relative flex justify-center rounded px-2 py-1.5 text-blue-700 hover:bg-gray-50 hover:text-gray-700"}
+                className={
+                  activeOne == "dashboard"
+                    ? "t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700 hover:text-gray-700"
+                    : "t group relative flex justify-center rounded px-2 py-1.5 text-blue-700 hover:bg-gray-50 hover:text-gray-700"
+                }
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-10 w-10 opacity-75 cursor-pointer"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke={activeOne == "dashboard" ? "blue":"gray"}
+                  stroke={activeOne == "dashboard" ? "blue" : "gray"}
                   strokeWidth="2"
                   onClick={() => {
                     handler({ param: "dashboard" });
@@ -59,12 +60,12 @@ function Sidebar({ segmentActive }) {
             </div>
 
             <ul className="space-y-1 border-t border-gray-100 pt-4">
-              <li
-              >
+              <li>
                 <div
-                  className={activeOne == "finstats" ? 
-                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
-                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  className={
+                    activeOne == "finstats"
+                      ? "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                      : "group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                   }
                 >
                   <svg
@@ -72,7 +73,7 @@ function Sidebar({ segmentActive }) {
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={activeOne == "finstats" ? "blue":"gray"}
+                    stroke={activeOne == "finstats" ? "blue" : "gray"}
                     className="h-10 w-10 opacity-75 cursor-pointer"
                     onClick={() => {
                       handler({ param: "finstats" });
@@ -91,20 +92,20 @@ function Sidebar({ segmentActive }) {
                 </div>
               </li>
 
-              <li
-              >
+              <li>
                 <div
-                  className={activeOne == "fundApproval" ? 
-                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
-                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  }                
+                  className={
+                    activeOne == "fundApproval"
+                      ? "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                      : "group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={activeOne == "fundApproval" ? "blue":"gray"}
+                    stroke={activeOne == "fundApproval" ? "blue" : "gray"}
                     className="w-10 h-10 opacity-75 cursor-pointer"
                     onClick={() => {
                       handler({ param: "fundApproval" });
@@ -123,20 +124,20 @@ function Sidebar({ segmentActive }) {
                 </div>
               </li>
 
-              <li
-              >
+              <li>
                 <div
-                  className={activeOne == "withdrawalRequests" ? 
-                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
-                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  } 
+                  className={
+                    activeOne == "withdrawalRequests"
+                      ? "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                      : "group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={activeOne == "withdrawalRequests" ? "blue":"gray"}
+                    stroke={activeOne == "withdrawalRequests" ? "blue" : "gray"}
                     className="w-10 h-10 opacity-75 cursor-pointer"
                     onClick={() => {
                       handler({ param: "withdrawalRequests" });
@@ -155,7 +156,7 @@ function Sidebar({ segmentActive }) {
                 </div>
               </li>
 
-              <li
+              {/* <li
               >
                 <div
                   className={activeOne == "blog" ? 
@@ -185,22 +186,22 @@ function Sidebar({ segmentActive }) {
                     Blog
                   </span>
                 </div>
-              </li>
+              </li> */}
 
-              <li
-              >
+              <li>
                 <div
-                  className={activeOne == "queries" ? 
-                  "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
-                  :"group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  } 
+                  className={
+                    activeOne == "queries"
+                      ? "group relative flex justify-center bg-blue-50 rounded px-2 py-1.5 text-gray-500"
+                      : "group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={activeOne == "queries" ? "blue":"gray"}
+                    stroke={activeOne == "queries" ? "blue" : "gray"}
                     className="w-10 h-10 opacity-75 cursor-pointer"
                     onClick={() => {
                       handler({ param: "queries" });
