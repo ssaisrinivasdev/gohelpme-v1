@@ -79,7 +79,7 @@ function Dashboard() {
               <div className="flex gap-3">
                 <ProfileSidebar segmentActive={handler} />
                 {profileButtonActive === "details" ? <ProfileForm /> : ""}
-                {profileButtonActive === "payments" ? <ProfilePayments /> : ""}
+                {profileButtonActive === "payments" ? <ProfilePayments email={userIn?.response?.email}/> : ""}
                 {profileButtonActive === "withdrawal" ? (
                   <ProfileWithdrawReq />
                 ) : (

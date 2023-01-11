@@ -45,7 +45,6 @@ function AdminUi() {
   return (
     <div className="">
       <FundsComp />
-      <UserPaymentsComp />
       <WithdrawalStats />
     </div>
   );

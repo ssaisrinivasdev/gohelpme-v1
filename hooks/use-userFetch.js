@@ -16,7 +16,7 @@ function useUserFetch() {
     if (token) {
       jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
         if (err) {
-          console.log("no err");
+          console.log("err");
         } else {
           id = decoded.id;
         }
@@ -31,7 +31,7 @@ function useUserFetch() {
       },
     });
 
-    if (result.status >= 200 && result.status <= 300) {
+    if (result.status >= 200 && result.status < 300) {
       const jsonresultData = await result.json();
       setData(jsonresultData);
       setLoading(false);

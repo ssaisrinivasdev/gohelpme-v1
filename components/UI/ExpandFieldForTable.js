@@ -24,7 +24,7 @@ export default function ExpandFieldForTable(props) {
     <Box>
       {/* <ApprovalButton value="ApprovalsCol" onClick={handleClickOpen} /> */}
       <strong className="px-3 py-1.5 font-medium m-1">
-      {(props.param).substring(0,10)+"..."}
+      {(props.param).substring(0,(props.value==null?10:props.value))+"..."}
       <LaunchIcon className="cursor-pointer" onClick={handleClickOpen}></LaunchIcon>
       </strong>
 
