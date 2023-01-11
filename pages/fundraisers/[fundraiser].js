@@ -11,6 +11,8 @@ import FundUpdateForm from "../../components/UI/FundUpdateForm";
 import Header from "../../components/UI/Header";
 import useLoginCheck from "../../hooks/use-logincheck";
 import EditIcon from "../../public/icons/edit";
+import FullWidthAlertsComponent from "../../components/UI/FullWidthAlertsComponent";
+import jwt from "jsonwebtoken";
 
 function Fundraiser() {
   const router = useRouter();
@@ -31,8 +33,6 @@ function Fundraiser() {
           id = decoded.id;
         }
       });
-    }else{
-      console.err("Not logged in")
     }
 
 
@@ -64,6 +64,9 @@ function Fundraiser() {
   return (
     <div>
       <Header />
+      {isOwner&&(
+        <FullWidthAlertsComponent status={fundData?.fund?.verification_status} reason={fundData?.fund?.rejection_reson}/>
+      )}
 
       {isOwner && (
       <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
@@ -79,11 +82,21 @@ function Fundraiser() {
       </div>
       )} 
 
-      {fundData && (
-        <FundData
-          fund={fundData.fund}
-          followingStatus={fundData.following_status}
-        />
+      {fundData && 
+      (
+        ((fundData?.fund?.verification_status)=="Approved")?(
+          <FundData
+            fund={fundData.fund}
+            followingStatus={fundData.following_status}
+          />
+        ):
+        (((isOwner)?(
+          <FundData
+            fund={fundData.fund}
+            followingStatus={fundData.following_status}
+          />
+        ):
+        ("")))
       )}
       <Footer />
     </div>

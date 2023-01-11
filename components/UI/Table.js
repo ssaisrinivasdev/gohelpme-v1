@@ -17,8 +17,6 @@ const Funds = (props) => {
       verification_status: "InProgress",
     },
   ];
-  console.log("hii");
-  console.log(props.rows);
 
   const [pageSize, setPageSize] = useState(10);
   const [rowId, setRowId] = useState(null);

@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useUserFetch from "../../hooks/use-userFetch";
 
-function ProfilePayments() {
+function ProfilePayments(props) {
   const userIn = useUserFetch();
   // console.log(userIn.response);
   const userData = userIn?.response;
@@ -15,12 +15,13 @@ function ProfilePayments() {
   } = useForm();
 
   const handler = async (data) => {
-    const res = await fetch("http://gohelpme.online/api/update/user", {
-      method: "POST",
+    const res = await fetch("http://gohelpme.online/api/update/user/", {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({...data,
+        email: props.email}),
     });
 
     if (res.status >= 200 && res.status <= 205) {
@@ -57,7 +58,7 @@ function ProfilePayments() {
                       class="w-full rounded-lg border-gray-200 p-3 text-sm"
                       type="text"
                       id="paypal"
-                      value="NotRequested"
+                      value="Requested"
                       hidden
                     />
                     <input
