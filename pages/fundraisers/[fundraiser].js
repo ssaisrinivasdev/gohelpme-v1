@@ -11,13 +11,31 @@ import FundUpdateForm from "../../components/UI/FundUpdateForm";
 import Header from "../../components/UI/Header";
 import useLoginCheck from "../../hooks/use-logincheck";
 import EditIcon from "../../public/icons/edit";
+import FullWidthAlertsComponent from "../../components/UI/FullWidthAlertsComponent";
+import jwt from "jsonwebtoken";
 
 function Fundraiser() {
   const router = useRouter();
   const [fundData, setFundData] = useState(null);
+  const [isOwner, setIsOwner] = useState(false);
 
   useEffect(() => {
     if (!router.isReady) return;
+
+    const token = localStorage.getItem("token");
+    let id = null;
+
+    if (token) {
+      jwt.verify(token, "$tr0ngkEy123!@#", function (err, decoded) {
+        if (err) {
+          console.log("err");
+        } else {
+          id = decoded.id;
+        }
+      });
+    }
+
+
     const { fundraiser } = router.query;
     const sync = async () => {
       let result = await fetch(
@@ -32,7 +50,12 @@ function Fundraiser() {
       );
 
       const data = await result.json();
-      setFundData(data);
+      if(result.status >=200 && result.status <=205){
+        if(data?.fund?.owner == id){
+          setIsOwner(true);
+        }
+        setFundData(data);
+      }
     };
 
     sync();
@@ -41,8 +64,11 @@ function Fundraiser() {
   return (
     <div>
       <Header />
+      {isOwner&&(
+        <FullWidthAlertsComponent status={fundData?.fund?.verification_status} reason={fundData?.fund?.rejection_reson}/>
+      )}
 
-      {/* {decodedId == idOfUser ? ( */}
+      {isOwner && (
       <div className="mx-5 my-2 xl:w-[1250px] xl:mx-auto">
         <button
           type="button"
@@ -54,15 +80,23 @@ function Fundraiser() {
           <span class="mx-1">Edit</span>
         </button>
       </div>
-      {/* ) : (
-        ""
-      )} */}
+      )} 
 
-      {fundData && (
-        <FundData
-          fund={fundData.fund}
-          followingStatus={fundData.following_status}
-        />
+      {fundData && 
+      (
+        ((fundData?.fund?.verification_status)=="Approved")?(
+          <FundData
+            fund={fundData.fund}
+            followingStatus={fundData.following_status}
+          />
+        ):
+        (((isOwner)?(
+          <FundData
+            fund={fundData.fund}
+            followingStatus={fundData.following_status}
+          />
+        ):
+        ("")))
       )}
       <Footer />
     </div>

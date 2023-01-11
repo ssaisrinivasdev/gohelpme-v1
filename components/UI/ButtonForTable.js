@@ -57,7 +57,7 @@ function ApprovalButton(props) {
       {props.value == "LinkCol" && 
         (
           <LaunchIcon className="cursor-pointer"
-          onClick={()=> window.open(props.link, "_blank")}
+          onClick={()=> window.open(props.link.startsWith("http")?(props.link):(`https://${props.link}`), "_blank")}
           ></LaunchIcon>
         )
       }

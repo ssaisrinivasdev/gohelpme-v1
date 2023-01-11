@@ -8,6 +8,8 @@ import FundApproval from "../../components/UI/admincomps/ModulesFolder/FundAppro
 import WithdrawalRequestsTab from "../../components/UI/admincomps/ModulesFolder/WithdrawalRequestsTab";
 import QueriesTab from "../../components/UI/admincomps/ModulesFolder/QueriesTab";
 import RolesTab from "../../components/UI/admincomps/ModulesFolder/RolesTab";
+import ChartitiesWithdrawalTab from "../../components/UI/admincomps/ModulesFolder/CharitiesWithdrawalTab";
+import ChartitiesCRUDTab from "../../components/UI/admincomps/ModulesFolder/CharitiesCRUDTab";
 import { useRouter } from "next/router";
 import jwt from "jsonwebtoken";
 
@@ -103,10 +105,12 @@ function Admin() {
             </div>
           </div>
 
-          <div className="flex flex-col">
+          <div className="w-full">
             {buttonActive === "dashboard" ? <AdminUi /> : ""}
             {buttonActive === "blog" ? <BlogEditorial /> : ""}
             {buttonActive === "finstats" ? <FInStats /> : ""}
+            {buttonActive === "charityWithdrawal" ? <ChartitiesWithdrawalTab /> : ""}
+            {buttonActive === "charities" ? <ChartitiesCRUDTab /> : ""}
             {buttonActive === "fundApproval" ? (
               <div className="flex flex-col">
                 <FundApproval />

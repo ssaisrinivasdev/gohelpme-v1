@@ -52,17 +52,7 @@ function QueriesTab() {
       headerName: "Date",
       width: 150,
       type: "datetime",
-    },
-    {
-        field: "_status",
-        headerName: "Status",
-        type: "actions",
-        renderCell: (params) => (
-          <ApprovalButton
-            value={params.row.ticket_status+"Query"}
-          />
-        ),
-      }
+    }
   ];
 
   useEffect(() => {
@@ -122,19 +112,7 @@ function QueriesTab() {
           />
         </div>
 
-        <div className="flex flex-col xl:flex-row gap-5">
-          <h2 className="ml-3 py-1 text-xl text-gray-600">Status:</h2>
-          <div className="mr-10">
-            <select
-              {...register("ticket_status")}
-              className=" text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white"
-            >
-              <option value="Opened">Opened</option>
-              <option value="Investigating">Investigating</option>
-              <option value="Completed">Completed</option>
-            </select>
-          </div>
-        </div>
+        
 
         <div className="w-80 ">
           <input

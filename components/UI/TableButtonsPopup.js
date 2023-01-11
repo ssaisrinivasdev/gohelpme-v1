@@ -144,6 +144,32 @@ export default function FormDialog(data) {
     setOpenApprove(false);
   }
 
+  async function CharitiesWithdrawalStatusA(formData) {
+    let apiBaseUri =
+      "http://gohelpme.online/api/" + "withdrawl/update-charity/" + data.id;
+
+    const res = await fetch(apiBaseUri, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept, authorization",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+      }
+    });
+
+    const response = await res.json();
+    if (res.status >= 200 && res.status <= 205) {
+      alert("Approved Successfully!")
+    }else if(res.status == 400){
+      alert(response.message+" : "+ response.error)
+    }
+
+    setOpenApprove(false);
+  }
+
   async function handlRejectionConfirm(formData) {
     console.log(formData);
     console.log(data.status);
@@ -169,6 +195,9 @@ export default function FormDialog(data) {
       case "fundApprovalStatus":
         fundApprovalStatusUpdationA(formData);
         break;
+      case "CharitiesWithdrawalStatus":
+        CharitiesWithdrawalStatusA(formData);
+        break;
     }
   }
 
@@ -183,12 +212,13 @@ export default function FormDialog(data) {
           >
             Approve
           </strong>
+          {data.status!="CharitiesWithdrawalStatus" &&
           <strong
             onClick={handleClickOpenReject}
             className="rounded bg-red-500 px-3 py-1.5 text-xs font-medium text-white cursor-pointer m-1"
           >
             Reject
-          </strong>
+          </strong>}
         </>
       ) : (
         ""
