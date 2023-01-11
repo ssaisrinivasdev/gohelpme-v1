@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import Funds from "../../Table";
 import FormDialog from "../../TableButtonsPopup";
 import ApprovalButton from "../../ButtonForTable";
-import CircularProgressBar from "../../circularProgressBar";
+import CircularProgressBar from "../../CircularProgressBar";
 
 function ChartitiesWithdrawalTab() {
   const [startDate, setStartDate] = useState(new Date());

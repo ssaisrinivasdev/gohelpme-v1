@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import Funds from "../../Table";
 import FormDialog from "../../TableButtonsPopup";
 import ApprovalButton from "../../ButtonForTable";
-import CircularProgressBar from "../../circularProgressBar";
 import ExpandFieldForTable from "../../ExpandFieldForTable";
 import CreateCharityDialog from "../../CreateCharityDialog";
 
