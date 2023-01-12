@@ -46,7 +46,7 @@ function SearchCharitiesList(props){
     { charities != null &&
       charities.map((data)=>{
         return(
-        <div class="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-4"
+        <div key={data._id} class="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-4"
         onClick={()=>{
           props.handlerClose();
           props.handler(data._id, data.name);
