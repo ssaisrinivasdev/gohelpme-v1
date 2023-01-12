@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
 import AlertComponent from './alertsComponent';
+import SearchCharitiesList from './SearchCharitiesList';
 
 export default function ScrollablePopup(props) {
   const [open, setOpen] = React.useState(false);
@@ -48,24 +49,43 @@ export default function ScrollablePopup(props) {
     }
   }
 
+  async function searchCharities(){
+    handleClickOpen();
+  }
+
   return (
     <div>
-      <button
+      {props.from != "Charity" && <button
         onClick={()=>{historyHandler(props.fundId)}}
         type="button"
         class="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md"
       >
         History
-      </button>
+      </button>}
+      {props.from == "Charity" &&
+        <div onClick={()=>{searchCharities()}}>
+        <label  className="sr-only" for="message">
+          {props.children==null?"Charity":props.children}
+        </label>
+        <input
+            className="w-full rounded-lg border-gray-200 text-sm cursor-pointer"
+            type="text"
+            id="Select Charity"
+            placeholder= {props.children==null?"Charity":props.children}
+            disabled
+          />
+      </div>
+      }
       <Dialog
         open={open}
         onClose={handleClose}
         scroll='paper'
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description">
-        <DialogTitle id="scroll-dialog-title">History</DialogTitle>
+        {(props.from == "Charity") ? (<DialogTitle id="scroll-dialog-title">Select Charity</DialogTitle>):
+        (<DialogTitle id="scroll-dialog-title">History</DialogTitle>)}
         <DialogContent dividers={true}>
-          {isLoading &&
+          {isLoading && (props.from != "Charity") &&
             withdrawals.map((withdrawal) => {
             return(
               <>
@@ -77,6 +97,11 @@ export default function ScrollablePopup(props) {
               </>
             )
             })
+          }
+          {(props.from == "Charity") && (
+            <SearchCharitiesList handler = {props.handler} handlerClose={handleClose}/>
+          )
+
           }
         </DialogContent>
         <DialogActions>
