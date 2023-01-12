@@ -1,11 +1,16 @@
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import GlobalContext from "../../../store/global-context";
 import { useContext } from "react";
 import { useRouter } from "next/router";
+import ScrollablePopup from "../scrollablePopup";
 
 function Form() {
   const globalData = useContext(GlobalContext);
+  const [fundtype, setFundtype] = useState(null);
+  const [charityId, setCharityId] = useState();
+  const [charityName, setCharityName] = useState(null);
   const router = useRouter();
   const {
     register,
@@ -14,15 +19,25 @@ function Form() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const setCharityIdFunc = (data,name) =>{
     console.log(data);
+    setCharityId(data);
+    console.log(name);
+    setCharityName(name);
+  }
+
+  const onSubmit = async (data) => {
+    
+    console.log(data);
+    if(data.fund_type == "Charity"){
+      data.charity = charityId
+    }
 
     const formData = new FormData();
 
     for (const name in data) {
       formData.append(name, data[name]);
     }
-
     for (var i = 0; i < data.images.length; i++)
       formData.append("images", data.images[i]);
 
@@ -230,7 +245,9 @@ function Form() {
               {...register("fund_type", {
                   required: true,
                 })}
-                
+                onChange={(e) => {
+                  setFundtype(e.target.value);
+                }}
                 className=" mb-6 block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
                 <option value="Individual">Individual</option>
@@ -239,6 +256,23 @@ function Form() {
               </select>
             </div>
           </div>
+          <textarea
+            {...register("charity")}
+              className="w-full rounded-lg border-gray-200 p-3 text-sm"
+              rows="8"
+              id="charities"
+              value={charityId}
+              hidden
+            ></textarea>
+
+          { fundtype == "Charity" && 
+            <ScrollablePopup
+                handler={setCharityIdFunc}
+                from = "Charity"
+            >
+              {charityName}
+            </ScrollablePopup>
+          }
 
           <div>
             <label className="sr-only" for="message">
@@ -257,6 +291,7 @@ function Form() {
 
           {/* Images  */}
 
+          { true && 
           <label
             for="dropzone-file"
             className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-md cursor-pointer "
@@ -280,6 +315,7 @@ function Form() {
 
             <input type="file" multiple {...register("images")} />
           </label>
+          }
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
