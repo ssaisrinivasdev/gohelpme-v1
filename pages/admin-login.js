@@ -34,6 +34,8 @@ function Login() {
       localStorage.setItem("admin_token", admin_token);
       //Cookies.set("admin_token", admintoken);
       router.push("/adminpanel");
+    }else{
+      alert("Login Failed")
     }
   };
 

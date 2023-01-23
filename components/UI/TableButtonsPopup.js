@@ -12,6 +12,8 @@ import { useForm } from "react-hook-form";
 export default function FormDialog(data) {
   const [openApprove, setOpenApprove] = React.useState(false);
   const [openReject, setOpenReject] = React.useState(false);
+  const [openDelete, setOpenDelete] = React.useState(false);
+  const [openPay, setOpenPay] = React.useState(false);
 
   const {
     register,
@@ -25,13 +27,25 @@ export default function FormDialog(data) {
   };
   const handleClickOpenReject = () => {
     setOpenReject(true);
+  };  
+  const handleClickOpenDelete = () => {
+    setOpenDelete(true);
   };
+  const handleClickOpenPay = () => {
+    setOpenPay(true);
+  }
 
   const handleCloseApprove = () => {
     setOpenApprove(false);
   };
   const handleCloseReject = () => {
     setOpenReject(false);
+  };
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
+  const handleClosePay = () => {
+    setOpenPay(false);
   };
 
   async function withdrawlStatusUpdationR(formData) {
@@ -170,6 +184,71 @@ export default function FormDialog(data) {
     setOpenApprove(false);
   }
 
+  async function CharitiesPaymentA() {
+    
+    let apiBaseUri =""
+    if(data.status == "CharitiesWithdrawalPayment"){
+      apiBaseUri = "http://gohelpme.online/api/" + "charity-payment-address/" + data.id;
+    }else if(data.status == "CharitiesFundWithdrawalPayment"){
+      apiBaseUri = "http://gohelpme.online/api/" + "fund-payment-address/" + data.id;
+    }      
+
+    const res = await fetch(apiBaseUri, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept, authorization",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+      }
+    });
+
+    const response = await res.json();
+    if (res.status >= 200 && res.status <= 205) {
+      open(response.paypal)
+    }else if(res.status == 400){
+      alert(response.message+" : "+ response.error)
+    }
+
+    setOpenPay(false);
+  }
+
+  function open(url) {
+    url = url.startsWith("http")?(url):(`https://${url}`);
+    const win = window.open(url, '_blank');
+    if (win != null) {
+      win.focus();
+    }
+  }
+
+  async function CharitiesDeletionA() {
+    let apiBaseUri =
+      "http://gohelpme.online/api/" + "delete-charity/" + data.id;
+
+    const res = await fetch(apiBaseUri, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept, authorization",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+      }
+    });
+
+    const response = await res.json();
+    if (res.status >= 200 && res.status <= 205) {
+      alert("Deleted Successfully!")
+    }else if(res.status == 400){
+      alert(response.message+" : "+ response.error)
+    }
+
+    setOpenDelete(false);
+  }
+
   async function handlRejectionConfirm(formData) {
     console.log(formData);
     console.log(data.status);
@@ -184,6 +263,7 @@ export default function FormDialog(data) {
     }
   }
 
+
   async function handlApproveConfirm(formData) {
     console.log(formData);
     console.log(data.status);
@@ -197,6 +277,26 @@ export default function FormDialog(data) {
         break;
       case "CharitiesWithdrawalStatus":
         CharitiesWithdrawalStatusA(formData);
+        break;
+    }
+  }
+
+  async function handleDeleteConfirm() {
+    console.log(data.status);
+
+    switch (data.status) {
+      case "CharitiesDeletion":
+        CharitiesDeletionA();
+        break;
+    }
+  }
+  async function handlePayConfirm() {
+    console.log(data.status);
+
+    switch (data.status) {
+      case "CharitiesWithdrawalPayment":
+      case "CharitiesFundWithdrawalPayment":
+        CharitiesPaymentA();
         break;
     }
   }
@@ -227,6 +327,28 @@ export default function FormDialog(data) {
         <>
           <strong className="rounded border-2 border-rose-500 px-3 py-1.5 text-xs font-medium text-rose-500 m-1">
             Rejected
+          </strong>
+        </>
+      ) : (
+        ""
+      )}
+      {data?.statusValue == "Delete" ? (
+        <>
+          <strong 
+           onClick={handleClickOpenDelete}
+           className="rounded bg-red-500 px-3 py-1.5 text-xs font-medium text-white cursor-pointer m-1">
+            Delete
+          </strong>
+        </>
+      ) : (
+        ""
+      )}
+      {data?.statusValue == "Payment" ? (
+        <>
+          <strong 
+           onClick={handleClickOpenPay}
+           className="rounded bg-blue-600 px-3 py-1.5 text-xs font-medium text-white cursor-pointer m-1">
+            Pay
           </strong>
         </>
       ) : (
@@ -283,6 +405,46 @@ export default function FormDialog(data) {
               Confirm
             </Button>
             <Button onClick={handleCloseApprove} color="error">
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </form>
+
+      {/* ---------------Deletion Happens here ---------------- */}
+      <form>
+        <Dialog open={openDelete} onClose={handleCloseDelete}>
+          <DialogTitle>Confirmation</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure want to delete this?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleSubmit(handleDeleteConfirm)} color="primary">
+              Confirm
+            </Button>
+            <Button onClick={handleCloseDelete} color="error">
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </form>
+
+       {/* ---------------Payment Link Generation Happens here ---------------- */}
+       <form>
+        <Dialog open={openPay} onClose={handleClosePay}>
+          <DialogTitle>Confirmation</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure want to delete this?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleSubmit(handlePayConfirm)} color="primary">
+              Payment
+            </Button>
+            <Button onClick={handleClosePay} color="error">
               Cancel
             </Button>
           </DialogActions>

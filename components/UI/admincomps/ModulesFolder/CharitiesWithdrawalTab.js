@@ -12,6 +12,7 @@ function ChartitiesWithdrawalTab() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [rows, setRows] = useState(null);
+  let serial = 0;
   // const [tableData, setTableData] = useState(null);
 
   const {
@@ -22,13 +23,6 @@ function ChartitiesWithdrawalTab() {
   } = useForm();
 
   const columns = [
-    {
-      field: "_id",
-      headerName: "ID",
-      width: 220,
-      minWidth: 220,
-      maxWidth: 300,
-    },
     {
       field: "title",
       headerName: "Title",
@@ -104,23 +98,15 @@ function ChartitiesWithdrawalTab() {
         <FormDialog id={params.id} status="CharitiesWithdrawalStatus" statusValue="InProgress"/>
       ),
     },
-    // {
-    //   field: "paypalAddress",
-    //   headerName: "PaypalAddress",
-    //   width: 200,
-    //   type: "actions",
-    //   minWidth: 200,
-    //   maxWidth: 200,
-    //   renderCell: (params) => (
-    //     <>
-    //     <a>{(params.row.paypalAddress).substring(0,20)+"..."}</a>
-    //     <ApprovalButton
-    //       value="LinkCol"
-    //       link={params.row.paypalAddress}
-    //     />
-    //     </>
-    //   )
-    // },
+    {
+      field: "payments",
+      headerName: "Payments",
+      type: "actions",
+      width: 140,
+      renderCell: (params) => (
+        <FormDialog id={params.row.charity} status="CharitiesWithdrawalPayment" statusValue="Payment"/>
+      ),
+    }
   ];
 
   useEffect(() => {

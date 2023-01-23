@@ -19,6 +19,15 @@ function ApprovalButton(props) {
         )}
       </>
       <>
+      {props.value == "delete" && (
+          <>
+          <strong className= "rounded bg-red-500 px-3 py-1.5 text-xs font-medium text-white">
+              Delete
+          </strong>
+        </>
+        )}
+      </>
+      <>
         {props.value == "OpenedQuery" && (
           <strong className="rounded bg-blue-500 px-3 py-1.5 text-xs font-medium text-white">
               Opened

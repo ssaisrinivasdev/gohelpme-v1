@@ -114,6 +114,16 @@ function ChartitiesCRUDTab() {
         </>
       ),
     },
+    {
+      field: "deletions",
+      headerName: "Actions",
+      type: "actions",
+      width: 150,
+      renderCell: (params) => (
+        <FormDialog status="CharitiesDeletion" statusValue="Delete"
+        id = {params.id}/>
+      ),
+    },
   ];
 
   useEffect(() => {
@@ -150,7 +160,7 @@ function ChartitiesCRUDTab() {
     <div className="flex flex-col gap-5 w-full">
       <form
         onSubmit={handleSubmit(onLoad)}
-        className="flex flex-col xl:flex-row pt-10 gap-5"
+        className="w-full pt-10 flex-col"
       >
         <div className="w-80 ">
           <input
@@ -159,10 +169,11 @@ function ChartitiesCRUDTab() {
             className="group flex items-center justify-between border border-red-600 bg-red-600 px-2 py-2 transition-colors hover:bg-transparent hover:text-color1 focus:outline-none focus:ring text-white"
           />
         </div>
-      </form>
-      <div className="flex justify-end pr-20">
+        <div className="flex justify-end pr-20">
         <CreateCharityDialog/>
       </div>
+      </form>
+      
 
       <Funds rows={rows} columns={columns}/>
     </div>
