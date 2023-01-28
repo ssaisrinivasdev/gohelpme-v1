@@ -48,7 +48,6 @@ function Fundraiser() {
           },
         }
       );
-
       const data = await result.json();
       if(result.status >=200 && result.status <=205){
         if(data?.fund?.owner == id){
@@ -57,9 +56,8 @@ function Fundraiser() {
         setFundData(data);
       }
     };
-
     sync();
-  }, [router.isReady, fundData]);
+  }, [router.isReady]);
 
   return (
     <div>

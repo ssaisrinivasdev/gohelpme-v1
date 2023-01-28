@@ -33,7 +33,7 @@ export default function Home() {
       {/* </div>
       </div> */}
       <Hero2 />
-      <BlogCards />
+      {/* <BlogCards /> */}
       <Footer />
     </div>
   );

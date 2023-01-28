@@ -127,7 +127,7 @@ function Login() {
           <input
             type="submit"
             value="Sign In"
-            class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+            class="cursor-pointer block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
           />
 
           {/* <p class="text-center text-sm text-gray-500">

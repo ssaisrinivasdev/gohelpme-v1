@@ -313,7 +313,9 @@ function Form() {
 
             <h2 className="mx-3 text-gray-400">Upload Images</h2>
 
-            <input type="file" multiple {...register("images")} />
+            <input type="file" multiple {...register("images", {
+                  required: true,
+                })} />
           </label>
           }
 

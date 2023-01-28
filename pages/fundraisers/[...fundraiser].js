@@ -35,7 +35,6 @@ function UpdateFund() {
       setFund(data)
       
     };
-
     sync();
 
   },[router.isReady])
