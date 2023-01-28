@@ -1,9 +1,14 @@
 import React from "react";
+import { useState } from "react";
 
 import Link from "next/link";
 
 function ProfileSidebar({ segmentActive }) {
+  
+  const [activeOne, setActiveOne] = useState("details");
+
   const handler = (data) => {
+    setActiveOne(data.param);
     segmentActive(data.param);
   };
 
@@ -14,21 +19,25 @@ function ProfileSidebar({ segmentActive }) {
           <nav aria-label="Main Nav" className="flex flex-col p-2">
             <ul className="space-y-1 border-t border-gray-100 pt-4">
               <li
-                onClick={() => {
-                  handler({ param: "details" });
-                }}
+                
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={
+                    activeOne == "details"
+                      ? "t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700 hover:text-gray-700"
+                      : "t group relative flex justify-center rounded px-2 py-1.5 text-blue-700 hover:bg-gray-50 hover:text-gray-700"
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    stroke="currentColor"
+                    stroke={activeOne == "details" ? "blue" : "gray"}
                     class="h-10 w-10 opacity-75"
+                    onClick={() => {
+                      handler({ param: "details" });
+                    }}
                   >
                     <path
                       stroke-linecap="round"
@@ -40,25 +49,29 @@ function ProfileSidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Details
                   </span>
-                </Link>
+                </div>
               </li>
 
               <li
-                onClick={() => {
-                  handler({ param: "payments" });
-                }}
+                
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={
+                    activeOne == "payments"
+                      ? "t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700 hover:text-gray-700"
+                      : "t group relative flex justify-center rounded px-2 py-1.5 text-blue-700 hover:bg-gray-50 hover:text-gray-700"
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke="currentColor"
+                    stroke={activeOne == "payments" ? "blue" : "gray"}
                     className="h-10 w-10 opacity-75"
+                    onClick={() => {
+                      handler({ param: "payments" });
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -70,25 +83,29 @@ function ProfileSidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     Payments
                   </span>
-                </Link>
+                </div>
               </li>
 
               <li
-                onClick={() => {
-                  handler({ param: "withdrawal" });
-                }}
+                
               >
-                <Link
-                  href=""
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <div
+                  className={
+                    activeOne == "withdrawal"
+                      ? "t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700 hover:text-gray-700"
+                      : "t group relative flex justify-center rounded px-2 py-1.5 text-blue-700 hover:bg-gray-50 hover:text-gray-700"
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke="currentColor"
+                    stroke={activeOne == "withdrawal" ? "blue" : "gray"}
                     className="w-10 h-10 opacity-75"
+                    onClick={() => {
+                      handler({ param: "withdrawal" });
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -100,7 +117,7 @@ function ProfileSidebar({ segmentActive }) {
                   <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     withdrawal
                   </span>
-                </Link>
+                </div>
               </li>
             </ul>
           </nav>

@@ -17,7 +17,7 @@ export default function Header() {
     { title: "How it works", path: "/howitworks" },
     { title: "FAQ's", path: "/faqs" },
     { title: "Fundraisers", path: "/fundraisers" },
-    { title: "Blog", path: "/blog" },
+    // { title: "Blog", path: "/blog" },
   ];
 
   useEffect(() => {

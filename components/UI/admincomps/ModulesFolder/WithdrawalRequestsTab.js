@@ -70,6 +70,15 @@ function WithdrawalRequestsTab() {
         />
       ),
     },
+    {
+      field: "payments",
+      headerName: "Payments",
+      type: "actions",
+      width: 140,
+      renderCell: (params) => (
+        <FormDialog id={params.row.fund} status="CharitiesFundWithdrawalPayment" statusValue="Payment"/>
+      ),
+    }
   ];
 
   useEffect(() => {

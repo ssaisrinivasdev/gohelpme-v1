@@ -84,37 +84,37 @@ const Footer = () => {
                 <div>
                   <h3 class="text-gray-700 uppercase ">Fundraise for</h3>
                   <Link
-                    href="/funds/search?keyword=help&category=Medical&page=1"
+                    href="/funds/search?keyword=&category=Medical&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Medical
                   </Link>
                   <Link
-                    href="/funds/search?keyword=help&category=Emergency&page=1"
+                    href="/funds/search?keyword=&category=Emergency&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Emergency
                   </Link>
                   <Link
-                    href="/funds/search?keyword=help&category=Memorial&page=1"
+                    href="/funds/search?keyword=&category=Memorial&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Memorial
                   </Link>
                   <Link
-                    href="/funds/search?keyword=help&category=Education&page=1"
+                    href="/funds/search?keyword=&category=Education&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Education
                   </Link>
                   <Link
-                    href="/funds/search?keyword=help&category=Charity&page=1"
+                    href="/funds/search?keyword=&category=Charity&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Charity
                   </Link>
                   <Link
-                    href="/funds/search?keyword=help&category=FinancialEmergency&page=1"
+                    href="/funds/search?keyword=&category=FinancialEmergency&page=1"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Financial Emergency
@@ -181,12 +181,12 @@ const Footer = () => {
                   >
                     Help center
                   </a>
-                  <a
+                  {/* <a
                     href="#"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
                   >
                     Blog
-                  </a>
+                  </a> */}
                   <a
                     href="#"
                     class="block mt-2 text-sm text-gray-600 hover:underline"
